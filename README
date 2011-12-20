@@ -1,0 +1,18 @@
+PROJECT TREE
+
+|- src-java
+|  |
+|  |- sia
+|  |  |
+|  |  |- models			# models
+|  |  |- ui				# GUI in SWT
+|  |  |- utils			# utils for DB connection, helpers
+|  
+|- src-py
+|  |
+|  |- sia
+|  |  |
+|  |  |- fileparsers	# messages and contacts file parsers
+|  |  |- utils			# utils for DB connection, helpers
+|
+|- sia-api.jar 			# jar containing all java classes needed by python code
