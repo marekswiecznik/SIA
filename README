@@ -16,3 +16,5 @@ PROJECT TREE
 |  |  |- utils		# utils for DB connection, helpers
 |
 |- sia-api.jar 		# jar containing all java classes needed by python code
+|
+|- lib			# external java libraries

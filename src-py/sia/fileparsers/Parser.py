@@ -13,31 +13,18 @@ class Parser(object):
 		'''
 		Constructor
 		'''
-		self.messages = []
-		self.contacts = []
-		self.messagesContent = None
-		self.contactsContent = None
 
-	def loadMessages(self, filename):
+	def loadFiles(self, messageFiles, contactFiles=None):
 		'''
-		Load messages file content
+		Load messages and contacts files content
 		
-		@param filename file name
+		@param contactFiles contact files
+		@param messageFiles message files
 		'''
-		f = open(filename, 'r')
-		self.messagesContent = f.read()
-		
-	def loadContacts(self, filename):
-		'''
-		Load contacts file content
-		
-		@param filename file name
-		'''
-		f = open(filename, 'r')
-		self.contactsContent = f.read()
+		raise NotImplementedError()
 	
 	def parse(self):
 		'''
-		Parse messages
+		Parse contact, messages etc
 		'''
 		raise NotImplementedError()

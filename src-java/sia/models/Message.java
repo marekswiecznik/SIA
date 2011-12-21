@@ -2,9 +2,14 @@ package sia.models;
 
 import java.util.Date;
 
+/**
+ * Message 
+ * 
+ * @author jumper
+ */
 public class Message {
 	private int id;
-	private Contact contact;
+	private Conversation conversation;
 	private String message;
 	private Date time;
 	private boolean received;
@@ -17,8 +22,9 @@ public class Message {
 	 * @param time
 	 * @param received
 	 */
-	public Message(Contact contact, String message, Date time, boolean received) {
-		this.contact = contact;
+	public Message(int id, Conversation conversation, String message, Date time, boolean received) {
+		this.id = id;
+		this.conversation = conversation;
 		this.message = message;
 		this.time = time;
 		this.received = received;
@@ -34,26 +40,26 @@ public class Message {
 
 	/**
 	 * Set contact
-	 * @param contact
+	 * @param conversation
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * Get contact
-	 * @return contact
+	 * Get conversation
+	 * @return conversation
 	 */
-	public Contact getContact() {
-		return contact;
+	public Conversation getConversation() {
+		return conversation;
 	}
 
 	/**
-	 * Set contact
-	 * @param contact
+	 * Set conversation
+	 * @param conversation
 	 */
-	public void setContact(Contact contact) {
-		this.contact = contact;
+	public void setConversation(Conversation conversation) {
+		this.conversation = conversation;
 	}
 
 	/**
@@ -109,8 +115,54 @@ public class Message {
 	 */
 	@Override
 	public String toString() {
-		return "Message [contact=" + contact + ", message=" + message
+		return "Message [id=" + id + ", conversation=" + conversation + ", message=" + message
 				+ ", time=" + time + ", received=" + received + "]";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((conversation == null) ? 0 : conversation.hashCode());
+		result = prime * result + ((message == null) ? 0 : message.hashCode());
+		result = prime * result + (received ? 1231 : 1237);
+		result = prime * result + ((time == null) ? 0 : time.hashCode());
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Message other = (Message) obj;
+		if (conversation == null) {
+			if (other.conversation != null)
+				return false;
+		} else if (!conversation.equals(other.conversation))
+			return false;
+		if (message == null) {
+			if (other.message != null)
+				return false;
+		} else if (!message.equals(other.message))
+			return false;
+		if (received != other.received)
+			return false;
+		if (time == null) {
+			if (other.time != null)
+				return false;
+		} else if (!time.equals(other.time))
+			return false;
+		return true;
 	}
 	
 }
