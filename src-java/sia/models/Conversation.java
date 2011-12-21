@@ -1,6 +1,8 @@
 package sia.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Conversation
@@ -10,8 +12,10 @@ import java.util.Date;
 public class Conversation {
 	private int id;
 	private Date begin;
+	private String firstMessage;
 	private int length;
 	private ContactProtocol contact;
+	private List<Message> messages;
 	
 	/**
 	 * Default and only constructor
@@ -20,11 +24,13 @@ public class Conversation {
 	 * @param length
 	 * @param contact
 	 */
-	public Conversation(int id, Date begin, int length, ContactProtocol contact) {
+	public Conversation(int id, Date begin, String firstMessage, int length, ContactProtocol contact) {
 		this.id = id;
 		this.begin = begin;
+		this.firstMessage = firstMessage;
 		this.length = length;
 		this.contact = contact;
+		this.messages = new ArrayList<Message>();
 	}
 	
 	/**
@@ -60,6 +66,22 @@ public class Conversation {
 	}
 	
 	/**
+	 * Get first message
+	 * @return first message
+	 */
+	public String getFirstMessage() {
+		return firstMessage;
+	}
+	
+	/**
+	 * Set first message
+	 * @param first message
+	 */
+	public void setBegin(String firstMessage) {
+		this.firstMessage = firstMessage;
+	}
+	
+	/**
 	 * Get length
 	 * @return length
 	 */
@@ -90,14 +112,31 @@ public class Conversation {
 	public void setContact(ContactProtocol contact) {
 		this.contact = contact;
 	}
+	
+	/**
+	 * Get messages
+	 * @return messages
+	 */
+	public List<Message> getMessages() {
+		return messages;
+	}
+	
+	/**
+	 * Add message 
+	 * @param msg message
+	 */
+	public void addMessage(Message msg) {
+		msg.setConversation(this);
+		messages.add(msg);
+		length++;
+	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
-		return "Conversation [id=" + id + ", begin=" + begin + ", length="
-				+ length + ", contact=" + contact + "]";
+		return "Conversation [id=" + id + ", begin=" + begin + ", firstMessage=" + firstMessage +"..., length=" + length + "]";
 	}
 
 	/**

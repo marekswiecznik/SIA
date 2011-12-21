@@ -1,5 +1,8 @@
 package sia.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Contact
  * 
@@ -12,6 +15,8 @@ public class ContactProtocol {
 	private String otherinfo;
 	private Protocol protocol;
 	private Contact contact;
+	private boolean avatar;
+	private List<Conversation> conversations;
 
 	/**
 	 * Default and only constructor
@@ -26,6 +31,8 @@ public class ContactProtocol {
 		this.otherinfo = otherinfo;
 		this.protocol = protocol;
 		this.contact = contact;
+		this.avatar = false;
+		this.conversations = new ArrayList<Conversation>();
 	}
 
 	/**
@@ -123,13 +130,46 @@ public class ContactProtocol {
 	public void setProtocol(Protocol protocol) {
 		this.protocol = protocol;
 	}
+
+	/**
+	 * Get conversations
+	 * @return conversations
+	 */
+	public List<Conversation> getConversations() {
+		return conversations;
+	}
+
+	/**
+	 * Set conversations
+	 * @param conversations 
+	 */
+	public void setConversations(List<Conversation> conversations) {
+		this.conversations = conversations;
+	}
+
+	/**
+	 * Get avatar
+	 * @return avatar
+	 */
+	public boolean getAvatar() {
+		return avatar;
+	}
+
+	/**
+	 * Set avatar
+	 * @param avatar 
+	 */
+	public void setAvatar(boolean avatar) {
+		this.avatar = avatar;
+	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
-		return "Contact [id=" + this.id + ", name=" + this.name + ", uid=" + this.uid + "]";
+		return "ContactProtocol [id=" + this.id + ", name=" + this.name + ", uid=" 
+				+ this.uid + ", protocol=" + (protocol != null ? protocol.getName() : "null") + "]";
 	}
 
 	/**

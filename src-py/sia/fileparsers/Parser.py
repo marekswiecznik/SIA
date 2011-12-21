@@ -9,10 +9,11 @@ class Parser(object):
 	Abstract base parser
 	'''
 
-	def __init__(self):
+	def __init__(self, protocol):
 		'''
 		Constructor
 		'''
+		self.protocol = protocol
 
 	def loadFiles(self, messageFiles, contactFiles=None):
 		'''

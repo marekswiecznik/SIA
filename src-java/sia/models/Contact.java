@@ -1,5 +1,8 @@
 package sia.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Contact
  * 
@@ -10,6 +13,15 @@ public class Contact {
 	private String firstname;
 	private String lastname;
 	private String name;
+	private List<ContactProtocol> contactProtocols;
+	
+	public Contact(int id, String firstname, String lastname, String name) {
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.name = name;
+		this.contactProtocols = new ArrayList<ContactProtocol>();
+	}
 	
 	/**
 	 * Get id
@@ -60,7 +72,7 @@ public class Contact {
 	
 	/**
 	 * Get name
-	 * @return the name
+	 * @return name
 	 */
 	public String getName() {
 		return name;
@@ -68,10 +80,18 @@ public class Contact {
 	
 	/**
 	 * Set name
-	 * @param name the name to set
+	 * @param name 
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * Get contact protocols
+	 * @return contact protocols
+	 */
+	public List<ContactProtocol> getContactProtocols() {
+		return contactProtocols;
 	}
 	
 	/**

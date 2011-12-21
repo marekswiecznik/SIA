@@ -115,8 +115,7 @@ public class Message {
 	 */
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", conversation=" + conversation + ", message=" + message
-				+ ", time=" + time + ", received=" + received + "]";
+		return "Message [id=" + id + ", message=" + message + ", time=" + time + ", rcv=" + received + "]";
 	}
 
 	/**
