@@ -5,14 +5,19 @@ package sia.models;
  * 
  * @author jumper
  */
-public class Protocol {
+public class Protocol implements IModel {
 	private int id;
 	private String name;
 	private String description;
 	private String icon;
 	
 	/**
-	 * Default and only constructor
+	 * Default constructor
+	 */
+	public Protocol() { }
+	
+	/**
+	 * Constructor
 	 * @param id
 	 * @param name
 	 * @param description

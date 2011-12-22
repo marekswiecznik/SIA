@@ -4,33 +4,46 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.sormula.annotation.Transient;
+import org.sormula.annotation.cascade.OneToOneCascade;
+import org.sormula.annotation.cascade.SelectCascade;
+
 /**
  * Conversation
  * 
  * @author jumper
  */
-public class Conversation {
+public class Conversation implements IModel {
 	private int id;
-	private Date begin;
-	private String firstMessage;
+	private Date time;
+	private String title;
 	private int length;
-	private ContactProtocol contact;
+	private int contactAccountID;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactAccountID"}) })
+	private ContactAccount contactAccount;
+	@Transient
 	private List<Message> messages;
 	
 	/**
-	 * Default and only constructor
-	 * @param id
-	 * @param begin
-	 * @param length
-	 * @param contact
+	 * Default constructor
 	 */
-	public Conversation(int id, Date begin, String firstMessage, int length, ContactProtocol contact) {
+	public Conversation() { this.messages = new ArrayList<Message>(); }
+	
+	/**
+	 * Constructor
+	 * @param id
+	 * @param time
+	 * @param title
+	 * @param length
+	 * @param contactAccount
+	 */
+	public Conversation(int id, Date begin, String firstMessage, int length, ContactAccount contact) {
+		this();
 		this.id = id;
-		this.begin = begin;
-		this.firstMessage = firstMessage;
+		this.time = begin;
+		this.title = firstMessage;
 		this.length = length;
-		this.contact = contact;
-		this.messages = new ArrayList<Message>();
+		this.contactAccount = contact;
 	}
 	
 	/**
@@ -50,35 +63,35 @@ public class Conversation {
 	}
 	
 	/**
-	 * Get begin
-	 * @return begin
+	 * Get time
+	 * @return time
 	 */
-	public Date getBegin() {
-		return begin;
+	public Date getTime() {
+		return time;
 	}
 	
 	/**
-	 * Set begin
-	 * @param begin begin to set
+	 * Set time
+	 * @param time
 	 */
-	public void setBegin(Date begin) {
-		this.begin = begin;
+	public void setTime(Date time) {
+		this.time = time;
 	}
 	
 	/**
-	 * Get first message
-	 * @return first message
+	 * Get title
+	 * @return title
 	 */
-	public String getFirstMessage() {
-		return firstMessage;
+	public String getTitle() {
+		return title;
 	}
 	
 	/**
-	 * Set first message
-	 * @param first message
+	 * Set title
+	 * @param title
 	 */
-	public void setBegin(String firstMessage) {
-		this.firstMessage = firstMessage;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	/**
@@ -98,19 +111,33 @@ public class Conversation {
 	}
 	
 	/**
-	 * Get contact
-	 * @return contact
+	 * @return the contactAccountID
 	 */
-	public ContactProtocol getContact() {
-		return contact;
+	public int getContactAccountID() {
+		return contactAccountID;
+	}
+
+	/**
+	 * @param contactAccountID the contactAccountID to set
+	 */
+	public void setContactAccountID(int contactAccountID) {
+		this.contactAccountID = contactAccountID;
+	}
+
+	/**
+	 * Get contactAccount
+	 * @return contactAccount
+	 */
+	public ContactAccount getContactAccount() {
+		return contactAccount;
 	}
 	
 	/**
-	 * Set contact
-	 * @param contact contact to set
+	 * Set contactAccount
+	 * @param contactAccount contactAccount to set
 	 */
-	public void setContact(ContactProtocol contact) {
-		this.contact = contact;
+	public void setContactAccount(ContactAccount contact) {
+		this.contactAccount = contact;
 	}
 	
 	/**
@@ -136,7 +163,7 @@ public class Conversation {
 	 */
 	@Override
 	public String toString() {
-		return "Conversation [id=" + id + ", begin=" + begin + ", firstMessage=" + firstMessage +"..., length=" + length + "]";
+		return "Conversation [id=" + id + ", time=" + time + ", title=" + title +"..., length=" + length + "]";
 	}
 
 	/**
@@ -146,8 +173,8 @@ public class Conversation {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((begin == null) ? 0 : begin.hashCode());
-		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
+		result = prime * result + ((time == null) ? 0 : time.hashCode());
+		result = prime * result + ((contactAccount == null) ? 0 : contactAccount.hashCode());
 		return result;
 	}
 
@@ -163,15 +190,15 @@ public class Conversation {
 		if (getClass() != obj.getClass())
 			return false;
 		Conversation other = (Conversation) obj;
-		if (begin == null) {
-			if (other.begin != null)
+		if (time == null) {
+			if (other.time != null)
 				return false;
-		} else if (!begin.equals(other.begin))
+		} else if (!time.equals(other.time))
 			return false;
-		if (contact == null) {
-			if (other.contact != null)
+		if (contactAccount == null) {
+			if (other.contactAccount != null)
 				return false;
-		} else if (!contact.equals(other.contact))
+		} else if (!contactAccount.equals(other.contactAccount))
 			return false;
 		return true;
 	}

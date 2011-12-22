@@ -3,36 +3,52 @@ package sia.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sormula.annotation.Transient;
+import org.sormula.annotation.cascade.OneToOneCascade;
+import org.sormula.annotation.cascade.SelectCascade;
+
 /**
  * Contact
  * 
  * @author jumper
  */
-public class ContactProtocol {
+public class ContactAccount implements IModel {
 	private int id;
 	private String name;
 	private String uid;
 	private String otherinfo;
+	private int protocolID;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolID"}) })
 	private Protocol protocol;
+	private int contactID;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactID"}) })
 	private Contact contact;
-	private boolean avatar;
+	private int avatar;
+	@Transient
 	private List<Conversation> conversations;
+	
+	/**
+	 * Default constructor
+	 */
+	public ContactAccount() {
+		this.avatar = 0;
+		this.conversations = new ArrayList<Conversation>();
+	}
 
 	/**
-	 * Default and only constructor
+	 * Constructor
 	 * @param name
 	 * @param uid
 	 * @param otherinfo
 	 */
-	public ContactProtocol(int id, String name, String uid, String otherinfo, Contact contact, Protocol protocol) {
+	public ContactAccount(int id, String name, String uid, String otherinfo, Contact contact, Protocol protocol) {
+		this();
 		this.id = id;
 		this.name = name;
 		this.uid = uid;
 		this.otherinfo = otherinfo;
 		this.protocol = protocol;
 		this.contact = contact;
-		this.avatar = false;
-		this.conversations = new ArrayList<Conversation>();
 	}
 
 	/**
@@ -100,19 +116,17 @@ public class ContactProtocol {
 	}
 
 	/**
-	 * Get contact
-	 * @return contact
+	 * @return the protocolID
 	 */
-	public Contact getContact() {
-		return contact;
+	public int getProtocolID() {
+		return protocolID;
 	}
 
 	/**
-	 * Set contact
-	 * @param contact 
+	 * @param protocolID the protocolID to set
 	 */
-	public void setContact(Contact contact) {
-		this.contact = contact;
+	public void setProtocolID(int protocolID) {
+		this.protocolID = protocolID;
 	}
 
 	/**
@@ -129,6 +143,36 @@ public class ContactProtocol {
 	 */
 	public void setProtocol(Protocol protocol) {
 		this.protocol = protocol;
+	}
+
+	/**
+	 * Get contact
+	 * @return contact
+	 */
+	public Contact getContact() {
+		return contact;
+	}
+
+	/**
+	 * Set contact
+	 * @param contact 
+	 */
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+
+	/**
+	 * @return the contactID
+	 */
+	public int getContactID() {
+		return contactID;
+	}
+
+	/**
+	 * @param contactID the contactID to set
+	 */
+	public void setContactID(int contactID) {
+		this.contactID = contactID;
 	}
 
 	/**
@@ -151,15 +195,23 @@ public class ContactProtocol {
 	 * Get avatar
 	 * @return avatar
 	 */
-	public boolean getAvatar() {
+	public int getAvatar() {
 		return avatar;
+	}
+
+	/**
+	 * Is avatar present?
+	 * @return is avatar present
+	 */
+	public boolean isAvatar() {
+		return avatar != 0;
 	}
 
 	/**
 	 * Set avatar
 	 * @param avatar 
 	 */
-	public void setAvatar(boolean avatar) {
+	public void setAvatar(int avatar) {
 		this.avatar = avatar;
 	}
 	
@@ -168,7 +220,7 @@ public class ContactProtocol {
 	 */
 	@Override
 	public String toString() {
-		return "ContactProtocol [id=" + this.id + ", name=" + this.name + ", uid=" 
+		return "ContactAccount [id=" + this.id + ", name=" + this.name + ", uid=" 
 				+ this.uid + ", protocol=" + (protocol != null ? protocol.getName() : "null") + "]";
 	}
 
@@ -195,7 +247,7 @@ public class ContactProtocol {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ContactProtocol other = (ContactProtocol) obj;
+		ContactAccount other = (ContactAccount) obj;
 		if (uid == null) {
 			if (other.uid != null)
 				return false;

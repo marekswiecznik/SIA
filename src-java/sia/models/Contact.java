@@ -3,24 +3,39 @@ package sia.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sormula.annotation.Transient;
+
 /**
  * Contact
  * 
  * @author jumper
  */
-public class Contact {
+public class Contact implements IModel {
 	private int id;
 	private String firstname;
 	private String lastname;
 	private String name;
-	private List<ContactProtocol> contactProtocols;
+	@Transient
+	private List<ContactAccount> contactAccounts;
 	
+	/**
+	 * Default constructor
+	 */
+	public Contact() { }
+	
+	/**
+	 * Constructor
+	 * @param id
+	 * @param firstname
+	 * @param lastname
+	 * @param name
+	 */
 	public Contact(int id, String firstname, String lastname, String name) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.name = name;
-		this.contactProtocols = new ArrayList<ContactProtocol>();
+		this.contactAccounts = new ArrayList<ContactAccount>();
 	}
 	
 	/**
@@ -90,8 +105,8 @@ public class Contact {
 	 * Get contact protocols
 	 * @return contact protocols
 	 */
-	public List<ContactProtocol> getContactProtocols() {
-		return contactProtocols;
+	public List<ContactAccount> getContactAccounts() {
+		return contactAccounts;
 	}
 	
 	/**

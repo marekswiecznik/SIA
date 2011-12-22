@@ -2,27 +2,37 @@ package sia.models;
 
 import java.util.Date;
 
+import org.sormula.annotation.cascade.OneToOneCascade;
+import org.sormula.annotation.cascade.SelectCascade;
+
 /**
  * Message 
  * 
  * @author jumper
  */
-public class Message {
+public class Message implements IModel {
 	private int id;
+	private int conversationID;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"conversationID"}) })
 	private Conversation conversation;
 	private String message;
 	private Date time;
-	private boolean received;
+	private int received;
 	
 	/**
-	 * Default and only constructor
+	 * Default message
+	 */
+	public Message() { }
+	
+	/**
+	 * Constructor
 	 * @param id
 	 * @param contact
 	 * @param message
 	 * @param time
 	 * @param received
 	 */
-	public Message(int id, Conversation conversation, String message, Date time, boolean received) {
+	public Message(int id, Conversation conversation, String message, Date time, int received) {
 		this.id = id;
 		this.conversation = conversation;
 		this.message = message;
@@ -39,11 +49,27 @@ public class Message {
 	}
 
 	/**
-	 * Set contact
-	 * @param conversation
+	 * Set ID
+	 * @param id
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * Get conversation ID
+	 * @return conversationID
+	 */
+	public int getConversationID() {
+		return conversationID;
+	}
+
+	/**
+	 * Set conversation ID
+	 * @param conversationID 
+	 */
+	public void setConversationID(int conversationID) {
+		this.conversationID = conversationID;
 	}
 
 	/**
@@ -95,18 +121,26 @@ public class Message {
 	}
 
 	/**
+	 * Get received
+	 * @return received
+	 */
+	public int getReceived() {
+		return received;
+	}
+
+	/**
 	 * Is received?
 	 * @return is received
 	 */
 	public boolean isReceived() {
-		return received;
+		return received != 0;
 	}
 
 	/**
 	 * Set received
 	 * @param received is received
 	 */
-	public void setReceived(boolean received) {
+	public void setReceived(int received) {
 		this.received = received;
 	}
 
@@ -127,7 +161,7 @@ public class Message {
 		int result = 1;
 		result = prime * result + ((conversation == null) ? 0 : conversation.hashCode());
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result + (received ? 1231 : 1237);
+		result = prime * result + (received == 0 ? 1231 : 1237);
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
