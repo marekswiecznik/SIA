@@ -31,7 +31,7 @@ public class Protocol implements IModel {
 	}
 	
 	/**
-	 * Get ID
+	 * Returns ID
 	 * @return id
 	 */
 	public int getId() {
@@ -47,7 +47,7 @@ public class Protocol implements IModel {
 	}
 	
 	/**
-	 * Get name
+	 * Returns name
 	 * @return name
 	 */
 	public String getName() {
@@ -63,7 +63,7 @@ public class Protocol implements IModel {
 	}
 	
 	/**
-	 * Get description
+	 * Returns description
 	 * @return description
 	 */
 	public String getDescription() {
@@ -79,7 +79,7 @@ public class Protocol implements IModel {
 	}
 	
 	/**
-	 * Get icon
+	 * Returns icon
 	 * @return icon
 	 */
 	public String getIcon() {

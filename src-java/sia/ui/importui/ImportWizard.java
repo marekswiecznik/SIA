@@ -33,7 +33,7 @@ public class ImportWizard extends Wizard {
 		chooseAccounts = new ImportChooseAccounts();
 		setAccounts = new ImportSetAccounts();
 		mapContacts = new ImportMapContacts();
-		datasource = new DataSource();
+		//datasource = new DataSource();
 	}
 
 	@Override

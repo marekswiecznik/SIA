@@ -52,7 +52,7 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * Get ID
+	 * Returns ID
 	 * @return ID
 	 */
 	public int getId() {
@@ -65,10 +65,13 @@ public class ContactAccount implements IModel {
 	 */
 	public void setId(int id) {
 		this.id = id;
+		for (Conversation conversation : conversations) {
+			conversation.setContactAccountID(id);
+		}
 	}
 
 	/**
-	 * Get name
+	 * Returns name
 	 * @return name
 	 */
 	public String getName() {
@@ -84,7 +87,7 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * Get uid
+	 * Returns uid
 	 * @return uid
 	 */
 	public String getUid() {
@@ -100,7 +103,7 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * Get other info
+	 * Returns other info
 	 * @return other info
 	 */
 	public String getOtherinfo() {
@@ -130,7 +133,7 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * Get protocol
+	 * Returns protocol
 	 * @return protocol
 	 */
 	public Protocol getProtocol() {
@@ -146,7 +149,7 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * Get contact
+	 * Returns contact
 	 * @return contact
 	 */
 	public Contact getContact() {
@@ -176,7 +179,7 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * Get conversations
+	 * Returns conversations
 	 * @return conversations
 	 */
 	public List<Conversation> getConversations() {
@@ -192,7 +195,7 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * Get avatar
+	 * Returns avatar
 	 * @return avatar
 	 */
 	public int getAvatar() {

@@ -34,14 +34,14 @@ public class Message implements IModel {
 	 */
 	public Message(int id, Conversation conversation, String message, Date time, int received) {
 		this.id = id;
-		this.conversation = conversation;
+		setConversation(conversation);
 		this.message = message;
 		this.time = time;
 		this.received = received;
 	}
 
 	/**
-	 * Get ID
+	 * Returns ID
 	 * @return ID
 	 */
 	public int getId() {
@@ -57,7 +57,7 @@ public class Message implements IModel {
 	}
 
 	/**
-	 * Get conversation ID
+	 * Returns conversation ID
 	 * @return conversationID
 	 */
 	public int getConversationID() {
@@ -73,7 +73,7 @@ public class Message implements IModel {
 	}
 
 	/**
-	 * Get conversation
+	 * Returns conversation
 	 * @return conversation
 	 */
 	public Conversation getConversation() {
@@ -86,10 +86,11 @@ public class Message implements IModel {
 	 */
 	public void setConversation(Conversation conversation) {
 		this.conversation = conversation;
+		this.conversationID = conversation != null ? conversation.getId() : -1;
 	}
 
 	/**
-	 * Get message
+	 * Returns message
 	 * @return message
 	 */
 	public String getMessage() {
@@ -105,7 +106,7 @@ public class Message implements IModel {
 	}
 
 	/**
-	 * Get time
+	 * Returns time
 	 * @return time
 	 */
 	public Date getTime() {
@@ -121,7 +122,7 @@ public class Message implements IModel {
 	}
 
 	/**
-	 * Get received
+	 * Returns received
 	 * @return received
 	 */
 	public int getReceived() {

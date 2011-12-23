@@ -38,7 +38,7 @@ public class ORM {
 	}
 	
 	/**
-	 * Get ORM table
+	 * Returns ORM table
 	 * @param type
 	 * @return ORM table
 	 */

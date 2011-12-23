@@ -27,12 +27,12 @@ public class UserAccount implements IModel {
 	 */
 	public UserAccount(int id, Protocol protocol, String uid) { 
 		this.id = id;
-		this.protocol = protocol;
+		setProtocol(protocol);
 		this.uid = uid;
 	}
 	
 	/**
-	 * Get ID
+	 * Returns ID
 	 * @return id
 	 */
 	public int getId() {
@@ -48,7 +48,7 @@ public class UserAccount implements IModel {
 	}
 
 	/**
-	 * Get protocol ID
+	 * Returns protocol ID
 	 * @return protocolID
 	 */
 	public int getProtocolID() {
@@ -64,7 +64,7 @@ public class UserAccount implements IModel {
 	}
 
 	/**
-	 * Get protocol
+	 * Returns protocol
 	 * @return protocol
 	 */
 	public Protocol getProtocol() {
@@ -77,10 +77,11 @@ public class UserAccount implements IModel {
 	 */
 	public void setProtocol(Protocol protocol) {
 		this.protocol = protocol;
+		this.protocolID = protocol != null ? protocol.getId() : -1;
 	}
 
 	/**
-	 * Get UID
+	 * Returns UID
 	 * @return uid
 	 */
 	public String getUid() {

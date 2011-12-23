@@ -1,13 +1,21 @@
 package sia;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.sormula.Database;
 import org.sormula.SormulaException;
 
+import sia.fileparsers.IParser;
 import sia.models.*;
+import sia.ui.Start;
+import sia.utils.Dictionaries;
 import sia.utils.ORM;
 
 public class SIA {
@@ -15,37 +23,65 @@ public class SIA {
 
 	private Connection connection;
 	private ORM orm;
+	private Start window;
 	
 	/**
 	 * Initialize database and GUI
 	 */
 	public void init() {
+		String error = null;
 		try {
-			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:sia.db");
-			Database database = new Database(connection, "main");
-			orm = new ORM(database);
-			orm.createTable(Configuration.class);
-			orm.createTable(Contact.class);
-			orm.createTable(ContactAccount.class);
-			orm.createTable(Conversation.class);
-			orm.createTable(Message.class);
-			orm.createTable(Protocol.class);
-			orm.createTable(UserAccount.class);
+			dbInit();
+			Dictionaries.getInstance().init();
+			guiInit();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			error = e.getLocalizedMessage();
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			error = e.getLocalizedMessage();
 			e.printStackTrace();
 		} catch (SormulaException e) {
-			// TODO Auto-generated catch block
+			error = e.getLocalizedMessage();
 			e.printStackTrace();
+		} catch (Exception e) {
+			error = e.getLocalizedMessage();
+			e.printStackTrace();
+		}
+		if (error != null) {
+			MessageDialog.openError(new Shell(Display.getCurrent()), "Error", error);
 		}
 	}
 	
 	/**
-	 * Get SIA instance
+	 * Database init
+	 * @throws ClassNotFoundException 
+	 * @throws SQLException 
+	 * @throws SormulaException 
+	 */
+	public void dbInit() throws ClassNotFoundException, SQLException, SormulaException {
+		Class.forName("org.sqlite.JDBC");
+		connection = DriverManager.getConnection("jdbc:sqlite:sia.db");
+		Database database = new Database(connection, "main");
+		orm = new ORM(database);
+		orm.createTable(Configuration.class);
+		orm.createTable(Contact.class);
+		orm.createTable(ContactAccount.class);
+		orm.createTable(Conversation.class);
+		orm.createTable(Message.class);
+		orm.createTable(Protocol.class);
+		orm.createTable(UserAccount.class);
+	}
+	
+	/**
+	 * GUI init
+	 */
+	public void guiInit() {
+		window = new Start();
+		window.run();
+	}
+	
+	/**
+	 * Returns SIA instance
 	 * @return SIA
 	 */
 	public static SIA getInstance() {
@@ -55,7 +91,7 @@ public class SIA {
 	}
 
 	/**
-	 * Get database connection
+	 * Returns database connection
 	 * @return database connection
 	 */
 	public static Connection getConnection() {
@@ -63,7 +99,7 @@ public class SIA {
 	}
 
 	/**
-	 * Get ORM
+	 * Returns ORM
 	 * @return ORM
 	 */
 	public static ORM getORM() {

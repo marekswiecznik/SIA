@@ -39,7 +39,7 @@ public class Contact implements IModel {
 	}
 	
 	/**
-	 * Get id
+	 * Returns id
 	 * @return the id
 	 */
 	public int getId() {
@@ -51,10 +51,13 @@ public class Contact implements IModel {
 	 */
 	public void setId(int id) {
 		this.id = id;
+		for (ContactAccount contactAccount : contactAccounts) {
+			contactAccount.setContactID(id);
+		}
 	}
 	
 	/**
-	 * Get firstname
+	 * Returns firstname
 	 * @return the firstname
 	 */
 	public String getFirstname() {
@@ -70,7 +73,7 @@ public class Contact implements IModel {
 	}
 	
 	/**
-	 * Get lastname
+	 * Returns lastname
 	 * @return the lastname
 	 */
 	public String getLastname() {
@@ -86,7 +89,7 @@ public class Contact implements IModel {
 	}
 	
 	/**
-	 * Get name
+	 * Returns name
 	 * @return name
 	 */
 	public String getName() {
@@ -102,7 +105,7 @@ public class Contact implements IModel {
 	}
 	
 	/**
-	 * Get contact protocols
+	 * Returns contact protocols
 	 * @return contact protocols
 	 */
 	public List<ContactAccount> getContactAccounts() {

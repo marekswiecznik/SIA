@@ -4,25 +4,33 @@ Created on Dec 20, 2011
 @author: jumper
 '''
 
-from sia.fileparsers.Parser import Parser
+from sia.py.utils import ConversationHelper
 from sia.models import ContactAccount
+from sia.models import UserAccount
 from sia.models import Message
-from sia.utils import ConversationHelper
+from sia.utils import Dictionaries
+from sia.fileparsers import IParser
 from java.text import SimpleDateFormat
 import re
 
-class FmaParser(Parser):
+class FmaParser(IParser):
 	'''
 	FMA Parser
 	
 	Sony Ericsson FMA pseudo-XML parser
 	'''
+	
+	def __init__(self):
+		self.protocol = Dictionaries.getInstance().getProtocol('FMA')
 		
-	def loadFiles(self, messageFiles, contactFiles):
-		f = open(messageFiles[0], 'r')
+	def loadFiles(self, files):
+		f = open(files[0], 'r')
 		self.messagesContent = f.read()
 
-	def parse(self):
+	def getUserAccounts(self):
+		return [UserAccount(-1, "", "", self.protocol)]
+		
+	def getContacts(self):
 		contactsTemp = {}
 		sms = re.split('\<sms\>', self.messagesContent)
 		pattern = '\<from\>(.*)\s*\[(.*)\]\<\/from\>\s*\<msg\>(.*)\<\/msg\>\s*\<date\>(.*)\<\/date\>'

@@ -37,17 +37,17 @@ public class Conversation implements IModel {
 	 * @param length
 	 * @param contactAccount
 	 */
-	public Conversation(int id, Date begin, String firstMessage, int length, ContactAccount contact) {
+	public Conversation(int id, Date begin, String firstMessage, int length, ContactAccount contactAccount) {
 		this();
 		this.id = id;
 		this.time = begin;
 		this.title = firstMessage;
 		this.length = length;
-		this.contactAccount = contact;
+		setContactAccount(contactAccount);
 	}
 	
 	/**
-	 * Get id
+	 * Returns id
 	 * @return id
 	 */
 	public int getId() {
@@ -60,10 +60,13 @@ public class Conversation implements IModel {
 	 */
 	public void setId(int id) {
 		this.id = id;
+		for (Message message : messages) {
+			message.setConversationID(id);
+		}
 	}
 	
 	/**
-	 * Get time
+	 * Returns time
 	 * @return time
 	 */
 	public Date getTime() {
@@ -79,7 +82,7 @@ public class Conversation implements IModel {
 	}
 	
 	/**
-	 * Get title
+	 * Returns title
 	 * @return title
 	 */
 	public String getTitle() {
@@ -95,7 +98,7 @@ public class Conversation implements IModel {
 	}
 	
 	/**
-	 * Get length
+	 * Returns length
 	 * @return length
 	 */
 	public int getLength() {
@@ -125,7 +128,7 @@ public class Conversation implements IModel {
 	}
 
 	/**
-	 * Get contactAccount
+	 * Returns contactAccount
 	 * @return contactAccount
 	 */
 	public ContactAccount getContactAccount() {
@@ -138,10 +141,11 @@ public class Conversation implements IModel {
 	 */
 	public void setContactAccount(ContactAccount contact) {
 		this.contactAccount = contact;
+		this.contactAccountID = contactAccount != null ? contactAccount.getId() : -1;
 	}
 	
 	/**
-	 * Get messages
+	 * Returns messages
 	 * @return messages
 	 */
 	public List<Message> getMessages() {

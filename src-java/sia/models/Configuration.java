@@ -25,7 +25,7 @@ public class Configuration implements IModel {
 	}
 
 	/**
-	 * Get key
+	 * Returns key
 	 * @return the key
 	 */
 	public String getKey() {
@@ -41,7 +41,7 @@ public class Configuration implements IModel {
 	}
 
 	/**
-	 * Get value
+	 * Returns value
 	 * @return the value
 	 */
 	public String getValue() {
