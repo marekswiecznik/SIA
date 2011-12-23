@@ -26,7 +26,11 @@ import sia.ui.importui.ImportWizard;
 import sia.ui.org.eclipse.wb.swt.SWTResourceManager;
 import swing2swt.layout.BorderLayout;
 
-
+/**
+ * 
+ * @author Agnieszka Glabala
+ *
+ */
 public class Start {
 
 	protected Shell shell;
@@ -83,19 +87,19 @@ public class Start {
 			    dialog.open();
 			}
 		});
-		importButton.setImage(org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/import.png"));
+		importButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/import.png"));
 		importButton.setText("Import");
 		
 		ToolItem exportButton = new ToolItem(toolBar, SWT.NONE);
-		exportButton.setImage(org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/export.png"));
+		exportButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/export.png"));
 		exportButton.setText("Export");
 		
 		ToolItem preferencesButton = new ToolItem(toolBar, SWT.NONE);
-		preferencesButton.setImage(org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/properties.png"));
+		preferencesButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/properties.png"));
 		preferencesButton.setText("Preferences");
 		
 		ToolItem synchronizeButton = new ToolItem(toolBar, SWT.NONE);
-		synchronizeButton.setImage(org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/sync.png"));
+		synchronizeButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/sync.png"));
 		synchronizeButton.setText("Synchronize");
 		//END TOOLBAR
 		
@@ -113,7 +117,7 @@ public class Start {
 	    gd_contactsKeyword.verticalAlignment = SWT.FILL;
 	    contactsKeyword.setLayoutData(gd_contactsKeyword);
 	    Button contactsSearch = new Button(compositeLeft, SWT.PUSH);
-	    contactsSearch.setImage(org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/find.png"));
+	    contactsSearch.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/find.png"));
 	    contactsSearch.setText("Search");
 	    
 	    ScrolledComposite contactsScrolledComposite = new ScrolledComposite(compositeLeft, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -136,7 +140,7 @@ public class Start {
 		gd_messagesKeyword.verticalAlignment = SWT.FILL;
 		messagesKeyword.setLayoutData(gd_messagesKeyword);
 	    Button messagesSearch = new Button(compositeRight, SWT.PUSH);
-	    messagesSearch.setImage(org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/find.png"));
+	    messagesSearch.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/find.png"));
 	    messagesSearch.setText("Search");
 	    
 	    SashForm sashForm_1 = new SashForm(compositeRight, SWT.VERTICAL);

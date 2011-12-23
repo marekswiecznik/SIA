@@ -1,18 +1,17 @@
 package sia.ui.importui;
 
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 
-
+/**
+ * 
+ * @author Agnieszka Glabala
+ *
+ */
 public class ImportChooseIM extends WizardPage {
 	private String[] imNames;
 	private Button[] radioButtons;
@@ -45,7 +44,7 @@ public class ImportChooseIM extends WizardPage {
 		radioButtons = new Button[imNames.length];
 		for (int i = 0; i < imNames.length; i++) {
 			radioButtons[i] = new Button(composite, SWT.RADIO);
-			radioButtons[i].setImage(SWTResourceManager.getImage(ImportChooseIM.class, "/sia/ui/resources/ims/"+imNames[i]+".png"));
+			radioButtons[i].setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(ImportChooseIM.class, "/sia/ui/resources/ims/"+imNames[i]+".png"));
 			radioButtons[i].setText(imNames[i]); 
 		}
 		radioButtons[0].setSelection(true);
