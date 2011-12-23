@@ -22,5 +22,5 @@ public interface IParser {
 	 * Returns contacts with conversations
 	 * @return contacts
 	 */
-	public List<Contact> getContacts();
+	public List<Contact> getContacts(List<UserAccount> userAccounts);
 }

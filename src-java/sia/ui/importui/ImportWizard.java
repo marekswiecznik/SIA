@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 import sia.datasourses.DataSource;
 import sia.datasourses.FMADataSource;
 import sia.models.UserAccount;
+import sia.utils.Dictionaries;
 
 /**
  * 
@@ -39,7 +40,6 @@ public class ImportWizard extends Wizard {
 		chooseAccounts = new ImportChooseAccounts();
 		setAccounts = new ImportSetAccounts();
 		mapContacts = new ImportMapContacts();
-		datasource = new FMADataSource();
 		im=-1;
 	}
 
@@ -53,7 +53,7 @@ public class ImportWizard extends Wizard {
 		addPage(mapContacts);
 	}
 
-	private void repaint() {
+	public void repaint() {
 		Point size = this.getShell().getSize();
 		this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		this.getShell().setSize(size);
@@ -64,15 +64,15 @@ public class ImportWizard extends Wizard {
 		if (page == chooseIM) {
 			if(((ImportChooseIM)chooseIM).getSelected()!=this.im) {			
 				this.im = ((ImportChooseIM)chooseIM).getSelected();
+				this.datasource = Dictionaries.getInstance().getDataSource("Float's Mobile Agent");
 				((ImportChooseFiles)chooseFiles).setFileExtensions(datasource.getFileExtensions());
 				((ImportChooseFiles)chooseFiles).setDescriptions(datasource.getFileDescriptions());
 			}
-			((ImportChooseFiles)chooseFiles).disposeControls();
 			chooseFiles.createControl((Composite)this.getShell());
 			repaint();
 			return chooseFiles;
 		}
-		else if(page == chooseFiles) {	
+		else if(page == chooseFiles && ((ImportChooseFiles)chooseFiles).getFiles()[0] != null) {	
 			//TODO merge those two?
 			String[] passwordDescriptions = datasource.getRequiredPassword();
 			if(passwordDescriptions != null && passwordDescriptions.length > 0) {
@@ -83,7 +83,7 @@ public class ImportWizard extends Wizard {
 				return setPasswords;
 			}
 			datasource.loadFiles(((ImportChooseFiles)chooseFiles).getFiles());
-			List<UserAccount> uas  = datasource.getUserAccouts();
+			List<UserAccount> uas  = datasource.getUserAccounts();
 			if(uas == null) {
 				return setAccounts;
 			}
@@ -94,10 +94,10 @@ public class ImportWizard extends Wizard {
 				return chooseAccounts;
 			}
 		}
-		else if(page == setPasswords) {
+		if(page == setPasswords) {
 			datasource.setPasswords(((ImportSetPasswords)setPasswords).getPasswords());
 			datasource.loadFiles(((ImportChooseFiles)chooseFiles).getFiles());
-			List<UserAccount> uas  = datasource.getUserAccouts();
+			List<UserAccount> uas  = datasource.getUserAccounts();
 			if(uas.size()>0 && uas.get(0).getUid()==null) {
 				return setAccounts;
 			}

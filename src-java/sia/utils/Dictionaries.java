@@ -34,14 +34,15 @@ public class Dictionaries {
 	 */
 	public void init() throws SormulaException {
 		ORM orm = SIA.getORM();
-		dataSources = new HashMap<String, DataSource>();
-		//dataSources.put("kadu", new KaduDataSource());
-		dataSources.put("fma", new FMADataSource());
 		
 		List<Protocol> protocols = orm.getTable(Protocol.class).selectAll();
 		this.protocols = new HashMap<String, Protocol>();
 		for (Protocol p : protocols)
 			this.protocols.put(p.getName(), p);
+		
+		dataSources = new HashMap<String, DataSource>();
+		//dataSources.put("kadu", new KaduDataSource());
+		dataSources.put("Float's Mobile Agent", new FMADataSource());
 	}
 	
 	/**

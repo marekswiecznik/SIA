@@ -7,6 +7,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 import sia.models.UserAccount;
 import sia.ui.org.eclipse.wb.swt.SWTResourceManager;
@@ -22,7 +23,7 @@ public class ImportChooseAccounts extends WizardPage {
 	 * Create the wizard.
 	 */
 	public ImportChooseAccounts() {
-		super("wizardPage");
+		super("chooseAccounts");
 		setTitle("Choose Accounts");
 		setDescription("Choose accounts you would like to import from.");
 	}
@@ -32,15 +33,21 @@ public class ImportChooseAccounts extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		Composite container = new Composite(parent, SWT.NULL);
-
-		setControl(container);
-		container.setLayout(new GridLayout(1, false));
+		Composite container = null;
+		if (getControl() == null) {
+			container = new Composite(parent, SWT.NONE);
+			container.setLayout(new GridLayout(1, false));	
+		} else {
+			container = (Composite)getControl();
+		}
+		for (Control c : container.getChildren())
+			c.dispose();
 		
 		Button btnCheckButton = new Button(container, SWT.CHECK);
 		btnCheckButton.setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/gg.png"));
 		btnCheckButton.setText("Check Button");
 
+		setControl(container);
 	}
 	
 	public boolean[] getSelectedAccounts() {

@@ -1,5 +1,6 @@
 package sia.ui.importui;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -19,7 +20,7 @@ public class ImportChooseIM extends WizardPage {
 	 * Create the wizard.
 	 */
 	public ImportChooseIM(String[] names) {
-		super("wizardPage");
+		super("chooseIM");
 		setTitle("Choose IM");
 		setDescription("Choose IM from which you would like to import data:");
 		this.imNames = names;
@@ -56,11 +57,6 @@ public class ImportChooseIM extends WizardPage {
 				return i;
 		}
 		return -1;
-	}
-	
-	@Override
-	public boolean canFlipToNextPage(){
-		return getSelected()>-1;
 	}
 	
 }

@@ -22,7 +22,7 @@ public class ImportSetPasswords extends WizardPage {
 	 * Create the wizard.
 	 */
 	public ImportSetPasswords() {
-		super("wizardPage");
+		super("setPasswords");
 		setTitle("Set passwords");
 		setDescription("Set passwords required to read database.");
 	}

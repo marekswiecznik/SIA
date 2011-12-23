@@ -19,7 +19,7 @@ public class ImportSetAccounts extends WizardPage {
 	 * Create the wizard.
 	 */
 	public ImportSetAccounts() {
-		super("wizardPage");
+		super("setAccounts");
 		setTitle("Wizard Page title");
 		setDescription("Wizard Page description");
 	}

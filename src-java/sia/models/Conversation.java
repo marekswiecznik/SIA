@@ -21,6 +21,9 @@ public class Conversation implements IModel {
 	private int contactAccountID;
 	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactAccountID"}) })
 	private ContactAccount contactAccount;
+	private int userAccountID;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"userAccountID"}) })
+	private UserAccount userAccount;
 	@Transient
 	private List<Message> messages;
 	
@@ -36,14 +39,16 @@ public class Conversation implements IModel {
 	 * @param title
 	 * @param length
 	 * @param contactAccount
+	 * @param userAccount
 	 */
-	public Conversation(int id, Date begin, String firstMessage, int length, ContactAccount contactAccount) {
+	public Conversation(int id, Date begin, String firstMessage, int length, ContactAccount contactAccount, UserAccount userAccount) {
 		this();
 		this.id = id;
 		this.time = begin;
 		this.title = firstMessage;
 		this.length = length;
 		setContactAccount(contactAccount);
+		setUserAccount(userAccount);
 	}
 	
 	/**
@@ -142,6 +147,39 @@ public class Conversation implements IModel {
 	public void setContactAccount(ContactAccount contact) {
 		this.contactAccount = contact;
 		this.contactAccountID = contactAccount != null ? contactAccount.getId() : -1;
+	}
+	
+	/**
+	 * Returns user account ID
+	 * @return user account ID
+	 */
+	public int getUserAccountID() {
+		return userAccountID;
+	}
+
+	/**
+	 * Set user account ID
+	 * @param contactAccountID the contactAccountID to set
+	 */
+	public void setUserAccountID(int userAccountID) {
+		this.userAccountID = userAccountID;
+	}
+
+	/**
+	 * Returns contactAccount
+	 * @return contactAccount
+	 */
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+	
+	/**
+	 * Set userAccount
+	 * @param userAccount 
+	 */
+	public void setUserAccount(UserAccount ua) {
+		this.userAccount = ua;
+		this.userAccountID = userAccount != null ? userAccount.getId() : -1;
 	}
 	
 	/**

@@ -1,5 +1,8 @@
 package sia.ui.importui;
 
+import java.util.List;
+
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -10,8 +13,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+
+import sia.models.UserAccount;
 
 public class ImportChooseFiles extends WizardPage {
 
@@ -26,7 +32,7 @@ public class ImportChooseFiles extends WizardPage {
 	 * Create the wizard.
 	 */
 	public ImportChooseFiles() {
-		super("wizardPage");
+		super("chooseFiles");
 		setTitle("Choose files");
 		setDescription("Choose files:");
 		extensions = new String[] {};
@@ -40,11 +46,13 @@ public class ImportChooseFiles extends WizardPage {
 		System.out.println("FFF");
 		Composite container = null;
 		if (getControl() == null) {
-			container = new Composite(parent, SWT.NULL);
-			container.setLayout(new GridLayout(2, false));	
+			container = new Composite(parent, SWT.NONE);
+			container.setLayout(new GridLayout(1, false));	
 		} else {
 			container = (Composite)getControl();
 		}
+		for (Control c : container.getChildren())
+			c.dispose();
 		labels = new Label[extensions.length];
 		fileLabels = new Label[extensions.length];
 		buttons = new Button[extensions.length];
@@ -80,15 +88,6 @@ public class ImportChooseFiles extends WizardPage {
 	
 	protected String[] getFiles() {
 		return files;
-	}
-	
-	protected void disposeControls() {
-		for (int i = 0; i < buttons.length; i++) {
-			buttons[i].dispose();
-			labels[i].dispose();
-			fileLabels[i].dispose();
-		}
-		descriptionLabel.dispose();
 	}
 	
 	private class MyMouseTrackAdapter extends MouseTrackAdapter {

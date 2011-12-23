@@ -28,9 +28,9 @@ class FmaParser(IParser):
 		self.messagesContent = f.read()
 
 	def getUserAccounts(self):
-		return [UserAccount(-1, "", "", self.protocol)]
+		return [UserAccount(-1, self.protocol, "")]
 		
-	def getContacts(self):
+	def getContacts(self, userAccounts):
 		contactsTemp = {}
 		sms = re.split('\<sms\>', self.messagesContent)
 		pattern = '\<from\>(.*)\s*\[(.*)\]\<\/from\>\s*\<msg\>(.*)\<\/msg\>\s*\<date\>(.*)\<\/date\>'
@@ -48,6 +48,6 @@ class FmaParser(IParser):
 				
 		contacts = []
 		for cnt in contactsTemp.iterkeys():
-			cnt.conversations = ConversationHelper.messagesToConversations(contactsTemp[cnt], cnt)
+			cnt.conversations = ConversationHelper.messagesToConversations(contactsTemp[cnt], cnt, userAccounts[0])
 			contacts.append(cnt)
 		return contacts

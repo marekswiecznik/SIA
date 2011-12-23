@@ -18,6 +18,7 @@ public abstract class DataSource {
 	List<UserAccount> userAccounts;
 	String[] passwordDescriptions;
 	String[] passwords;
+	protected IParser parser;
 	
 	/**
 	 * Return accepted by parser file extensions 
@@ -41,7 +42,7 @@ public abstract class DataSource {
 	 * @return parser
 	 */
 	public IParser getParser() {
-		return parserFactory.create();
+		return parser;
 		
 	}
 
@@ -49,7 +50,7 @@ public abstract class DataSource {
 	 * Return user accounts found in archive files or null if null if user should to set this manually
 	 * @return list of user accounts
 	 */
-	public abstract List<UserAccount> getUserAccouts();
+	public abstract List<UserAccount> getUserAccounts();
 	
 	/**
 	 * Set from which accounts user want to import data
