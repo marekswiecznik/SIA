@@ -25,6 +25,11 @@ import org.eclipse.swt.widgets.Tree;
 
 import sia.ui.importui.ImportWizard;
 
+/**
+ * 
+ * @author Agnieszka Glabala
+ *
+ */
 public class Start extends ApplicationWindow {
 	private Table conversationsTable;
 

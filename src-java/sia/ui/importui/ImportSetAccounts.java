@@ -1,12 +1,20 @@
 package sia.ui.importui;
 
+import java.util.List;
+
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
+import sia.models.UserAccount;
 
+/**
+ * 
+ * @author Agnieszka Glabala
+ *
+ */
 public class ImportSetAccounts extends WizardPage {
-
+	List<UserAccount> userAccounts;
 	/**
 	 * Create the wizard.
 	 */
@@ -16,6 +24,10 @@ public class ImportSetAccounts extends WizardPage {
 		setDescription("Wizard Page description");
 	}
 
+	public List<UserAccount> getSelectedAccounts() {
+		return null;
+	}
+	
 	/**
 	 * Create contents of the wizard.
 	 * @param parent
