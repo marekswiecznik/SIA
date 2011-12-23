@@ -15,8 +15,9 @@ import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.events.MouseEvent;
 
 import sia.models.UserAccount;
+import sia.ui.org.eclipse.wb.swt.SWTResourceManager;
+
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 /**
  * 

@@ -14,7 +14,7 @@ import sia.models.UserAccount;
  * 
  * @author Agnieszka Glabala
  */
-public class DataSource {
+public abstract class DataSource {
 	protected String[] extensions = new String[] {"*.jpg;*.png" };
 	protected String[][]  descriptions = new String[][] {new String[] {"PNG file", 
 			"To implement the canFlipToNextPage method for the first page of wizard,page when \n" +
@@ -61,7 +61,7 @@ public class DataSource {
 		
 	}
 
-	/*
+	/**
 	 * Return user accounts found in archive files or null if null if user should to set this manually
 	 * @return list of user accounts
 	 */

@@ -1,9 +1,6 @@
 package sia.utils;
 
-import org.python.core.Py;
 import org.python.core.PyObject;
-import org.python.core.PyString;
-import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 
 import sia.fileparsers.IParser;

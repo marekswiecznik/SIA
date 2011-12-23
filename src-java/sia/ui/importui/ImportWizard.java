@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import sia.datasourses.DataSource;
+import sia.datasourses.FMADataSource;
 import sia.models.UserAccount;
 
 /**
@@ -42,7 +43,7 @@ public class ImportWizard extends Wizard {
 		chooseAccounts = new ImportChooseAccounts();
 		setAccounts = new ImportSetAccounts();
 		mapContacts = new ImportMapContacts();
-		//datasource = new DataSource();
+		datasource = new FMADataSource();
 		im=-1;
 	}
 

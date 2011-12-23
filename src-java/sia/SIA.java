@@ -1,10 +1,8 @@
 package sia;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
@@ -12,7 +10,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.sormula.Database;
 import org.sormula.SormulaException;
 
-import sia.fileparsers.IParser;
 import sia.models.*;
 import sia.ui.Start;
 import sia.utils.Dictionaries;
