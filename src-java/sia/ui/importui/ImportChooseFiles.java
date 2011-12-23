@@ -2,16 +2,16 @@ package sia.ui.importui;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.events.MouseTrackAdapter;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Label;
 
 public class ImportChooseFiles extends WizardPage {
 
@@ -22,7 +22,6 @@ public class ImportChooseFiles extends WizardPage {
 	Label[] fileLabels;
 	Label descriptionLabel;
 	Button[] buttons;
-	Composite parent;
 	/**
 	 * Create the wizard.
 	 */
@@ -38,7 +37,7 @@ public class ImportChooseFiles extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		this.parent = parent;
+		System.out.println("FFF");
 		Composite container = null;
 		if (getControl() == null) {
 			container = new Composite(parent, SWT.NULL);
@@ -64,7 +63,7 @@ public class ImportChooseFiles extends WizardPage {
 		}
 		
 		descriptionLabel = new Label(container, SWT.NONE);
-		descriptionLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 2, 1));
+		descriptionLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		descriptionLabel.setText("Move your cursor to one of buttons to see little hint where you can find those files.");
 		
 		setControl(container);

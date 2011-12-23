@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
 
 import sia.ui.importui.ImportWizard;
-import sia.ui.org.eclipse.wb.swt.SWTResourceManager;
 import swing2swt.layout.BorderLayout;
 
 /**

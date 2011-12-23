@@ -7,7 +7,13 @@ import java.sql.SQLException;
 import org.sormula.Database;
 import org.sormula.SormulaException;
 
-import sia.models.*;
+import sia.models.Configuration;
+import sia.models.Contact;
+import sia.models.ContactAccount;
+import sia.models.Conversation;
+import sia.models.Message;
+import sia.models.Protocol;
+import sia.models.UserAccount;
 import sia.utils.ORM;
 
 public class SIA {
