@@ -6,10 +6,11 @@ import java.util.Map;
 
 import org.sormula.SormulaException;
 
-import sia.datasourses.DataSource;
-import sia.datasourses.FMADataSource;
-import sia.models.Configuration;
+import sia.datasources.DataSource;
+import sia.datasources.ExampleDataSource;
+import sia.datasources.FMADataSource;
 import sia.models.Protocol;
+import sia.models.Configuration;
 import sia.ui.SIA;
 
 /**
@@ -49,6 +50,7 @@ public class Dictionaries {
 		dataSources = new HashMap<String, DataSource>();
 		//dataSources.put("kadu", new KaduDataSource());
 		dataSources.put("Float's Mobile Agent", new FMADataSource());
+		dataSources.put("Example", new ExampleDataSource());
 	}
 	
 	/**

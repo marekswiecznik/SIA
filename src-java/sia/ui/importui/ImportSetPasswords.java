@@ -4,6 +4,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.GridData;
@@ -17,7 +18,7 @@ public class ImportSetPasswords extends WizardPage {
 	private String[] passwordDescriptions;
 	private Label[] labels;
 	private Text[] textfields;
-	
+	private Composite container;
 	/**
 	 * Create the wizard.
 	 */
@@ -40,15 +41,15 @@ public class ImportSetPasswords extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		System.out.println("PPP");
-		Composite container = null;
-		if (getControl() == null) {
-			container = new Composite(parent, SWT.NULL);
-			container.setLayout(new GridLayout(2, false));	
-		} else {
-			container = (Composite)getControl();
-		}
-
+		Composite container = new Composite(parent, SWT.NULL);
+		container.setLayout(new GridLayout(2, false));
+		this.container = container;
+		setControl(container);
+	}
+	
+	public void setControls() {
+		for (Control c : container.getChildren())
+			c.dispose();
 		if(passwordDescriptions!=null && passwordDescriptions.length>0) {
 			labels = new Label[passwordDescriptions.length];
 			textfields = new Text[passwordDescriptions.length];
@@ -56,12 +57,9 @@ public class ImportSetPasswords extends WizardPage {
 				labels[i] = new Label(container, SWT.NONE);
 				labels[i].setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 				labels[i].setText(passwordDescriptions[i]);
-				
 				textfields[i] = new Text(container, SWT.BORDER | SWT.PASSWORD);
 				textfields[i].setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 			}
 		}
-		
-		setControl(container);
 	}
 }

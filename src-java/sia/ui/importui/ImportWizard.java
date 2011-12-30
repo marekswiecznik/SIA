@@ -2,14 +2,17 @@ package sia.ui.importui;
 
 import java.util.List;
 
+import org.eclipse.jface.dialogs.IPageChangingListener;
+import org.eclipse.jface.dialogs.PageChangingEvent;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 
-import sia.datasourses.DataSource;
-import sia.datasourses.FMADataSource;
+import sia.datasources.DataSource;
+import sia.datasources.FMADataSource;
 import sia.models.UserAccount;
 import sia.utils.Dictionaries;
 
@@ -18,9 +21,10 @@ import sia.utils.Dictionaries;
  * @author Agnieszka Glabala
  *
  */
-public class ImportWizard extends Wizard {
+public class ImportWizard extends Wizard implements IPageChangingListener {
 	private String[] imNames;
 	private int im;
+	private boolean wasSetAccounts = false;
 	DataSource datasource;
 	IWizardPage chooseIM;
 	IWizardPage chooseFiles;
@@ -28,18 +32,28 @@ public class ImportWizard extends Wizard {
 	IWizardPage chooseAccounts;
 	IWizardPage setAccounts;
 	IWizardPage mapContacts;
+	IWizardPage accountsLoading;
+	IWizardPage messageLoading;
+	IWizardPage saveLoading;
 	public ImportWizard() {
 		setWindowTitle("Import messages");
 		
-		imNames = new String[] {"applications-accessories",  "applications-games", "applications-multimedia", "applications-science", "empathy",  "applications-development",  
-				"applications-graphics", "applications-office", "applications-system", "kadu", "applications-engineering", "applications-internet", "applications-other", 
-				"applications-utilities", "phone"};
+//		imNames = new String[] {"applications-accessories",  "applications-games", "applications-multimedia", "applications-science", "empathy",  "applications-development",  
+//				"applications-graphics", "applications-office", "applications-system", "kadu", "applications-engineering", "applications-internet", "applications-other", 
+//				"applications-utilities", "phone"};
+		imNames = Dictionaries.getInstance().getDataSources().keySet().toArray(new String[] {});
 		chooseIM = new ImportChooseIM(imNames);
 		chooseFiles = new ImportChooseFiles();
 		setPasswords = new ImportSetPasswords();
 		chooseAccounts = new ImportChooseAccounts();
 		setAccounts = new ImportSetAccounts();
 		mapContacts = new ImportMapContacts();
+		accountsLoading = new ImportLoading();
+		accountsLoading.setTitle("Accounts loading");
+		messageLoading = new ImportLoading();
+		messageLoading.setTitle("Messages loading");
+		saveLoading = new ImportLoading();
+		saveLoading.setTitle("Saving");
 		im=-1;
 	}
 
@@ -48,88 +62,84 @@ public class ImportWizard extends Wizard {
 		addPage(chooseIM);
 		addPage(chooseFiles);
 		addPage(setPasswords);
-		addPage(chooseAccounts);
+		addPage(accountsLoading);
 		addPage(setAccounts);
+		addPage(chooseAccounts);
+		addPage(messageLoading);
 		addPage(mapContacts);
-	}
-
-	public void repaint() {
-//		Point size = this.getShell().getSize();
-//		this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
-//		this.getShell().setSize(size);
-		this.getShell().layout(true, true);
-	}
-	
-	@Override
-	public IWizardPage getNextPage(IWizardPage page) {
-		if (page == chooseIM) {
-			if(((ImportChooseIM)chooseIM).getSelected()!=this.im) {			
-				this.im = ((ImportChooseIM)chooseIM).getSelected();
-				this.datasource = Dictionaries.getInstance().getDataSource("Float's Mobile Agent");
-				((ImportChooseFiles)chooseFiles).setFileExtensions(datasource.getFileExtensions());
-				((ImportChooseFiles)chooseFiles).setDescriptions(datasource.getFileDescriptions());
-			}
-			chooseFiles.createControl((Composite)this.getShell());
-			repaint();
-			return chooseFiles;
-		}
-		else if(page == chooseFiles && ((ImportChooseFiles)chooseFiles).getFiles()[0] != null) {	
-			//TODO merge those two?
-			String[] passwordDescriptions = datasource.getRequiredPassword();
-			if(passwordDescriptions != null && passwordDescriptions.length > 0) {
-				((ImportSetPasswords)setPasswords).setPasswordDescpriptions(passwordDescriptions);
-				setPasswords.createControl((Composite)this.getShell());
-				repaint();
-				System.out.println("CCCCC");
-				return setPasswords;
-			}
-			datasource.loadFiles(((ImportChooseFiles)chooseFiles).getFiles());
-			List<UserAccount> uas  = datasource.getUserAccounts();
-			if(uas == null) {
-				return setAccounts;
-			}
-			else {
-				((ImportChooseAccounts)chooseAccounts).setUserAccounts(uas);
-				chooseAccounts.createControl((Composite)this.getShell());
-				repaint();
-				return chooseAccounts;
-			}
-		}
-		if(page == setPasswords) {
-			datasource.setPasswords(((ImportSetPasswords)setPasswords).getPasswords());
-			datasource.loadFiles(((ImportChooseFiles)chooseFiles).getFiles());
-			List<UserAccount> uas  = datasource.getUserAccounts();
-			if(uas.size()>0 && uas.get(0).getUid()==null) {
-				return setAccounts;
-			}
-			else {
-				((ImportChooseAccounts)chooseAccounts).setUserAccounts(uas);
-				chooseAccounts.createControl((Composite)this.getShell());
-				repaint();
-				return chooseAccounts;
-			}
-		}
-		else if(page == chooseAccounts) {
-			datasource.setUserAccounts(((ImportChooseAccounts)chooseAccounts).getSelectedAccounts());
-			((ImportMapContacts)mapContacts).setContacts(datasource.getContacts());
-			mapContacts.createControl((Composite)this.getShell());
-			repaint();
-			return mapContacts;
-		}
-		else if(page == setAccounts) {
-			datasource.setUserAccounts(((ImportSetAccounts)setAccounts).getSelectedAccounts());
-			((ImportMapContacts)mapContacts).setContacts(datasource.getContacts());
-			mapContacts.createControl((Composite)this.getShell());
-			repaint();
-			return mapContacts;
-		}
-		return super.getNextPage(page);
+		addPage(saveLoading);
 	}
 	
 	@Override
 	public boolean performFinish() {
 		return false;
 	}
-	
-	
+
+	@Override
+	public void handlePageChanging(PageChangingEvent event) {
+		WizardDialog dialog = (WizardDialog) event.getSource();		
+		if(event.getTargetPage() == chooseFiles) {
+			//from chooseIM
+			System.out.println("chooseFiles");
+			this.datasource = Dictionaries.getInstance().getDataSource(imNames[((ImportChooseIM)chooseIM).getSelected()]);
+			((ImportChooseFiles)chooseFiles).setFileExtensions(datasource.getFileExtensions());
+			((ImportChooseFiles)chooseFiles).setDescriptions(datasource.getFileDescriptions());
+			((ImportChooseFiles)chooseFiles).setControls();
+//			Point size = this.getShell().getSize();
+			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
+//			this.getShell().setSize(size);
+//			this.getShell().layout(true, true);
+		}
+		else if(event.getTargetPage() == setPasswords) {
+			//from chooseFiles
+			System.out.println("setPasswords");
+			
+			((ImportSetPasswords)setPasswords).setPasswordDescpriptions(datasource.getRequiredPassword());
+			if(datasource.getRequiredPassword()!=null && datasource.getRequiredPassword().length >0) {
+				((ImportSetPasswords)setPasswords).setPasswordDescpriptions(datasource.getRequiredPassword());
+				((ImportSetPasswords)setPasswords).setControls();
+			}
+			else {
+				dialog.showPage(accountsLoading);
+				event.doit = false;
+			}
+		}
+		else if(event.getTargetPage() == accountsLoading) {
+			System.out.println("accountsLoading");
+			datasource.getUserAccounts();
+		}
+		else if(event.getTargetPage() == setAccounts) {
+			//from chooseFiles or from setPasswords
+			System.out.println("setAccounts");
+			
+			datasource.loadFiles(((ImportChooseFiles)chooseFiles).getFiles());
+			if(datasource.getUserAccounts()!=null && datasource.getUserAccounts().size()>0 && datasource.getUserAccounts().get(0).getUid().length()>0) {
+				wasSetAccounts = false;
+				((ImportChooseAccounts)chooseAccounts).setUserAccounts(datasource.getUserAccounts());
+				((ImportChooseAccounts)chooseAccounts).setControls();
+				dialog.showPage(chooseAccounts);
+				event.doit = false;
+			}
+			else {
+				wasSetAccounts = true;
+			}
+		}
+		else if(event.getTargetPage() == chooseAccounts) {
+			//from setAccounts?
+			System.out.println("chooseAccounts");
+			if(wasSetAccounts) {
+				dialog.showPage(mapContacts);
+				event.doit = false;
+			}
+		}
+		else if(event.getTargetPage() == messageLoading) {
+			System.out.println("messageLoading");
+			datasource.getContacts();
+		}
+		else if(event.getTargetPage() == mapContacts) {
+			
+			System.out.println("mapContacts");
+			
+		}
+	}
 }

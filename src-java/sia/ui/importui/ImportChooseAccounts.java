@@ -18,7 +18,8 @@ import sia.ui.org.eclipse.wb.swt.SWTResourceManager;
  *
  */
 public class ImportChooseAccounts extends WizardPage {
-	List<UserAccount> userAccounts;
+	private List<UserAccount> userAccounts;
+	private Composite container;
 	/**
 	 * Create the wizard.
 	 */
@@ -33,21 +34,22 @@ public class ImportChooseAccounts extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		Composite container = null;
-		if (getControl() == null) {
-			container = new Composite(parent, SWT.NONE);
-			container.setLayout(new GridLayout(1, false));	
-		} else {
-			container = (Composite)getControl();
-		}
+		Composite container = new Composite(parent, SWT.NONE);
+		container.setLayout(new GridLayout(1, false));	
+		this.container = container;
+		
+		setControl(container);
+	}
+	
+	public void setControls() {
 		for (Control c : container.getChildren())
 			c.dispose();
-		
-		Button btnCheckButton = new Button(container, SWT.CHECK);
-		btnCheckButton.setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/gg.png"));
-		btnCheckButton.setText("Check Button");
-
-		setControl(container);
+		for (int i = 0; i < userAccounts.size(); i++) {
+			Button btnCheckButton = new Button(container, SWT.CHECK);
+			btnCheckButton.setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/"+userAccounts.get(i).getProtocol().getIcon()));
+			btnCheckButton.setText(userAccounts.get(i).getUid());
+		}
+		container.layout();
 	}
 	
 	public boolean[] getSelectedAccounts() {

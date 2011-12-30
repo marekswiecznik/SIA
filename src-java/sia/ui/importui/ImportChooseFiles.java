@@ -5,10 +5,12 @@ import java.util.List;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -21,18 +23,23 @@ import sia.models.UserAccount;
 
 public class ImportChooseFiles extends WizardPage {
 
-	String[] extensions;
-	String[][] descriptions;
-	String[] files;
-	Label[] labels;
-	Label[] fileLabels;
-	Label descriptionLabel;
-	Button[] buttons;
+	private String[] extensions;
+	private String[][] descriptions;
+	private String[] files;
+	private Label[] labels;
+	private Label[] fileLabels;
+	private Label descriptionLabel;
+	private Button[] buttons;
+	private Label[] separators;
+	private Composite container;
+	private ScrolledComposite scrolledComposite;
+	private int width, height;
 	/**
 	 * Create the wizard.
 	 */
 	public ImportChooseFiles() {
 		super("chooseFiles");
+		setMessage("");
 		setTitle("Choose files");
 		setDescription("Choose files:");
 		extensions = new String[] {};
@@ -43,19 +50,25 @@ public class ImportChooseFiles extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		System.out.println("FFF");
-		Composite container = null;
-		if (getControl() == null) {
-			container = new Composite(parent, SWT.NONE);
-			container.setLayout(new GridLayout(2, false));	
-		} else {
-			container = (Composite)getControl();
-		}
+		scrolledComposite = new ScrolledComposite(parent, SWT.BORDER | SWT.V_SCROLL);
+		setControl(scrolledComposite);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		Composite container = new Composite(scrolledComposite, SWT.NONE);
+		container.setLayout(new GridLayout(2, false));	
+		scrolledComposite.setContent(container);
+		scrolledComposite.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
+		this.container = container;
+	}
+	
+	public void setControls() {
 		for (Control c : container.getChildren())
 			c.dispose();
 		labels = new Label[extensions.length];
 		fileLabels = new Label[extensions.length];
 		buttons = new Button[extensions.length];
+		separators = new Label[extensions.length];
 		
 		for (int i = 0; i < extensions.length; i++) {
 			labels[i] = new Label(container, SWT.NONE);
@@ -65,16 +78,21 @@ public class ImportChooseFiles extends WizardPage {
 			buttons[i].setText("Load file");
 			buttons[i].addSelectionListener(new MySelectionAdapter(i));
 			buttons[i].addMouseTrackListener(new MyMouseTrackAdapter(i));
+			buttons[i].setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(ImportChooseIM.class, "/sia/ui/resources/open.png"));
 			fileLabels[i] = new Label(container, SWT.NONE);
-			fileLabels[i].setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 2, 1));
+			fileLabels[i].setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 			fileLabels[i].setText("Choose file");
+			separators[i] = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
+			separators[i].setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		}
 		
-		descriptionLabel = new Label(container, SWT.NONE);
-		descriptionLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
-		descriptionLabel.setText("Move your cursor to one of buttons to see little hint where you can find those files.");
+		descriptionLabel = new Label(container, SWT.WRAP);
+		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		descriptionLabel.setText("Move your cursor.");
 		
-		setControl(container);
+		container.layout();
+		scrolledComposite.setContent(container);
+		scrolledComposite.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 	}
 	
 	protected void setFileExtensions(String[] extensions) {
@@ -96,8 +114,17 @@ public class ImportChooseFiles extends WizardPage {
 		@Override
 		public void mouseEnter(MouseEvent e) {
 			descriptionLabel.setText(descriptions[n][1]);
-		    //TODO find wiser way to resize label after setText
-			descriptionLabel.setSize(descriptions[n][1].length()*7, descriptions[n][1].length()*70/300);
+			//container.update();
+			//scrolledComposite.update();
+			//scrolledComposite.setContent(container);
+			//scrolledComposite.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+			//width = Math.max(width, getShell().computeSize(getShell().getSize().x, SWT.DEFAULT).x);
+			Point size = getShell().computeSize(getShell().getSize().x, SWT.DEFAULT);
+			size.x = getShell().getSize().x;
+			if (size.y > height)
+				getShell().setSize(size);
+			//width = getShell().getSize().x;
+			height = getShell().getSize().y;
 		}
 		
 		@Override
@@ -119,8 +146,6 @@ public class ImportChooseFiles extends WizardPage {
 		    if (fileName != null) {
 		    	files[n]=fileName;
 		    	fileLabels[n].setText(fileName);
-		    	//TODO find wiser way to resize label after setText
-		    	fileLabels[n].setSize(fileName.length()*7, fileLabels[n].getSize().y);
 		    }
 		}
 	}

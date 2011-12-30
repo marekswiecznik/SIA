@@ -1,10 +1,12 @@
-package sia.datasourses;
+package sia.datasources;
 
 import java.util.List;
+import java.util.Map;
 
 import sia.fileparsers.IParser;
 import sia.utils.ParserFactory;
 import sia.models.Contact;
+import sia.models.Protocol;
 import sia.models.UserAccount;
 
 /**
@@ -18,6 +20,7 @@ public abstract class DataSource {
 	List<UserAccount> userAccounts;
 	String[] passwordDescriptions;
 	String[] passwords;
+	Map<String,Protocol> protocols;
 	protected IParser parser;
 	
 	/**
