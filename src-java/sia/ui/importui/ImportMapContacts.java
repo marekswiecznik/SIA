@@ -34,13 +34,14 @@ public class ImportMapContacts extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		Composite container = null;
-		if (getControl() == null) {
-			container = new Composite(parent, SWT.NONE);
-			container.setLayout(new GridLayout(1, false));	
-		} else {
-			container = (Composite)getControl();
-		}
+		Composite container = new Composite(parent, SWT.NULL);
+//		Composite container = null;
+//		if (getControl() == null) {
+//			container = new Composite(parent, SWT.NONE);
+//			container.setLayout(new GridLayout(1, false));	
+//		} else {
+//			container = (Composite)getControl();
+//		}
 		setControl(container);
 	}
 

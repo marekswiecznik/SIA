@@ -6,11 +6,11 @@ import java.util.Map;
 
 import org.sormula.SormulaException;
 
-import sia.SIA;
 import sia.datasourses.DataSource;
 import sia.datasourses.FMADataSource;
+import sia.models.Configuration;
 import sia.models.Protocol;
-//import sia.datasources.*;
+import sia.ui.SIA;
 
 /**
  * Dictionaries
@@ -22,6 +22,7 @@ public class Dictionaries {
 	
 	private Map<String, DataSource> dataSources;
 	private Map<String, Protocol> protocols;
+	private Map<String, Configuration> configuration;
 	
 	/**
 	 * Default constructor
@@ -34,6 +35,11 @@ public class Dictionaries {
 	 */
 	public void init() throws SormulaException {
 		ORM orm = SIA.getORM();
+		
+		List<Configuration> configuration = orm.getTable(Configuration.class).selectAll();
+		this.configuration = new HashMap<String, Configuration>();
+		for (Configuration c : configuration)
+			this.configuration.put(c.getKey(), c);
 		
 		List<Protocol> protocols = orm.getTable(Protocol.class).selectAll();
 		this.protocols = new HashMap<String, Protocol>();
@@ -87,5 +93,9 @@ public class Dictionaries {
 		if (instance == null)
 			instance = new Dictionaries();
 		return instance;
+	}
+
+	public Map<String, Configuration> getConfiguration() {
+		return configuration;
 	}
 }

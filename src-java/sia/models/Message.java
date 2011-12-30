@@ -10,10 +10,10 @@ import org.sormula.annotation.cascade.SelectCascade;
  * 
  * @author jumper
  */
-public class Message implements IModel {
+public class Message {
 	private int id;
-	private int conversationID;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"conversationID"}) })
+	private int conversationId;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"conversationId"}) })
 	private Conversation conversation;
 	private String message;
 	private Date time;
@@ -58,18 +58,18 @@ public class Message implements IModel {
 
 	/**
 	 * Returns conversation ID
-	 * @return conversationID
+	 * @return conversationId
 	 */
-	public int getConversationID() {
-		return conversationID;
+	public int getConversationId() {
+		return conversationId;
 	}
 
 	/**
 	 * Set conversation ID
-	 * @param conversationID 
+	 * @param conversationId 
 	 */
-	public void setConversationID(int conversationID) {
-		this.conversationID = conversationID;
+	public void setConversationId(int conversationID) {
+		this.conversationId = conversationID;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Message implements IModel {
 	 */
 	public void setConversation(Conversation conversation) {
 		this.conversation = conversation;
-		this.conversationID = conversation != null ? conversation.getId() : -1;
+		this.conversationId = conversation != null ? conversation.getId() : -1;
 	}
 
 	/**

@@ -5,7 +5,7 @@ package sia.models;
  * 
  * @author jumper
  */
-public class Protocol implements IModel {
+public class Protocol {
 	private int id;
 	private String name;
 	private String description;

@@ -54,9 +54,10 @@ public class ImportWizard extends Wizard {
 	}
 
 	public void repaint() {
-		Point size = this.getShell().getSize();
-		this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		this.getShell().setSize(size);
+//		Point size = this.getShell().getSize();
+//		this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
+//		this.getShell().setSize(size);
+		this.getShell().layout(true, true);
 	}
 	
 	@Override

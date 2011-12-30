@@ -47,7 +47,7 @@ public class ImportChooseFiles extends WizardPage {
 		Composite container = null;
 		if (getControl() == null) {
 			container = new Composite(parent, SWT.NONE);
-			container.setLayout(new GridLayout(1, false));	
+			container.setLayout(new GridLayout(2, false));	
 		} else {
 			container = (Composite)getControl();
 		}

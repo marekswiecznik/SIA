@@ -7,8 +7,6 @@ import org.sormula.Database;
 import org.sormula.SormulaException;
 import org.sormula.Table;
 
-import sia.models.IModel;
-
 /**
  * Object relational mapping.
  * 
@@ -16,7 +14,7 @@ import sia.models.IModel;
  */
 public class ORM {
 	private Database database;
-	private Map<String, Table<IModel>> dao;
+	private Map<String, Table<Object>> dao;
 	
 	/**
 	 * Default and only constructor
@@ -24,7 +22,7 @@ public class ORM {
 	 */
 	public ORM(Database database) {
 		this.database = database;
-		this.dao = new HashMap<String, Table<IModel>>();
+		this.dao = new HashMap<String, Table<Object>>();
 	}
 	
 	/**
@@ -32,9 +30,9 @@ public class ORM {
 	 * @param type
 	 * @throws SormulaException
 	 */
-	public <T extends IModel> void createTable(Class<T> type) throws SormulaException {
+	public <T> void createTable(Class<T> type) throws SormulaException {
 		Table<T> table = database.getTable(type);
-		dao.put(type.getName(), (Table<IModel>) table);
+		this.dao.put(type.getName(), (Table<Object>) table);
 	}
 	
 	/**
@@ -42,7 +40,7 @@ public class ORM {
 	 * @param type
 	 * @return ORM table
 	 */
-	public <T extends IModel> Table<T> getTable(Class<T> type) {
-		return (Table<T>) dao.get(type.getName());
+	public <T> Table<T> getTable(Class<T> type) {
+		return (Table<T>) this.dao.get(type.getName());
 	}
 }

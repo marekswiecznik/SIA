@@ -10,7 +10,7 @@ import org.sormula.annotation.Transient;
  * 
  * @author jumper
  */
-public class Contact implements IModel {
+public class Contact {
 	private int id;
 	private String firstname;
 	private String lastname;
@@ -52,7 +52,7 @@ public class Contact implements IModel {
 	public void setId(int id) {
 		this.id = id;
 		for (ContactAccount contactAccount : contactAccounts) {
-			contactAccount.setContactID(id);
+			contactAccount.setContactId(id);
 		}
 	}
 	

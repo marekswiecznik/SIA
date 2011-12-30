@@ -13,16 +13,16 @@ import org.sormula.annotation.cascade.SelectCascade;
  * 
  * @author jumper
  */
-public class Conversation implements IModel {
+public class Conversation {
 	private int id;
 	private Date time;
 	private String title;
 	private int length;
-	private int contactAccountID;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactAccountID"}) })
+	private int contactAccountId;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactAccountId"}) })
 	private ContactAccount contactAccount;
-	private int userAccountID;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"userAccountID"}) })
+	private int userAccountId;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"userAccountId"}) })
 	private UserAccount userAccount;
 	@Transient
 	private List<Message> messages;
@@ -66,7 +66,7 @@ public class Conversation implements IModel {
 	public void setId(int id) {
 		this.id = id;
 		for (Message message : messages) {
-			message.setConversationID(id);
+			message.setConversationId(id);
 		}
 	}
 	
@@ -119,17 +119,19 @@ public class Conversation implements IModel {
 	}
 	
 	/**
-	 * @return the contactAccountID
+	 * Returns contact account ID
+	 * @return contactAccountID
 	 */
-	public int getContactAccountID() {
-		return contactAccountID;
+	public int getContactAccountId() {
+		return contactAccountId;
 	}
 
 	/**
-	 * @param contactAccountID the contactAccountID to set
+	 * Set contact account ID
+	 * @param contactAccountID
 	 */
-	public void setContactAccountID(int contactAccountID) {
-		this.contactAccountID = contactAccountID;
+	public void setContactAccountId(int contactAccountId) {
+		this.contactAccountId = contactAccountId;
 	}
 
 	/**
@@ -142,27 +144,27 @@ public class Conversation implements IModel {
 	
 	/**
 	 * Set contactAccount
-	 * @param contactAccount contactAccount to set
+	 * @param contactAccount
 	 */
 	public void setContactAccount(ContactAccount contact) {
 		this.contactAccount = contact;
-		this.contactAccountID = contactAccount != null ? contactAccount.getId() : -1;
+		this.contactAccountId = contactAccount != null ? contactAccount.getId() : -1;
 	}
 	
 	/**
 	 * Returns user account ID
 	 * @return user account ID
 	 */
-	public int getUserAccountID() {
-		return userAccountID;
+	public int getUserAccountId() {
+		return userAccountId;
 	}
 
 	/**
 	 * Set user account ID
-	 * @param contactAccountID the contactAccountID to set
+	 * @param contactAccountID
 	 */
-	public void setUserAccountID(int userAccountID) {
-		this.userAccountID = userAccountID;
+	public void setUserAccountId(int userAccountID) {
+		this.userAccountId = userAccountID;
 	}
 
 	/**
@@ -179,7 +181,7 @@ public class Conversation implements IModel {
 	 */
 	public void setUserAccount(UserAccount ua) {
 		this.userAccount = ua;
-		this.userAccountID = userAccount != null ? userAccount.getId() : -1;
+		this.userAccountId = userAccount != null ? userAccount.getId() : -1;
 	}
 	
 	/**

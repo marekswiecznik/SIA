@@ -5,7 +5,7 @@ package sia.models;
  * 
  * @author jumper
  */
-public class Configuration implements IModel {
+public class Configuration {
 	private String key;
 	private String value;
 	

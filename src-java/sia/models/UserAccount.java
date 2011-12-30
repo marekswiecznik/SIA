@@ -8,10 +8,10 @@ import org.sormula.annotation.cascade.SelectCascade;
  * 
  * @author jumper
  */
-public class UserAccount implements IModel {
+public class UserAccount {
 	private int id;
-	private int protocolID;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolID"}) })
+	private int protocolId;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolId"}) })
 	private Protocol protocol;
 	private String uid;
 	
@@ -49,18 +49,18 @@ public class UserAccount implements IModel {
 
 	/**
 	 * Returns protocol ID
-	 * @return protocolID
+	 * @return protocolId
 	 */
-	public int getProtocolID() {
-		return protocolID;
+	public int getProtocolId() {
+		return protocolId;
 	}
 
 	/**
 	 * Set protocol ID
-	 * @param protocolID
+	 * @param protocolId
 	 */
-	public void setProtocolID(int protocolID) {
-		this.protocolID = protocolID;
+	public void setProtocolId(int protocolID) {
+		this.protocolId = protocolID;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class UserAccount implements IModel {
 	 */
 	public void setProtocol(Protocol protocol) {
 		this.protocol = protocol;
-		this.protocolID = protocol != null ? protocol.getId() : -1;
+		this.protocolId = protocol != null ? protocol.getId() : -1;
 	}
 
 	/**

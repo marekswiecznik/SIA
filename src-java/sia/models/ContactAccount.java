@@ -12,16 +12,16 @@ import org.sormula.annotation.cascade.SelectCascade;
  * 
  * @author jumper
  */
-public class ContactAccount implements IModel {
+public class ContactAccount {
 	private int id;
 	private String name;
 	private String uid;
 	private String otherinfo;
-	private int protocolID;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolID"}) })
+	private int protocolId;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolId"}) })
 	private Protocol protocol;
-	private int contactID;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactID"}) })
+	private int contactId;
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactId"}) })
 	private Contact contact;
 	private int avatar;
 	@Transient
@@ -47,8 +47,8 @@ public class ContactAccount implements IModel {
 		this.name = name;
 		this.uid = uid;
 		this.otherinfo = otherinfo;
-		this.protocol = protocol;
-		this.contact = contact;
+		setProtocol(protocol);
+		setContact(contact);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ContactAccount implements IModel {
 	public void setId(int id) {
 		this.id = id;
 		for (Conversation conversation : conversations) {
-			conversation.setContactAccountID(id);
+			conversation.setContactAccountId(id);
 		}
 	}
 
@@ -119,17 +119,19 @@ public class ContactAccount implements IModel {
 	}
 
 	/**
-	 * @return the protocolID
+	 * Returns protocol ID
+	 * @return protocolId
 	 */
-	public int getProtocolID() {
-		return protocolID;
+	public int getProtocolId() {
+		return protocolId;
 	}
 
 	/**
-	 * @param protocolID the protocolID to set
+	 * Set protocol ID
+	 * @param protocolId 
 	 */
-	public void setProtocolID(int protocolID) {
-		this.protocolID = protocolID;
+	public void setProtocolId(int protocolID) {
+		this.protocolId = protocolID;
 	}
 
 	/**
@@ -146,6 +148,8 @@ public class ContactAccount implements IModel {
 	 */
 	public void setProtocol(Protocol protocol) {
 		this.protocol = protocol;
+		if (protocol != null)
+			this.protocolId = protocol.getId();
 	}
 
 	/**
@@ -162,20 +166,24 @@ public class ContactAccount implements IModel {
 	 */
 	public void setContact(Contact contact) {
 		this.contact = contact;
+		if (contact != null)
+			this.contactId = contact.getId();
 	}
 
 	/**
-	 * @return the contactID
+	 * Returns contact ID
+	 * @return contactId
 	 */
-	public int getContactID() {
-		return contactID;
+	public int getContactId() {
+		return contactId;
 	}
 
 	/**
-	 * @param contactID the contactID to set
+	 * Set contact ID
+	 * @param contactId 
 	 */
-	public void setContactID(int contactID) {
-		this.contactID = contactID;
+	public void setContactId(int contactID) {
+		this.contactId = contactID;
 	}
 
 	/**

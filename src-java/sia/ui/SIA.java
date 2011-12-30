@@ -1,4 +1,4 @@
-package sia;
+package sia.ui;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,7 +28,7 @@ public class SIA {
 	public void init() {
 		String error = null;
 		try {
-			dbInit();
+			dbInit("sia.db");
 			Dictionaries.getInstance().init();
 			guiInit();
 		} catch (SQLException e) {
@@ -43,6 +43,14 @@ public class SIA {
 		} catch (Exception e) {
 			error = e.getLocalizedMessage();
 			e.printStackTrace();
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					error += "\n" + e.getLocalizedMessage();
+					e.printStackTrace();
+				}
 		}
 		if (error != null) {
 			MessageDialog.openError(new Shell(Display.getCurrent()), "Error", error);
@@ -55,9 +63,9 @@ public class SIA {
 	 * @throws SQLException 
 	 * @throws SormulaException 
 	 */
-	public void dbInit() throws ClassNotFoundException, SQLException, SormulaException {
+	public void dbInit(String dbPath) throws ClassNotFoundException, SQLException, SormulaException {
 		Class.forName("org.sqlite.JDBC");
-		connection = DriverManager.getConnection("jdbc:sqlite:sia.db");
+		connection = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
 		Database database = new Database(connection, "main");
 		orm = new ORM(database);
 		orm.createTable(Configuration.class);
@@ -67,6 +75,14 @@ public class SIA {
 		orm.createTable(Message.class);
 		orm.createTable(Protocol.class);
 		orm.createTable(UserAccount.class);
+	}
+
+	/**
+	 * Close database connection
+	 * @throws SQLException
+	 */
+	public void dbClose() throws SQLException {
+		connection.close();
 	}
 	
 	/**
