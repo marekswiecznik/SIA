@@ -31,17 +31,15 @@ public class ImportChooseIM extends WizardPage {
 	 * @param parent
 	 */
 	@Override
-	public void createControl(Composite parent) {	
+	public void createControl(Composite parent) {		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		setControl(scrolledComposite);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		
 		Composite composite = new Composite(scrolledComposite, SWT.NONE);
+		scrolledComposite.setSize(500, 500);
 		composite.setLayout(new GridLayout(1, false));
-		
-		scrolledComposite.setContent(composite);
-		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		radioButtons = new Button[imNames.length];
 		for (int i = 0; i < imNames.length; i++) {
 			radioButtons[i] = new Button(composite, SWT.RADIO);
@@ -49,6 +47,10 @@ public class ImportChooseIM extends WizardPage {
 			radioButtons[i].setText(imNames[i]); 
 		}
 		radioButtons[0].setSelection(true);
+		
+		scrolledComposite.setContent(composite);
+		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
 	}
 	
 	public int getSelected(){

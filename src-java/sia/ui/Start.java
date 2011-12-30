@@ -89,31 +89,27 @@ public class Start extends ApplicationWindow {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ImportWizard importWizard = new ImportWizard();
-				// Instantiates the wizard container with the wizard and opens
-				// it
-				WizardDialog dialog = new WizardDialog(composite.getShell(),
-						importWizard);
+				// Instantiates the wizard container with the wizard and opens it
+				WizardDialog dialog = new WizardDialog(composite.getShell(), importWizard);
+				dialog.addPageChangingListener(importWizard);
 				dialog.create();
+				System.out.println("aaaaaa");
 				dialog.open();
 			}
 		});
-		importButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager
-				.getImage(Start.class, "/sia/ui/resources/import.png"));
+		importButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/import.png"));
 		importButton.setText("Import");
 
 		ToolItem exportButton = new ToolItem(toolBar, SWT.NONE);
-		exportButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager
-				.getImage(Start.class, "/sia/ui/resources/export.png"));
+		exportButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/export.png"));
 		exportButton.setText("Export");
 
 		ToolItem preferencesButton = new ToolItem(toolBar, SWT.NONE);
-		preferencesButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager
-				.getImage(Start.class, "/sia/ui/resources/properties.png"));
+		preferencesButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/properties.png"));
 		preferencesButton.setText("Preferences");
 
 		ToolItem synchronizeButton = new ToolItem(toolBar, SWT.NONE);
-		synchronizeButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager
-				.getImage(Start.class, "/sia/ui/resources/sync.png"));
+		synchronizeButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/sync.png"));
 		synchronizeButton.setText("Synchronize");
 		// END TOOLBAR
 

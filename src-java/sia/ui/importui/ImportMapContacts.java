@@ -8,6 +8,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import sia.models.Contact;
+import org.eclipse.swt.widgets.Label;
 
 /**
  * 
@@ -21,8 +22,8 @@ public class ImportMapContacts extends WizardPage {
 	 */
 	public ImportMapContacts() {
 		super("mapContacts");
-		setTitle("Wizard Page title");
-		setDescription("Wizard Page description");
+		setTitle("Map contacts");
+		setDescription("Map contacs");
 	}
 
 	public void setContacts(List<Contact> contacts) {
@@ -34,14 +35,8 @@ public class ImportMapContacts extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		Composite container = null;
-		if (getControl() == null) {
-			container = new Composite(parent, SWT.NONE);
-			container.setLayout(new GridLayout(1, false));	
-		} else {
-			container = (Composite)getControl();
-		}
+		Composite container =  new Composite(parent, SWT.NONE);
+
 		setControl(container);
 	}
-
 }
