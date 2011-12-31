@@ -1,9 +1,11 @@
 package sia.datasources;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
 import sia.fileparsers.IParser;
+import sia.ui.SIA;
 import sia.utils.ParserFactory;
 import sia.models.Contact;
 import sia.models.Protocol;
@@ -96,5 +98,13 @@ public abstract class DataSource {
 	 */
 	public void setPasswords(String[] passwords) {
 		this.passwords = passwords;
+	}
+
+	/**
+	 * Save all imported data
+	 */
+	public void save() {
+		Connection conn = SIA.getInstance().getConnection();
+		//conn.
 	}
 }

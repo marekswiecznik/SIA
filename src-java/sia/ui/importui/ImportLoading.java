@@ -12,8 +12,8 @@ public class ImportLoading extends WizardPage {
 	/**
 	 * Create the wizard.
 	 */
-	public ImportLoading() {
-		super("wizardPage");
+	public ImportLoading(String name) {
+		super(name);
 		setTitle("Accounts loading");
 		setDescription("Please wait...");
 	}

@@ -37,7 +37,7 @@ public class Dictionaries {
 	 * @throws SormulaException 
 	 */
 	public void init() throws SormulaException {
-		ORM orm = SIA.getORM();
+		ORM orm = SIA.getInstance().getORM();
 		
 		List<Configuration> configuration = orm.getTable(Configuration.class).selectAll();
 		this.configuration = new HashMap<String, Configuration>();

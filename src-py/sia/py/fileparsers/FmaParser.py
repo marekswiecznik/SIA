@@ -24,7 +24,7 @@ class FmaParser(IParser):
 	messagesContent = None
 	
 	def __init__(self):
-		self.protocol = Dictionaries.getInstance().getProtocol('FMA')
+		self.protocol = Dictionaries.getInstance().getProtocol('SMS')
 		
 	def loadFiles(self, files):
 		f = open(files[0], 'r')

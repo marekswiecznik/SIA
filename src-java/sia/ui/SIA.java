@@ -66,6 +66,7 @@ public class SIA {
 	public void dbInit(String dbPath) throws ClassNotFoundException, SQLException, SormulaException {
 		Class.forName("org.sqlite.JDBC");
 		connection = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
+		connection.setAutoCommit(false);
 		Database database = new Database(connection, "main");
 		orm = new ORM(database);
 		orm.createTable(Configuration.class);
@@ -107,16 +108,16 @@ public class SIA {
 	 * Returns database connection
 	 * @return database connection
 	 */
-	public static Connection getConnection() {
-		return getInstance().connection;
+	public Connection getConnection() {
+		return connection;
 	}
 
 	/**
 	 * Returns ORM
 	 * @return ORM
 	 */
-	public static ORM getORM() {
-		return getInstance().orm;
+	public ORM getORM() {
+		return orm;
 	}
 	
 	/**

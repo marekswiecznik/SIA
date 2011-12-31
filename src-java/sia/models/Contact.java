@@ -21,7 +21,9 @@ public class Contact {
 	/**
 	 * Default constructor
 	 */
-	public Contact() { }
+	public Contact() { 
+		this.contactAccounts = new ArrayList<ContactAccount>();
+	}
 	
 	/**
 	 * Constructor
@@ -31,11 +33,11 @@ public class Contact {
 	 * @param name
 	 */
 	public Contact(int id, String firstname, String lastname, String name) {
+		this();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.name = name;
-		this.contactAccounts = new ArrayList<ContactAccount>();
 	}
 	
 	/**
