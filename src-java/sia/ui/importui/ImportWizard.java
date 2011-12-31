@@ -10,12 +10,8 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Composite;
-
 import sia.datasources.DataSource;
-import sia.datasources.FMADataSource;
-import sia.models.UserAccount;
+import sia.models.Contact;
 import sia.utils.Dictionaries;
 
 /**
@@ -28,16 +24,16 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	private int im;
 	private boolean wasSetAccounts = false;
 	DataSource datasource;
-	IWizardPage chooseIM;
-	IWizardPage chooseFiles;
-	IWizardPage setPasswords;
-	IWizardPage chooseAccounts;
-	IWizardPage setAccounts;
-	IWizardPage mapContacts;
-	IWizardPage accountsLoading;
-	IWizardPage messageLoading;
-	IWizardPage saveLoading;
-
+	ImportChooseIM chooseIM;
+	ImportChooseFiles chooseFiles;
+	ImportSetPasswords setPasswords;
+	ImportChooseAccounts chooseAccounts;
+	ImportSetAccounts setAccounts;
+	ImportMapContacts mapContacts;
+	ImportLoading accountsLoading;
+	ImportLoading messageLoading;
+	ImportLoading saveLoading;
+	ImportSetContacts setContacts;
 	public ImportWizard() {
 		setWindowTitle("Import messages");
 
@@ -61,6 +57,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		messageLoading.setTitle("Messages loading");
 		saveLoading = new ImportLoading("saveLoading");
 		saveLoading.setTitle("Saving");
+		setContacts = new ImportSetContacts();
 		im = -1;
 	}
 
@@ -74,6 +71,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		addPage(chooseAccounts);
 		addPage(messageLoading);
 		addPage(mapContacts);
+		addPage(setContacts);
 		addPage(saveLoading);
 	}
 
@@ -89,22 +87,18 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			// from chooseIM
 			System.out.println("chooseFiles");
 			this.datasource = Dictionaries.getInstance().getDataSource(
-					imNames[((ImportChooseIM) chooseIM).getSelected()]);
-			((ImportChooseFiles) chooseFiles).setFileExtensions(datasource.getFileExtensions());
-			((ImportChooseFiles) chooseFiles).setDescriptions(datasource.getFileDescriptions());
-			((ImportChooseFiles) chooseFiles).setControls();
-			// Point size = this.getShell().getSize();
+					imNames[chooseIM.getSelected()]);
+			chooseFiles.setFileExtensions(datasource.getFileExtensions());
+			chooseFiles.setDescriptions(datasource.getFileDescriptions());
+			chooseFiles.setControls();
 			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
-			// this.getShell().setSize(size);
-			// this.getShell().layout(true, true);
 		} else if (event.getTargetPage() == setPasswords) {
 			// from chooseFiles
 			System.out.println("setPasswords");
-
-			((ImportSetPasswords) setPasswords).setPasswordDescpriptions(datasource.getRequiredPassword());
+			setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
 			if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
-				((ImportSetPasswords) setPasswords).setPasswordDescpriptions(datasource.getRequiredPassword());
-				((ImportSetPasswords) setPasswords).setControls();
+				setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
+				setPasswords.setControls();
 			} else {
 				dialog.showPage(accountsLoading);
 				event.doit = false;
@@ -114,13 +108,12 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		} else if (event.getTargetPage() == setAccounts) {
 			// from chooseFiles or from setPasswords
 			System.out.println("setAccounts");
-
-			datasource.loadFiles(((ImportChooseFiles) chooseFiles).getFiles());
+			datasource.loadFiles(chooseFiles.getFiles());
 			if (datasource.getUserAccounts() != null && datasource.getUserAccounts().size() > 0
 					&& datasource.getUserAccounts().get(0).getUid().length() > 0) {
 				wasSetAccounts = false;
-				((ImportChooseAccounts) chooseAccounts).setUserAccounts(datasource.getUserAccounts());
-				((ImportChooseAccounts) chooseAccounts).setControls();
+				chooseAccounts.setUserAccounts(datasource.getUserAccounts());
+				chooseAccounts.setControls();
 				dialog.showPage(chooseAccounts);
 				event.doit = false;
 			} else {
@@ -130,15 +123,18 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			// from setAccounts?
 			System.out.println("chooseAccounts");
 			if (wasSetAccounts) {
-				dialog.showPage(mapContacts);
+				dialog.showPage(messageLoading);
 				event.doit = false;
 			}
 		} else if (event.getTargetPage() == messageLoading) {
 			System.out.println("messageLoading");
+			mapContacts.setContacts(datasource.getContacts());
 		} else if (event.getTargetPage() == mapContacts) {
-
+			mapContacts.setControls();
 			System.out.println("mapContacts");
-
+		} else if (event.getTargetPage() == setContacts) {
+			List<Contact> empty = mapContacts.getEmptyContacts();
+			System.out.println("setContacts");
 		} else if (event.getTargetPage() == saveLoading) {
 			System.out.println("saveLoading");
 		}

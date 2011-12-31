@@ -105,6 +105,7 @@ public class ImportChooseFiles extends WizardPage {
 	}
 	
 	protected String[] getFiles() {
+		
 		return files;
 	}
 	
