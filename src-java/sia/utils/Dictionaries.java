@@ -10,6 +10,7 @@ import sia.datasources.DataSource;
 import sia.datasources.ExampleDataSource;
 import sia.datasources.FMADataSource;
 import sia.models.Contact;
+import sia.models.ContactAccount;
 import sia.models.Protocol;
 import sia.models.Configuration;
 import sia.ui.SIA;
@@ -50,6 +51,10 @@ public class Dictionaries {
 			this.protocols.put(p.getName(), p);
 		
 		this.contacts = orm.getTable(Contact.class).selectAll();
+		for (Contact contact : contacts) {
+			contact.getContactAccounts().addAll(orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()));
+		}
+		System.out.println(contacts.get(0).getContactAccounts().size());
 		
 		dataSources = new HashMap<String, DataSource>();
 		//dataSources.put("kadu", new KaduDataSource());
