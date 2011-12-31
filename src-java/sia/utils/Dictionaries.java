@@ -9,6 +9,7 @@ import org.sormula.SormulaException;
 import sia.datasources.DataSource;
 import sia.datasources.ExampleDataSource;
 import sia.datasources.FMADataSource;
+import sia.models.Contact;
 import sia.models.Protocol;
 import sia.models.Configuration;
 import sia.ui.SIA;
@@ -24,6 +25,7 @@ public class Dictionaries {
 	private Map<String, DataSource> dataSources;
 	private Map<String, Protocol> protocols;
 	private Map<String, Configuration> configuration;
+	private List<Contact> contacts;
 	
 	/**
 	 * Default constructor
@@ -46,6 +48,8 @@ public class Dictionaries {
 		this.protocols = new HashMap<String, Protocol>();
 		for (Protocol p : protocols)
 			this.protocols.put(p.getName(), p);
+		
+		this.contacts = orm.getTable(Contact.class).selectAll();
 		
 		dataSources = new HashMap<String, DataSource>();
 		//dataSources.put("kadu", new KaduDataSource());
@@ -85,6 +89,14 @@ public class Dictionaries {
 	 */
 	public Protocol getProtocol(String key) {
 		return protocols.get(key);
+	}
+	
+	/**
+	 * Returns contacts
+	 * @return contacts
+	 */
+	public List<Contact> getContacts() {
+		return contacts;
 	}
 	
 	/**
