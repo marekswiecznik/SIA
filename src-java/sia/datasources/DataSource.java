@@ -10,6 +10,7 @@ import org.sormula.SormulaException;
 
 import sia.fileparsers.IParser;
 import sia.ui.SIA;
+import sia.utils.Dictionaries;
 import sia.utils.Config;
 import sia.utils.ORM;
 import sia.models.Contact;
@@ -25,13 +26,14 @@ import sia.models.UserAccount;
  * @author Agnieszka Glabala
  */
 public abstract class DataSource {
-	String[] extensions;
-	String[][]  descriptions;
-	List<UserAccount> userAccounts;
-	List<Contact> contacts;
-	String[] passwordDescriptions;
-	String[] passwords;
-	Map<String,Protocol> protocols;
+	protected String[] extensions;
+	protected String[][]  descriptions;
+	protected List<UserAccount> userAccounts;
+	protected List<Contact> contacts;
+	protected String[] passwordDescriptions;
+	private String[] passwords;
+	protected Map<String,Protocol> protocols;
+	
 	protected IParser parser;
 	
 	/**
@@ -61,17 +63,14 @@ public abstract class DataSource {
 	}
 
 	/**
-	 * Return user accounts found in archive files or null if null if user should to set this manually
+	 * Return user accounts found in archive files or null if user should to set this manually
 	 * @return list of user accounts
 	 */
-	public abstract List<UserAccount> getUserAccounts();
-	
-	/**
-	 * Set from which accounts user want to import data
-	 * @param selectedAccounts array in the same order as userAccounts 
-	 */
-	public void setUserAccounts(boolean[] selectedAccounts) {
-		//TODO
+	public List<UserAccount> getUserAccounts() {
+		if(userAccounts==null) {
+			userAccounts = parser.getUserAccounts();
+		}
+		return userAccounts;
 	}
 	
 	/**
@@ -79,14 +78,19 @@ public abstract class DataSource {
 	 * @param selectedAccounts array in the same order as userAccounts 
 	 */
 	public void setUserAccounts(List<UserAccount> uas) {
-		//TODO
+		userAccounts = uas;
 	}
 	
 	/**
 	 * Return all contacts with conversations (but not necessarily messages)
 	 * @return list of contacts
 	 */
-	public abstract List<Contact> getContacts();
+	public List<Contact> getContacts() {
+		if(contacts==null) {
+			contacts = parser.getContacts(userAccounts);
+		}
+		return contacts;
+	}
 	
 	/**
 	 * Load and validate files
@@ -164,5 +168,29 @@ public abstract class DataSource {
 		Statement stmt = SIA.getInstance().getConnection().createStatement();
 		System.out.println("Conversation update "+stmt.executeUpdate(sql));
 		SIA.getInstance().tmpSave();
+	}
+
+	public void mapContacts() {
+		List<Contact> dbContacts = Dictionaries.getInstance().getContacts();
+		Map<ContactAccount, Contact> mapContacts = new HashMap<ContactAccount, Contact>();
+		for (Contact c : dbContacts) {
+			for(ContactAccount ca : c.getContactAccounts()) {
+				mapContacts.put(ca, c);
+			}
+		}
+		for (int i=0; i<contacts.size();i++) {
+			for(ContactAccount ca : contacts.get(i).getContactAccounts()) {
+				if(mapContacts.containsKey(ca)) {
+					System.out.println(ca);
+					for(ContactAccount ca1 :contacts.get(i).getContactAccounts()) {
+						if(!ca1.equals(ca)) {
+							mapContacts.get(ca).getContactAccounts().add(ca1);
+						}
+					}
+					contacts.remove(i);
+					break;
+				} 
+			}
+		}
 	}
 }

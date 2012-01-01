@@ -3,11 +3,13 @@ package sia.datasources;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sia.models.ContactAccount;
 import sia.models.Protocol;
 import sia.models.UserAccount;
 import sia.models.Contact;
+import sia.utils.Dictionaries;
 
 
 public class ExampleDataSource extends DataSource {
@@ -30,57 +32,55 @@ public class ExampleDataSource extends DataSource {
 	@Override
 	public List<UserAccount> getUserAccounts() {
 		userAccounts = new ArrayList<UserAccount>();
-		userAccounts.add(new UserAccount(0, new Protocol(0, "gg", "gg", "gg.png"), "4053074"));
-		userAccounts.add(new UserAccount(1, new Protocol(1, "jabber", "jabb", "jabber.png"), "4053074@jabb.pl"));
-		userAccounts.add(new UserAccount(2, new Protocol(2, "gtalk", "google talk", "gtalk.png"), "4053074@gmail.com"));
-		userAccounts.add(new UserAccount(3, new Protocol(2, "gtalk", "google talk", "gtalk.png"), "4053074@google.com"));
+		userAccounts.add(new UserAccount(0, new Protocol(0, "gg", "gg", "gg.png"), ""));
+//		userAccounts.add(new UserAccount(1, new Protocol(1, "jabber", "jabb", "jabber.png"), "4053074@jabb.pl"));
+//		userAccounts.add(new UserAccount(2, new Protocol(2, "gtalk", "google talk", "gtalk.png"), "4053074@gmail.com"));
+//		userAccounts.add(new UserAccount(3, new Protocol(2, "gtalk", "google talk", "gtalk.png"), "4053074@google.com"));
 		return userAccounts;
 	}
 
 	@Override
 	public List<Contact> getContacts() {
-		List<Contact> contacts = new ArrayList<Contact>();
-		contacts.add(new Contact(0, "AAA", "aaa", "ccc"));
-		contacts.add(new Contact(1, "AAA1", "aaa1", "ccc1"));
-		contacts.add(new Contact(0, "AAA2", "aaa2", "ccc2"));
-		contacts.add(new Contact(0, "AAA3", "aaa3", "ccc3"));
-		contacts.add(new Contact(0, "AAA4", "aaa4", "ccc4"));
-		contacts.add(new Contact(0, "AAA5", "aaa5", "ccc5"));
-		contacts.add(new Contact(0, "AAA6", "aaa6", "ccc6"));
-		contacts.get(0).getContactAccounts().add(new ContactAccount(0, "a1", "a1@a.pl", "aaaaaaa", contacts.get(0), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(0).getContactAccounts().add(new ContactAccount(1, "a2", "a2@a.pl", "aaaaaaa", contacts.get(0), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(0).getContactAccounts().add(new ContactAccount(2, "a3", "a3@a.pl", "aaaaaaa", contacts.get(0), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(0).getContactAccounts().add(new ContactAccount(3, "a4", "a4@a.pl", "aaaaaaa", contacts.get(0), new Protocol(1, "jabber", "jabb", "jabber.png")));
-		
-		contacts.get(1).getContactAccounts().add(new ContactAccount(0, "b1", "b1@a.pl", "baaaaaaa", contacts.get(1), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(1).getContactAccounts().add(new ContactAccount(1, "b2", "b2@a.pl", "baaaaaaa", contacts.get(1), new Protocol(1, "jabber", "jabb", "jabber.png")));
-		contacts.get(1).getContactAccounts().add(new ContactAccount(0, "b3", "b3@a.pl", "baaaaaaa", contacts.get(1), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(1).getContactAccounts().add(new ContactAccount(0, "b4", "b4@a.pl", "baaaaaaa", contacts.get(1), new Protocol(0, "gg", "gg", "gg.png")));
-		
-		contacts.get(2).getContactAccounts().add(new ContactAccount(0, "ca1", "ca1@a.pl", "aaaaaaa", contacts.get(2), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(2).getContactAccounts().add(new ContactAccount(1, "ca2", "ca2@a.pl", "aaaaaaa", contacts.get(2), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(2).getContactAccounts().add(new ContactAccount(0, "ca3", "ca3@a.pl", "aaaaaaa", contacts.get(2), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(2).getContactAccounts().add(new ContactAccount(0, "ca4", "ca4@a.pl", "aaaaaaa", contacts.get(2), new Protocol(0, "gg", "gg", "gg.png")));
-		
-		contacts.get(3).getContactAccounts().add(new ContactAccount(0, "da1", "da1@a.pl", "aaaaaaa", contacts.get(3), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(3).getContactAccounts().add(new ContactAccount(1, "da2", "da2@a.pl", "aaaaaaa", contacts.get(3), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(3).getContactAccounts().add(new ContactAccount(0, "da3", "da3@a.pl", "aaaaaaa", contacts.get(3), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(3).getContactAccounts().add(new ContactAccount(0, "da4", "da4@a.pl", "aaaaaaa", contacts.get(3), new Protocol(0, "gg", "gg", "gg.png")));
-		
-		contacts.get(4).getContactAccounts().add(new ContactAccount(0, "da1", "da1@a.pl", "aaaaaaa", contacts.get(4), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(4).getContactAccounts().add(new ContactAccount(0, "da2", "da2@a.pl", "aaaaaaa", contacts.get(4), new Protocol(1, "jabber", "jabb", "jabber.png")));
-		contacts.get(4).getContactAccounts().add(new ContactAccount(0, "da3", "da3@a.pl", "aaaaaaa", contacts.get(4), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(4).getContactAccounts().add(new ContactAccount(0, "da4", "da4@a.pl", "aaaaaaa", contacts.get(4), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		
-		contacts.get(5).getContactAccounts().add(new ContactAccount(0, "ea1", "ea1@a.pl", "aaaaaaa", contacts.get(5), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(5).getContactAccounts().add(new ContactAccount(0, "ea2", "ea2@a.pl", "aaaaaaa", contacts.get(5), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(5).getContactAccounts().add(new ContactAccount(0, "ea3", "ea3@a.pl", "aaaaaaa", contacts.get(5), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
-		contacts.get(5).getContactAccounts().add(new ContactAccount(0, "ea4", "ea4@a.pl", "aaaaaaa", contacts.get(5), new Protocol(0, "gg", "gg", "gg.png")));
-		
-		contacts.get(6).getContactAccounts().add(new ContactAccount(0, "fa1", "fa1@a.pl", "aaaaaaa", contacts.get(6), new Protocol(0, "gg", "gg", "gg.png")));
-		contacts.get(6).getContactAccounts().add(new ContactAccount(0, "fa2", "fa2@a.pl", "aaaaaaa", contacts.get(6), new Protocol(1, "jabber", "jabb", "jabber.png")));
-		contacts.get(6).getContactAccounts().add(new ContactAccount(0, "fa3", "fa3@a.pl", "aaaaaaa", contacts.get(6), new Protocol(1, "jabber", "jabb", "jabber.png")));
-		contacts.get(6).getContactAccounts().add(new ContactAccount(0, "fa4", "fa4@a.pl", "aaaaaaa", contacts.get(6), new Protocol(0, "gg", "gg", "gg.png")));
+		if(contacts==null) {
+			Map<String, Protocol> protocols = Dictionaries.getInstance().getProtocols();
+			
+			contacts = new ArrayList<Contact>();
+			contacts.add(new Contact(0, "AAA", "aaa", "ccc"));
+			contacts.add(new Contact(1, "AAA1", "aaa1", "ccc1"));
+			contacts.add(new Contact(0, "AAA2", "aaa2", "ccc2"));
+			contacts.add(new Contact(0, "AAA3", "aaa3", "ccc3"));
+			contacts.add(new Contact(0, "AAA4", "aaa4", "ccc4"));
+			contacts.add(new Contact(0, "AAA5", "aaa5", "ccc5"));
+			contacts.get(0).getContactAccounts().add(new ContactAccount(0, "a1", "a1@a.pl", "aaaaaaa", contacts.get(0), protocols.get("SMS")));
+			contacts.get(0).getContactAccounts().add(new ContactAccount(1, "a2", "a2@a.pl", "aaaaaaa", contacts.get(0), new Protocol(0, "gg", "gg", "gg.png")));
+			contacts.get(0).getContactAccounts().add(new ContactAccount(2, "a3", "a3@a.pl", "aaaaaaa", contacts.get(0), protocols.get("SMS")));
+			contacts.get(0).getContactAccounts().add(new ContactAccount(3, "a4", "a4@a.pl", "aaaaaaa", contacts.get(0), new Protocol(1, "jabber", "jabb", "jabber.png")));
+			
+			contacts.get(1).getContactAccounts().add(new ContactAccount(0, "b1", "b1@a.pl", "baaaaaaa", contacts.get(1), new Protocol(0, "gg", "gg", "gg.png")));
+			contacts.get(1).getContactAccounts().add(new ContactAccount(1, "b2", "b2@a.pl", "baaaaaaa", contacts.get(1), new Protocol(1, "jabber", "jabb", "jabber.png")));
+			contacts.get(1).getContactAccounts().add(new ContactAccount(0, "b3", "b3@a.pl", "baaaaaaa", contacts.get(1), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
+			contacts.get(1).getContactAccounts().add(new ContactAccount(0, "b4", "b4@a.pl", "baaaaaaa", contacts.get(1), new Protocol(0, "gg", "gg", "gg.png")));
+			
+			contacts.get(2).getContactAccounts().add(new ContactAccount(0, "ca1", "ca1@a.pl", "aaaaaaa", contacts.get(2), new Protocol(0, "gg", "gg", "gg.png")));
+			contacts.get(2).getContactAccounts().add(new ContactAccount(1, "ca2", "ca2@a.pl", "aaaaaaa", contacts.get(2), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
+			contacts.get(2).getContactAccounts().add(new ContactAccount(0, "ca3", "ca3@a.pl", "aaaaaaa", contacts.get(2), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
+			contacts.get(2).getContactAccounts().add(new ContactAccount(0, "ca4", "ca4@a.pl", "aaaaaaa", contacts.get(2), new Protocol(0, "gg", "gg", "gg.png")));
+			
+			contacts.get(3).getContactAccounts().add(new ContactAccount(0, "da1", "da1@a.pl", "aaaaaaa", contacts.get(3), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
+			contacts.get(3).getContactAccounts().add(new ContactAccount(1, "da2", "da2@a.pl", "aaaaaaa", contacts.get(3), new Protocol(0, "gg", "gg", "gg.png")));
+			contacts.get(3).getContactAccounts().add(new ContactAccount(0, "da3", "da3@a.pl", "aaaaaaa", contacts.get(3), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
+			contacts.get(3).getContactAccounts().add(new ContactAccount(0, "da4", "da4@a.pl", "aaaaaaa", contacts.get(3), protocols.get("GG")));
+			
+			contacts.get(4).getContactAccounts().add(new ContactAccount(0, "ea1", "ea1@a.pl", "aaaaaaa", contacts.get(4), new Protocol(0, "gg", "gg", "gg.png")));
+			contacts.get(4).getContactAccounts().add(new ContactAccount(0, "ea2", "ea2@a.pl", "aaaaaaa", contacts.get(4), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
+			contacts.get(4).getContactAccounts().add(new ContactAccount(0, "ea3", "ea3@a.pl", "aaaaaaa", contacts.get(4), new Protocol(2, "gtalk", "google talk", "gtalk.png")));
+			contacts.get(4).getContactAccounts().add(new ContactAccount(0, "ea4", "ea4@a.pl", "aaaaaaa", contacts.get(4), new Protocol(0, "gg", "gg", "gg.png")));
+			
+			contacts.get(5).getContactAccounts().add(new ContactAccount(0, "fa1", "fa1@a.pl", "aaaaaaa", contacts.get(5), new Protocol(0, "gg", "gg", "gg.png")));
+			contacts.get(5).getContactAccounts().add(new ContactAccount(0, "fa2", "fa2@a.pl", "aaaaaaa", contacts.get(5), new Protocol(1, "jabber", "jabb", "jabber.png")));
+			contacts.get(5).getContactAccounts().add(new ContactAccount(0, "fa3", "fa3@a.pl", "aaaaaaa", contacts.get(5), new Protocol(1, "jabber", "jabb", "jabber.png")));
+			contacts.get(5).getContactAccounts().add(new ContactAccount(0, "fa4", "fa4@a.pl", "aaaaaaa", contacts.get(5), new Protocol(0, "gg", "gg", "gg.png")));
+		}
 		
 		return contacts;
 	}

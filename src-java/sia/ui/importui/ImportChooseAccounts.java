@@ -19,7 +19,9 @@ import sia.ui.org.eclipse.wb.swt.SWTResourceManager;
  */
 public class ImportChooseAccounts extends WizardPage {
 	private List<UserAccount> userAccounts;
+	private UserAccount[] userAccountsTmp;
 	private Composite container;
+	private Button[] buttons;
 	/**
 	 * Create the wizard.
 	 */
@@ -42,18 +44,28 @@ public class ImportChooseAccounts extends WizardPage {
 	}
 	
 	public void setControls() {
-		for (Control c : container.getChildren())
+		for (Control c : container.getChildren()) 
 			c.dispose();
+		buttons = new Button[userAccounts.size()];
 		for (int i = 0; i < userAccounts.size(); i++) {
-			Button btnCheckButton = new Button(container, SWT.CHECK);
-			btnCheckButton.setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/"+userAccounts.get(i).getProtocol().getIcon()));
-			btnCheckButton.setText(userAccounts.get(i).getUid());
+			buttons[i] = new Button(container, SWT.CHECK);
+			buttons[i].setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/"+userAccounts.get(i).getProtocol().getIcon()));
+			buttons[i].setText(userAccounts.get(i).getUid());
 		}
 		container.layout();
 	}
 	
-	public boolean[] getSelectedAccounts() {
-		return null;
+	public List<UserAccount> getUserAccounts() {
+		if(userAccountsTmp==null) {
+			userAccountsTmp = userAccounts.toArray(new UserAccount[] {});
+		}
+		for (int i = 0; i < userAccountsTmp.length; i++) {
+			if(!buttons[i].getSelection()) {
+				userAccounts.remove(userAccountsTmp[i]);
+			}
+		}
+		System.out.println("TTTTTT "+userAccounts.size());
+		return userAccounts;
 	}
 	
 	public void setUserAccounts(List<UserAccount> uas) {

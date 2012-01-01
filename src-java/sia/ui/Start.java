@@ -94,7 +94,6 @@ public class Start extends ApplicationWindow {
 				dialog.addPageChangingListener(importWizard);
 				dialog.addPageChangedListener(importWizard);
 				dialog.create();
-				System.out.println("aaaaaa");
 				dialog.open();
 			}
 		});

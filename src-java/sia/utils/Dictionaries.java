@@ -13,6 +13,7 @@ import sia.models.Contact;
 import sia.models.ContactAccount;
 import sia.models.Protocol;
 import sia.models.Configuration;
+import sia.models.UserAccount;
 import sia.ui.SIA;
 
 /**
@@ -27,6 +28,7 @@ public class Dictionaries {
 	private Map<String, Protocol> protocols;
 	private Map<String, Configuration> configuration;
 	private List<Contact> contacts;
+	private List<UserAccount> userAccounts;
 	
 	/**
 	 * Default constructor
@@ -55,6 +57,8 @@ public class Dictionaries {
 			contact.getContactAccounts().addAll(orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()));
 		}
 		
+		this.userAccounts = orm.getTable(UserAccount.class).selectAll();
+	
 		dataSources = new HashMap<String, DataSource>();
 		//dataSources.put("kadu", new KaduDataSource());
 		dataSources.put("Float's Mobile Agent", new FMADataSource());
@@ -101,6 +105,14 @@ public class Dictionaries {
 	 */
 	public List<Contact> getContacts() {
 		return contacts;
+	}
+	
+	/**
+	 * Returns user accounts
+	 * @return user acounts
+	 */
+	public List<UserAccount> getUserAccounts() {
+		return userAccounts;
 	}
 	
 	/**
