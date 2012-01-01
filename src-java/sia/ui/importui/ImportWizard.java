@@ -10,6 +10,8 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
+import org.python.modules.Setup;
+
 import sia.datasources.DataSource;
 import sia.models.Contact;
 import sia.utils.Dictionaries;
@@ -117,6 +119,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				dialog.showPage(chooseAccounts);
 				event.doit = false;
 			} else {
+				setAccounts.setUserAccounts(datasource.getUserAccounts());
+				setAccounts.setControls();
 				wasSetAccounts = true;
 			}
 		} else if (event.getTargetPage() == chooseAccounts) {
@@ -128,14 +132,16 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			}
 		} else if (event.getTargetPage() == messageLoading) {
 			System.out.println("messageLoading");
-			mapContacts.setContacts(datasource.getContacts());
 		} else if (event.getTargetPage() == mapContacts) {
 			mapContacts.setControls();
 			System.out.println("mapContacts");
 		} else if (event.getTargetPage() == setContacts) {
 			List<Contact> empty = mapContacts.getEmptyContacts();
+			setContacts.setContacts(empty);
+			setContacts.setControls();
 			System.out.println("setContacts");
 		} else if (event.getTargetPage() == saveLoading) {
+			Dictionaries.getInstance().getContacts().addAll(setContacts.getContacts());
 			System.out.println("saveLoading");
 		}
 	}
@@ -145,7 +151,14 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		if (event.getSelectedPage() == accountsLoading) {
 			datasource.getUserAccounts();
 		} else if (event.getSelectedPage() == messageLoading) {
+			if(wasSetAccounts) {
+				datasource.setUserAccounts(setAccounts.getUserAccounts());
+			} else {
+				datasource.setUserAccounts(chooseAccounts.getUserAccounts());
+			}
 			datasource.getContacts();
+			datasource.mapContacts();
+			mapContacts.setContacts(datasource.getContacts());
 		} else if (event.getSelectedPage() == saveLoading) {
 			datasource.save();
 		}

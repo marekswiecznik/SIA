@@ -1,5 +1,6 @@
 package sia.ui.importui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.wizard.WizardPage;
@@ -7,10 +8,15 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import sia.models.UserAccount;
+import sia.utils.Dictionaries;
+
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 /**
  * 
@@ -20,6 +26,9 @@ import org.eclipse.swt.layout.GridData;
 public class ImportSetAccounts extends WizardPage {
 	List<UserAccount> userAccounts;
 	private Text text;
+	private Combo combo;
+	private List<UserAccount> uas4combo2;
+	Composite container;
 	/**
 	 * Create the wizard.
 	 */
@@ -29,8 +38,13 @@ public class ImportSetAccounts extends WizardPage {
 		setDescription("Set your user ID:");
 	}
 
-	public List<UserAccount> getSelectedAccounts() {
-		return null;
+	public List<UserAccount> getUserAccounts() {
+		if(combo.getSelectionIndex()>0) {
+			userAccounts.get(0).setUid(uas4combo2.get(combo.getSelectionIndex()-1).getUid());
+		} else {
+			userAccounts.get(0).setUid(text.getText());
+		}
+		return userAccounts;
 	}
 	
 	/**
@@ -38,16 +52,59 @@ public class ImportSetAccounts extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		Composite container = new Composite(parent, SWT.NULL);
+		container = new Composite(parent, SWT.NULL);
 
 		setControl(container);
 		container.setLayout(new GridLayout(2, false));
 		
-		Label lblUserId = new Label(container, SWT.NONE);
-		lblUserId.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblUserId.setText("User ID:");
+
+	}
+
+	public void setControls() {
+		if(userAccounts!=null) {
+			Label lblOrSelectFrom = new Label(container, SWT.NONE);
+			lblOrSelectFrom.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+			lblOrSelectFrom.setText("Select user account from existed:");
+			
+			combo = new Combo(container, SWT.NONE);
+			combo.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					if(combo.getSelectionIndex()>0) {
+						text.setEnabled(false);
+					} else {
+						text.setEnabled(true);
+					}
+				}
+			});
+			combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+			List<UserAccount> uas = Dictionaries.getInstance().getUserAccounts();
+			ArrayList<String> uas4combo = new ArrayList<String>();
+			uas4combo2 = new ArrayList<UserAccount>();
+			uas4combo.add("");
+			for (int i = 0; i < uas.size(); i++) {
+				if(uas.get(i).getProtocol().equals(userAccounts.get(0).getProtocol())) {
+					uas4combo.add(uas.get(i).getProtocol().getName()+" "+uas.get(i).getUid());
+					uas4combo2.add(uas.get(i));
+				}
+			}
+			combo.setItems(uas4combo.toArray(new String[] {}));
+			Label lblCreateNewUser = new Label(container, SWT.NONE);
+			lblCreateNewUser.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+			lblCreateNewUser.setText("or create new one:");
+			
+			Label lblUserId = new Label(container, SWT.NONE);
+			lblUserId.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+			lblUserId.setText("User ID:");
+			
+			text = new Text(container, SWT.BORDER);
+			text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+			container.layout();
+		}
+	}
+	
+	public void setUserAccounts(List<UserAccount> userAccounts2) {
+		userAccounts = userAccounts2;
 		
-		text = new Text(container, SWT.BORDER);
-		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 	}
 }

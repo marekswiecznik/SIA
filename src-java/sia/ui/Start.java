@@ -92,8 +92,8 @@ public class Start extends ApplicationWindow {
 				// Instantiates the wizard container with the wizard and opens it
 				WizardDialog dialog = new WizardDialog(composite.getShell(), importWizard);
 				dialog.addPageChangingListener(importWizard);
+				dialog.addPageChangedListener(importWizard);
 				dialog.create();
-				System.out.println("aaaaaa");
 				dialog.open();
 			}
 		});

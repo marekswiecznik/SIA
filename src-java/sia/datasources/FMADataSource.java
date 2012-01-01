@@ -21,18 +21,6 @@ public class FMADataSource extends DataSource {
 	}
 
 	@Override
-	public List<UserAccount> getUserAccounts() {
-		return parser.getUserAccounts();
-	}
-
-	@Override
-	public List<Contact> getContacts() {
-		if (userAccounts != null && userAccounts.size() > 0)
-			return parser.getContacts(userAccounts);
-		return null;
-	}
-
-	@Override
 	public void loadFiles(String[] files) {
 		if (files.length == 1)
 			parser.loadFiles(files);
