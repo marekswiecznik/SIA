@@ -1,24 +1,24 @@
 package sia.datasources;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.sormula.SormulaException;
 
 import sia.fileparsers.IParser;
-import sia.ui.SIA;
-import sia.utils.Dictionaries;
-import sia.utils.Config;
-import sia.utils.ORM;
 import sia.models.Contact;
 import sia.models.ContactAccount;
 import sia.models.Conversation;
 import sia.models.Message;
 import sia.models.Protocol;
 import sia.models.UserAccount;
+import sia.ui.SIA;
+import sia.utils.Config;
+import sia.utils.Dictionaries;
+import sia.utils.ORM;
 
 /**
  * Data source
@@ -120,11 +120,11 @@ public abstract class DataSource {
 	 */
 	public void save() throws SQLException, SormulaException {
 		ORM orm = SIA.getInstance().getORM();
+		SIA.getInstance().tmpInit();
 		for (UserAccount userAccount : userAccounts) 
 			if (userAccount.getId() == 0)
 				orm.getTempTable(UserAccount.class).insert(userAccount);
-		SIA.getInstance().tmpInit();
-		for (Contact contact : contacts) {
+		for (Contact contact : Dictionaries.getInstance().getContacts()) {
 			if (contact.getId() == 0)
 				orm.getTempTable(Contact.class).insert(contact);
 			for (ContactAccount contactAccount : contact.getContactAccounts()) {
@@ -184,7 +184,7 @@ public abstract class DataSource {
 					System.out.println(ca);
 					for(ContactAccount ca1 :contacts.get(i).getContactAccounts()) {
 						if(!ca1.equals(ca)) {
-							mapContacts.get(ca).getContactAccounts().add(ca1);
+							mapContacts.get(ca).addContactAccount(ca1);
 						}
 					}
 					contacts.remove(i);

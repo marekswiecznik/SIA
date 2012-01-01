@@ -9,10 +9,10 @@ import org.sormula.SormulaException;
 import sia.datasources.DataSource;
 import sia.datasources.ExampleDataSource;
 import sia.datasources.FMADataSource;
+import sia.models.Configuration;
 import sia.models.Contact;
 import sia.models.ContactAccount;
 import sia.models.Protocol;
-import sia.models.Configuration;
 import sia.models.UserAccount;
 import sia.ui.SIA;
 
@@ -54,7 +54,8 @@ public class Dictionaries {
 		
 		this.contacts = orm.getTable(Contact.class).selectAll();
 		for (Contact contact : contacts) {
-			contact.getContactAccounts().addAll(orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()));
+			for (ContactAccount ca : orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()))
+				contact.addContactAccount(ca);
 		}
 		
 		this.userAccounts = orm.getTable(UserAccount.class).selectAll();

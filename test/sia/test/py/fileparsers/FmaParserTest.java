@@ -1,6 +1,10 @@
 package sia.test.py.fileparsers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -9,14 +13,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.python.core.PyException;
 
-import com.ibm.icu.util.Calendar;
-
 import sia.fileparsers.IParser;
 import sia.models.Contact;
 import sia.models.UserAccount;
 import sia.ui.SIA;
 import sia.utils.Dictionaries;
 import sia.utils.ParserFactory;
+
+import com.ibm.icu.util.Calendar;
 
 /**
  * Fma Parser Test

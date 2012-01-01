@@ -117,6 +117,15 @@ public class Contact {
 	}
 	
 	/**
+	 * Add message 
+	 * @param msg message
+	 */
+	public void addContactAccount(ContactAccount contactAccount) {
+		contactAccount.setContact(this);
+		contactAccounts.add(contactAccount);
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override

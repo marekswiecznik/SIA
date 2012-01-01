@@ -1,9 +1,5 @@
 package sia.datasources;
 
-import java.util.List;
-
-import sia.models.Contact;
-import sia.models.UserAccount;
 import sia.utils.ParserFactory;
 
 public class FMADataSource extends DataSource {

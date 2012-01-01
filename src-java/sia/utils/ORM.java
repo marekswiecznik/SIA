@@ -32,6 +32,7 @@ public class ORM {
 	 * @param type
 	 * @throws SormulaException
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> void createTable(Class<T> type) throws SormulaException {
 		Table<T> table = database.getTable(type);
 		this.dao.put(type.getName(), (Table<Object>) table);
@@ -42,6 +43,7 @@ public class ORM {
 	 * @param type
 	 * @throws SormulaException
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> void createTempTable(Class<T> type) throws SormulaException {
 		Table<T> table = databaseTemp.getTable(type);
 		this.dao.put(type.getName()+"_temp", (Table<Object>) table);
@@ -52,6 +54,7 @@ public class ORM {
 	 * @param type
 	 * @return ORM table
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> Table<T> getTable(Class<T> type) {
 		return (Table<T>) this.dao.get(type.getName());
 	}
@@ -61,6 +64,7 @@ public class ORM {
 	 * @param type
 	 * @return ORM table
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> Table<T> getTempTable(Class<T> type) {
 		return (Table<T>) this.dao.get(type.getName()+"_temp");
 	}

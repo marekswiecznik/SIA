@@ -6,16 +6,17 @@ import java.util.List;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
+
 import sia.models.Contact;
 import sia.models.ContactAccount;
 import sia.utils.Dictionaries;
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.layout.GridLayout;
 
 /**
  * 
@@ -145,7 +146,8 @@ public class ImportMapContacts extends WizardPage {
 			if(combos[i].getSelectionIndex()<1) {
 				contacts.add(this.contacts.get(i));
 			} else {
-				dbContacts.get(combos[i].getSelectionIndex()-1).getContactAccounts().addAll(this.contacts.get(i).getContactAccounts());
+				for (ContactAccount ca : this.contacts.get(i).getContactAccounts())
+					dbContacts.get(combos[i].getSelectionIndex()-1).addContactAccount(ca);
 			}
 		}
 		return contacts;

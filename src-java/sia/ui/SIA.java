@@ -12,8 +12,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.sormula.Database;
 import org.sormula.SormulaException;
 
-import sia.models.*;
-import sia.ui.Start;
+import sia.models.Configuration;
+import sia.models.Contact;
+import sia.models.ContactAccount;
+import sia.models.Conversation;
+import sia.models.Message;
+import sia.models.Protocol;
+import sia.models.UserAccount;
 import sia.utils.Dictionaries;
 import sia.utils.ORM;
 
@@ -132,8 +137,10 @@ public class SIA {
 	    ResultSet result = select.executeQuery("SELECT name FROM main.sqlite_master WHERE type = 'table'");
 		while (result.next()) { 
 			val = result.getString(1);
-			if (val.indexOf("sqlite_") != 0 && val.indexOf("configuration") != 0)
-				System.out.println(val + stmt.executeUpdate("INSERT INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)"));
+			if (val.indexOf("sqlite_") != 0 && val.indexOf("configuration") != 0) {
+				System.out.print("tmpSave"+val);
+				System.out.println(""+stmt.executeUpdate("INSERT INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)"));
+			}
 		}
 	}
 
