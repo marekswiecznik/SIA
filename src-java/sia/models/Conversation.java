@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.sormula.annotation.Column;
 import org.sormula.annotation.Transient;
 import org.sormula.annotation.cascade.OneToOneCascade;
 import org.sormula.annotation.cascade.SelectCascade;
@@ -14,15 +15,17 @@ import org.sormula.annotation.cascade.SelectCascade;
  * @author jumper
  */
 public class Conversation {
+	@Column(identity=true, primaryKey=true)
 	private int id;
 	private Date time;
+	private Date endTime;
 	private String title;
 	private int length;
 	private int contactAccountId;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactAccountId"}) })
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactAccountId"}) }, inserts = {}, updates = {}, deletes = {})
 	private ContactAccount contactAccount;
 	private int userAccountId;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"userAccountId"}) })
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"userAccountId"}) }, inserts = {}, updates = {}, deletes = {})
 	private UserAccount userAccount;
 	@Transient
 	private List<Message> messages;
@@ -87,6 +90,22 @@ public class Conversation {
 	}
 	
 	/**
+	 * Returns end time
+	 * @return end time
+	 */
+	public Date getEndTime() {
+		return endTime;
+	}
+	
+	/**
+	 * Set end time
+	 * @param end time
+	 */
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+	
+	/**
 	 * Returns title
 	 * @return title
 	 */
@@ -123,6 +142,8 @@ public class Conversation {
 	 * @return contactAccountID
 	 */
 	public int getContactAccountId() {
+		if (contactAccount != null)
+			contactAccountId = contactAccount.getId();
 		return contactAccountId;
 	}
 
@@ -148,7 +169,7 @@ public class Conversation {
 	 */
 	public void setContactAccount(ContactAccount contact) {
 		this.contactAccount = contact;
-		this.contactAccountId = contactAccount != null ? contactAccount.getId() : -1;
+		this.contactAccountId = contactAccount != null ? contactAccount.getId() : 0;
 	}
 	
 	/**
@@ -156,6 +177,8 @@ public class Conversation {
 	 * @return user account ID
 	 */
 	public int getUserAccountId() {
+		if (userAccount != null)
+			userAccountId = userAccount.getId();
 		return userAccountId;
 	}
 
@@ -181,7 +204,7 @@ public class Conversation {
 	 */
 	public void setUserAccount(UserAccount ua) {
 		this.userAccount = ua;
-		this.userAccountId = userAccount != null ? userAccount.getId() : -1;
+		this.userAccountId = userAccount != null ? userAccount.getId() : 0;
 	}
 	
 	/**
@@ -243,6 +266,11 @@ public class Conversation {
 			if (other.contactAccount != null)
 				return false;
 		} else if (!contactAccount.equals(other.contactAccount))
+			return false;
+		if (userAccount == null) {
+			if (other.userAccount != null)
+				return false;
+		} else if (!userAccount.equals(other.userAccount))
 			return false;
 		return true;
 	}

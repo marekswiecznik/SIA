@@ -2,7 +2,9 @@ package sia.ui;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
@@ -29,6 +31,8 @@ public class SIA {
 		String error = null;
 		try {
 			dbInit("sia.db");
+			tmpInit();
+			ormInit();
 			Dictionaries.getInstance().init();
 			guiInit();
 		} catch (SQLException e) {
@@ -46,7 +50,7 @@ public class SIA {
 		} finally {
 			if (connection != null)
 				try {
-					connection.close();
+					dbClose();
 				} catch (SQLException e) {
 					error += "\n" + e.getLocalizedMessage();
 					e.printStackTrace();
@@ -66,9 +70,22 @@ public class SIA {
 	public void dbInit(String dbPath) throws ClassNotFoundException, SQLException, SormulaException {
 		Class.forName("org.sqlite.JDBC");
 		connection = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
-		connection.setAutoCommit(false);
+		connection.setAutoCommit(true);
+		Statement stmt = connection.createStatement();
+		stmt.execute("PRAGMA main.foreign_keys = ON");
+		stmt = connection.createStatement();
+		stmt.execute("ATTACH DATABASE '' AS aux1");
+		stmt.execute("PRAGMA aux1.foreign_keys = OFF");
+	}
+	
+	/**
+	 * ORM init
+	 * @throws SormulaException
+	 */
+	public void ormInit() throws SormulaException {
 		Database database = new Database(connection, "main");
-		orm = new ORM(database);
+		Database databaseTemp = new Database(connection, "aux1");
+		orm = new ORM(database, databaseTemp);
 		orm.createTable(Configuration.class);
 		orm.createTable(Contact.class);
 		orm.createTable(ContactAccount.class);
@@ -76,6 +93,48 @@ public class SIA {
 		orm.createTable(Message.class);
 		orm.createTable(Protocol.class);
 		orm.createTable(UserAccount.class);
+		orm.createTempTable(Contact.class);
+		orm.createTempTable(ContactAccount.class);
+		orm.createTempTable(Conversation.class);
+		orm.createTempTable(Message.class);
+		orm.createTempTable(UserAccount.class);
+	}
+	
+	/**
+	 * Temporary database init
+	 * @throws SQLException
+	 */
+	public void tmpInit() throws SQLException {
+		Statement stmt = connection.createStatement();
+	    Statement select = connection.createStatement();
+	    ResultSet result = select.executeQuery("SELECT sql, name FROM main.sqlite_master WHERE type = 'table'");
+	    String name;
+		//stmt.executeUpdate("DELETE FROM sqlite_sequence");
+		while (result.next()) {
+			name = result.getString(2);
+			if (name.indexOf("sqlite_") != 0 && name.indexOf("configuration") != 0) {
+				stmt.executeUpdate(result.getString(1).replace("CREATE TABLE", "CREATE TABLE IF NOT EXISTS aux1."));
+				stmt.executeUpdate("DELETE FROM aux1."+name);
+				//stmt.executeUpdate("INSERT INTO aux1."+name+" SELECT * FROM main."+name+" WHERE id = (SELECT MAX(id) FROM main."+name+")");
+				stmt.executeUpdate("INSERT OR REPLACE INTO aux1.sqlite_sequence SELECT name, seq FROM main.sqlite_sequence WHERE name = '"+name+"'");
+			}
+		}
+	}
+
+	/**
+	 * Save changes from temporary database to file database
+	 * @throws SQLException 
+	 */
+	public void tmpSave() throws SQLException {
+	    Statement stmt = connection.createStatement();
+	    Statement select = connection.createStatement();
+	    String val;
+	    ResultSet result = select.executeQuery("SELECT name FROM main.sqlite_master WHERE type = 'table'");
+		while (result.next()) { 
+			val = result.getString(1);
+			if (val.indexOf("sqlite_") != 0 && val.indexOf("configuration") != 0)
+				System.out.println(val + stmt.executeUpdate("INSERT INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)"));
+		}
 	}
 
 	/**

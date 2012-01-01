@@ -1,9 +1,11 @@
 package sia.ui.importui;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.IPageChangingListener;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.dialogs.PageChangingEvent;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -12,6 +14,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.sormula.SormulaException;
 
 import sia.datasources.DataSource;
 import sia.datasources.FMADataSource;
@@ -130,7 +133,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			// from setAccounts?
 			System.out.println("chooseAccounts");
 			if (wasSetAccounts) {
-				dialog.showPage(mapContacts);
+				dialog.showPage(messageLoading);
 				event.doit = false;
 			}
 		} else if (event.getTargetPage() == messageLoading) {
@@ -151,7 +154,19 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		} else if (event.getSelectedPage() == messageLoading) {
 			datasource.getContacts();
 		} else if (event.getSelectedPage() == saveLoading) {
-			datasource.save();
+			try {
+				long start = System.currentTimeMillis();
+				datasource.save();
+				System.out.println(System.currentTimeMillis() - start + "");
+			} catch (SQLException e) {
+				// TODO catch block
+				MessageDialog.openError(getShell(), "SQLException", e.getMessage());
+				e.printStackTrace();
+			} catch (SormulaException e) {
+				// TODO catch block
+				MessageDialog.openError(getShell(), "SormulaException", e.getMessage());
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -22,14 +22,17 @@ public class FMADataSource extends DataSource {
 
 	@Override
 	public List<UserAccount> getUserAccounts() {
-		return parser.getUserAccounts();
+		if (userAccounts == null) {
+			userAccounts = parser.getUserAccounts();
+		}
+		return userAccounts;
 	}
 
 	@Override
 	public List<Contact> getContacts() {
-		if (userAccounts != null && userAccounts.size() > 0)
-			return parser.getContacts(userAccounts);
-		return null;
+		if (contacts == null && userAccounts != null && userAccounts.size() > 0)
+			contacts = parser.getContacts(userAccounts);
+		return contacts;
 	}
 
 	@Override

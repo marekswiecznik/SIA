@@ -1,5 +1,6 @@
 package sia.models;
 
+import org.sormula.annotation.Column;
 import org.sormula.annotation.cascade.OneToOneCascade;
 import org.sormula.annotation.cascade.SelectCascade;
 
@@ -9,9 +10,11 @@ import org.sormula.annotation.cascade.SelectCascade;
  * @author jumper
  */
 public class UserAccount {
+	public static final String INSERT_QUERY = "INSERT INTO useraccount (protocolId, uid) VALUES (?, ?)";
+	@Column(identity=true, primaryKey=true)
 	private int id;
 	private int protocolId;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolId"}) })
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolId"}) }, inserts = {}, updates = {}, deletes = {} )
 	private Protocol protocol;
 	private String uid;
 	
@@ -77,7 +80,7 @@ public class UserAccount {
 	 */
 	public void setProtocol(Protocol protocol) {
 		this.protocol = protocol;
-		this.protocolId = protocol != null ? protocol.getId() : -1;
+		this.protocolId = protocol != null ? protocol.getId() : 0;
 	}
 
 	/**

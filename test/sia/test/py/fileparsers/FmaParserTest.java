@@ -79,7 +79,7 @@ public class FmaParserTest {
 	public void testGetUserAccountsFileOk() {
 		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-sample.xml" } );
 		assertEquals("User accounts array size <> 1", 1, parser.getUserAccounts().size());
-		assertEquals("User account not the same", new UserAccount(-1, Dictionaries.getInstance().getProtocol("FMA"), ""), parser.getUserAccounts().get(0));
+		assertEquals("User account not the same", new UserAccount(-1, Dictionaries.getInstance().getProtocol("SMS"), ""), parser.getUserAccounts().get(0));
 	}
 	
 	@Test
@@ -109,7 +109,7 @@ public class FmaParserTest {
 		assertEquals("Contact account name not empty", "", contacts.get(0).getContactAccounts().get(0).getName());
 		assertEquals("Contact account other info not empty", "", contacts.get(0).getContactAccounts().get(0).getOtherinfo());
 		assertEquals("Contact account uid not empty", "", contacts.get(0).getContactAccounts().get(0).getUid());
-		assertEquals("Contact account protocol", Dictionaries.getInstance().getProtocol("FMA"), contacts.get(0).getContactAccounts().get(0).getProtocol());
+		assertEquals("Contact account protocol", Dictionaries.getInstance().getProtocol("SMS"), contacts.get(0).getContactAccounts().get(0).getProtocol());
 		assertNotSame("Contact account protocol ID = -1", -1, contacts.get(0).getContactAccounts().get(0).getProtocolId());
 		assertEquals("Contact account avatar exists", false, contacts.get(0).getContactAccounts().get(0).isAvatar());
 		assertNotNull("Conversations list is null", contacts.get(0).getContactAccounts().get(0).getConversations());

@@ -1,11 +1,14 @@
 package sia.models;
 
+import org.sormula.annotation.Column;
+
 /**
  * Protocol
  * 
  * @author jumper
  */
 public class Protocol {
+	@Column(identity=true, primaryKey=true)
 	private int id;
 	private String name;
 	private String description;

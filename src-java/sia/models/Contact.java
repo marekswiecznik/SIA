@@ -3,6 +3,7 @@ package sia.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sormula.annotation.Column;
 import org.sormula.annotation.Transient;
 
 /**
@@ -11,6 +12,7 @@ import org.sormula.annotation.Transient;
  * @author jumper
  */
 public class Contact {
+	@Column(identity=true, primaryKey=true)
 	private int id;
 	private String firstname;
 	private String lastname;

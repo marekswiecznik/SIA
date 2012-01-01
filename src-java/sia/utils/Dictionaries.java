@@ -54,7 +54,6 @@ public class Dictionaries {
 		for (Contact contact : contacts) {
 			contact.getContactAccounts().addAll(orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()));
 		}
-		System.out.println(contacts.get(0).getContactAccounts().size());
 		
 		dataSources = new HashMap<String, DataSource>();
 		//dataSources.put("kadu", new KaduDataSource());

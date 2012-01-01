@@ -33,7 +33,7 @@ class FmaParser(IParser):
 
 	def getUserAccounts(self):
 		if self.messagesContent <> None: 
-			return [UserAccount(-1, self.protocol, "")]
+			return [UserAccount(0, self.protocol, "")]
 		return None
 		
 	def getContacts(self, userAccounts):
@@ -46,11 +46,14 @@ class FmaParser(IParser):
 			if res <> None:
 				df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 				date = df.parse(res.group(4).strip())
-				cnt = Contact(-1, "", "", res.group(1).strip())
-				cnt.contactAccounts.add(ContactAccount(-1, res.group(1).strip(), res.group(2).strip(), "", cnt, self.protocol))
+				name = res.group(1).strip()
+				if name == None:
+					name = ""
+				cnt = Contact(0, "", "", name)
+				cnt.contactAccounts.add(ContactAccount(0, name, res.group(2).strip(), "", cnt, self.protocol))
 				if not contactsTemp.has_key(cnt):
 					contactsTemp[cnt] = []
-				msg = Message(-1, None, res.group(3).strip(), date, True)
+				msg = Message(0, None, res.group(3).strip(), date, True)
 				contactsTemp[cnt].append(msg)
 				
 		contacts = []

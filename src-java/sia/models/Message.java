@@ -2,6 +2,7 @@ package sia.models;
 
 import java.util.Date;
 
+import org.sormula.annotation.Column;
 import org.sormula.annotation.cascade.OneToOneCascade;
 import org.sormula.annotation.cascade.SelectCascade;
 
@@ -11,9 +12,10 @@ import org.sormula.annotation.cascade.SelectCascade;
  * @author jumper
  */
 public class Message {
+	@Column(identity=true, primaryKey=true)
 	private int id;
 	private int conversationId;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"conversationId"}) })
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"conversationId"}) }, inserts = {}, updates = {}, deletes = {})
 	private Conversation conversation;
 	private String message;
 	private Date time;
@@ -86,7 +88,7 @@ public class Message {
 	 */
 	public void setConversation(Conversation conversation) {
 		this.conversation = conversation;
-		this.conversationId = conversation != null ? conversation.getId() : -1;
+		this.conversationId = conversation != null ? conversation.getId() : 0;
 	}
 
 	/**

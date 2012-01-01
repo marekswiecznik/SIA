@@ -3,6 +3,7 @@ package sia.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sormula.annotation.Column;
 import org.sormula.annotation.Transient;
 import org.sormula.annotation.cascade.OneToOneCascade;
 import org.sormula.annotation.cascade.SelectCascade;
@@ -13,15 +14,16 @@ import org.sormula.annotation.cascade.SelectCascade;
  * @author jumper
  */
 public class ContactAccount {
+	@Column(identity=true, primaryKey=true)
 	private int id;
 	private String name;
 	private String uid;
 	private String otherinfo;
 	private int protocolId;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolId"}) })
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"protocolId"}) }, inserts = {}, updates = {}, deletes = {})
 	private Protocol protocol;
 	private int contactId;
-	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactId"}) })
+	@OneToOneCascade(selects = { @SelectCascade(sourceParameterFieldNames = {"contactId"}) }, inserts = {}, updates = {}, deletes = {})
 	private Contact contact;
 	private int avatar;
 	@Transient
@@ -123,6 +125,8 @@ public class ContactAccount {
 	 * @return protocolId
 	 */
 	public int getProtocolId() {
+		if (protocol != null)
+			protocolId = protocol.getId();
 		return protocolId;
 	}
 
@@ -175,6 +179,8 @@ public class ContactAccount {
 	 * @return contactId
 	 */
 	public int getContactId() {
+		if (contact != null)
+			contactId = contact.getId();
 		return contactId;
 	}
 
