@@ -179,12 +179,21 @@ public abstract class DataSource {
 			}
 		}
 		for (int i=0; i<contacts.size();i++) {
-			for(ContactAccount ca : contacts.get(i).getContactAccounts()) {
-				if(mapContacts.containsKey(ca)) {
-					System.out.println(ca);
-					for(ContactAccount ca1 :contacts.get(i).getContactAccounts()) {
-						if(!ca1.equals(ca)) {
-							mapContacts.get(ca).addContactAccount(ca1);
+			for (int j = 0; j < contacts.get(i).getContactAccounts().size(); j++) {
+				if(mapContacts.containsKey(contacts.get(i).getContactAccounts().get(j))) {
+					//znaleziono wspólnego uida:
+					for(ContactAccount ca1 : contacts.get(i).getContactAccounts()) {
+						//po wszystkich CA z tych przeparsowanych
+						if(!mapContacts.containsKey(ca1)) {
+							//jeśli taki nie istnieje to dodajemy go do danego contactu
+							mapContacts.get(contacts.get(i).getContactAccounts().get(j)).addContactAccount(ca1);
+						} else {
+							//jeśli istnieje to trzeba przepisać konwersacje
+							//index z DB danego CA (get() znajduje Contact a potem znajduje index identycznego CA ale z DB )
+							int index = mapContacts.get(ca1).getContactAccounts().indexOf(ca1);
+							ContactAccount ca = mapContacts.get(ca1).getContactAccounts().get(index);
+							//do ca (z DB) przypisujemy przeparsowane conversaction
+							ca.setConversations(ca1.getConversations());
 						}
 					}
 					contacts.remove(i);
