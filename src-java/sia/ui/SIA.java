@@ -73,6 +73,7 @@ public class SIA {
 	 * @throws SormulaException 
 	 */
 	public void dbInit(String dbPath) throws ClassNotFoundException, SQLException, SormulaException {
+		System.setProperty("sqlite.purejava", "true");
 		Class.forName("org.sqlite.JDBC");
 		connection = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
 		connection.setAutoCommit(true);
@@ -143,7 +144,7 @@ public class SIA {
 			val = result.getString(1);
 			if (val.indexOf("sqlite_") != 0 && val.indexOf("configuration") != 0) {
 				System.out.print("tmpSave"+val);
-				System.out.println(""+stmt.executeUpdate("INSERT INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)"));
+				System.out.println(""+stmt.executeUpdate("INSERT OR REPLACE INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)"));
 			}
 		}
 	}

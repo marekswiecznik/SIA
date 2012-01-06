@@ -21,7 +21,9 @@ public class FMADataSource extends DataSource {
 
 	@Override
 	public void loadFiles(String[] files) {
-		if (files.length != 0)
-			throw new IllegalArgumentException("No files required");
+		if (files.length == 1)
+			parser.loadFiles(files);
+		else
+			throw new IllegalArgumentException("Only one XML file allowed");
 	}
 }

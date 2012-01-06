@@ -6,6 +6,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ProgressBar;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Label;
 
 public class ImportLoading extends WizardPage {
 	private ProgressBar progressBar;
@@ -36,7 +38,7 @@ public class ImportLoading extends WizardPage {
 		container.setLayout(new GridLayout(1, false));
 		
 		progressBar = new ProgressBar(container, SWT.SMOOTH);
-		progressBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		progressBar.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1));
 
 		setControl(container);
 	}

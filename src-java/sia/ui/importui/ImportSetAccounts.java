@@ -11,6 +11,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -39,7 +40,7 @@ public class ImportSetAccounts extends WizardPage {
 
 	public List<UserAccount> getUserAccounts() {
 		if(combo.getSelectionIndex()>0) {
-			userAccounts.get(0).setUid(uas4combo2.get(combo.getSelectionIndex()-1).getUid());
+			userAccounts.set(0, uas4combo2.get(combo.getSelectionIndex()-1));
 		} else {
 			userAccounts.get(0).setUid(text.getText());
 		}
@@ -61,6 +62,8 @@ public class ImportSetAccounts extends WizardPage {
 
 	public void setControls() {
 		if(userAccounts!=null) {
+			for (Control c : container.getChildren())
+				c.dispose();
 			Label lblOrSelectFrom = new Label(container, SWT.NONE);
 			lblOrSelectFrom.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 			lblOrSelectFrom.setText("Select user account from existed:");

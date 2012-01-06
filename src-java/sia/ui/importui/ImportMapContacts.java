@@ -1,22 +1,20 @@
 package sia.ui.importui;
 
-
-import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-
 import sia.models.Contact;
 import sia.models.ContactAccount;
-import sia.utils.Dictionaries;
+import sia.ui.importui.ImportSetContacts.Controls;
 
 /**
  * 
@@ -24,11 +22,13 @@ import sia.utils.Dictionaries;
  *
  */
 public class ImportMapContacts extends WizardPage {
-	private List<Contact> contacts;
+	private List<Contact> parsedContacts;
 	private Composite container;
 	private Combo[] combos;
 	private ScrolledComposite scrolledComposite;
-	private List<Contact> dbContacts;
+	private List<Contact> contacts;
+	private ImportSetContacts nextPage;
+	
 	/**
 	 * Create the wizard.
 	 */
@@ -36,11 +36,18 @@ public class ImportMapContacts extends WizardPage {
 		super("mapContacts");
 		setTitle("Map contacts");
 		setDescription("Map contacs");
-		dbContacts = Dictionaries.getInstance().getContacts();
 	}
-
+	
+	public void setNextPage(ImportSetContacts np) {
+		this.nextPage = np;
+	}
+	
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
+	}
+	
+	public void setParsedContacts(List<Contact> parsedContacts) {
+		this.parsedContacts = parsedContacts;
 	}
 	
 	/**
@@ -55,14 +62,14 @@ public class ImportMapContacts extends WizardPage {
 		Composite container =  new Composite(scrolledComposite, SWT.NONE);
 		this.container = container;
 		container.setLayout(new GridLayout(6, false));
-
 		scrolledComposite.setContent(container);
 		scrolledComposite.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 	}
+	
 	public void setControls() {
-		
 		for (Control c : container.getChildren())
 			c.dispose();
+		
 		Label lblFirstName = new Label(container, SWT.NONE);
 		lblFirstName.setText("First name");
 		
@@ -82,35 +89,33 @@ public class ImportMapContacts extends WizardPage {
 		lblContact.setText("Contact");
 		
 		List<ContactAccount> accounts;
-		
-		if(contacts!=null) {
-			
-			String[] contactsComboNames = new String[dbContacts.size()+1];
+		if(parsedContacts!=null) {
+			String[] contactsComboNames = new String[contacts.size()+1];
 			contactsComboNames[0] = "";
-			for (int i = 0; i < dbContacts.size(); i++) {
-				if(dbContacts.get(i).getFirstname().length()>0 && dbContacts.get(i).getLastname().length()==0) {
-					contactsComboNames[i+1] = dbContacts.get(i).getName() + " ("+dbContacts.get(i).getFirstname()+")";
-				} else if(dbContacts.get(i).getFirstname().length()==0 && dbContacts.get(i).getLastname().length()>0) {
-					contactsComboNames[i+1] = dbContacts.get(i).getName() + " ("+dbContacts.get(i).getLastname()+")";
-				} else if(dbContacts.get(i).getFirstname().length()>0 && dbContacts.get(i).getLastname().length()>0) {
-					contactsComboNames[i+1] = dbContacts.get(i).getName() + " ("+dbContacts.get(i).getFirstname()+" "+dbContacts.get(i).getLastname()+")";
+			for (int i = 0; i < contacts.size(); i++) {
+				if(contacts.get(i).getFirstname().length()>0 && contacts.get(i).getLastname().length()==0) {
+					contactsComboNames[i+1] = contacts.get(i).getName() + " ("+contacts.get(i).getFirstname()+")";
+				} else if(contacts.get(i).getFirstname().length()==0 && contacts.get(i).getLastname().length()>0) {
+					contactsComboNames[i+1] = contacts.get(i).getName() + " ("+contacts.get(i).getLastname()+")";
+				} else if(contacts.get(i).getFirstname().length()>0 && contacts.get(i).getLastname().length()>0) {
+					contactsComboNames[i+1] = contacts.get(i).getName() + " ("+contacts.get(i).getFirstname()+" "+contacts.get(i).getLastname()+")";
 				} else {
-					contactsComboNames[i+1] = dbContacts.get(i).getName();
+					contactsComboNames[i+1] = contacts.get(i).getName();
 				}
 			}
-			combos = new Combo[contacts.size()];
-			for (int i = 0; i < contacts.size(); i++) {
-				accounts = contacts.get(i).getContactAccounts();
+			combos = new Combo[parsedContacts.size()];
+			for (int i = 0; i < parsedContacts.size(); i++) {
+				accounts = parsedContacts.get(i).getContactAccounts();
 				Label fname = new Label(container, SWT.NONE);
-				fname.setText(contacts.get(i).getFirstname());
+				fname.setText(parsedContacts.get(i).getFirstname());
 				fname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, accounts.size()));
 				
 				Label lname = new Label(container, SWT.NONE);
-				lname.setText(contacts.get(i).getLastname());
+				lname.setText(parsedContacts.get(i).getLastname());
 				lname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, accounts.size()));
 				
 				Label name = new Label(container, SWT.NONE);
-				name.setText(contacts.get(i).getName());
+				name.setText(parsedContacts.get(i).getName());
 				name.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, accounts.size()));
 				
 				Label protocol0 = new Label(container, SWT.NONE);
@@ -130,7 +135,8 @@ public class ImportMapContacts extends WizardPage {
 					uid.setText(accounts.get(j).getUid());
 					uid.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 				}
-				
+
+				combos[i].addSelectionListener(new MySelectionAdapter(i));
 				Label separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
 				separator.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 6, 1));
 			}
@@ -140,17 +146,32 @@ public class ImportMapContacts extends WizardPage {
 		}
 	}
 
-	public List<Contact> getEmptyContacts() {
-		List<Contact> contacts = new ArrayList<Contact>();
-		for (int i = 0; i < combos.length; i++) {
-			if(combos[i].getSelectionIndex()<1) {
-				contacts.add(this.contacts.get(i));
+	private class MySelectionAdapter extends SelectionAdapter {
+		int n; //number of file
+		MySelectionAdapter(int n) {this.n=n;}
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			if(((Combo)e.getSource()).getSelectionIndex()>0) {
+				Controls c = nextPage.getControls().get(parsedContacts.get(n));
+				c.remove();
 			} else {
-				for (ContactAccount ca : this.contacts.get(i).getContactAccounts())
-					dbContacts.get(combos[i].getSelectionIndex()-1).addContactAccount(ca);
+				Controls c = nextPage.getControls().get(parsedContacts.get(n));
+				c.add();
 			}
 		}
-		return contacts;
+	}
+	
+	public void addContactAccounts() {
+		for (int i = 0; i < combos.length; i++) {
+			if(combos[i].getSelectionIndex()>0) {
+				for (ContactAccount ca : this.parsedContacts.get(i).getContactAccounts()) {
+					if(!this.contacts.get(combos[i].getSelectionIndex()-1).getContactAccounts().contains(ca)) {
+						this.contacts.get(combos[i].getSelectionIndex()-1).addContactAccount(ca);
+					}
+				}
+			}
+		}
 	}
 	
 }

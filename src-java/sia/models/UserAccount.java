@@ -10,7 +10,6 @@ import org.sormula.annotation.cascade.SelectCascade;
  * @author jumper
  */
 public class UserAccount {
-	public static final String INSERT_QUERY = "INSERT INTO useraccount (protocolId, uid) VALUES (?, ?)";
 	@Column(identity=true, primaryKey=true)
 	private int id;
 	private int protocolId;

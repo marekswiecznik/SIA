@@ -26,6 +26,9 @@ import sia.utils.ORM;
  * @author Agnieszka Glabala
  */
 public abstract class DataSource {
+	public enum Progress {
+		SAVE_PROGRESS, CONTACTS_PROGRESS, USER_ACCOUNTS_PROGRESS
+	}
 	protected String[] extensions;
 	protected String[][]  descriptions;
 	protected List<UserAccount> userAccounts;
@@ -36,7 +39,7 @@ public abstract class DataSource {
 	protected Parser parser;
 	
 	/**
-	 * Returs accepted by parser file extensions 
+	 * Returns accepted by parser file extensions 
 	 * @return array of extensions
 	 */
 	public String[] getFileExtensions() {
@@ -44,7 +47,7 @@ public abstract class DataSource {
 	}
 	
 	/**
-	 * Returs description for required files for every file [short description ie. "Database file" , hint how to find this file ie. "usually in home/.kadu/"]
+	 * Returns description for required files for every file [short description ie. "Database file" , hint how to find this file ie. "usually in home/.kadu/"]
 	 * @return array of descriptions
 	 */
 	public String[][] getFileDescriptions() {
@@ -61,6 +64,18 @@ public abstract class DataSource {
 		
 	}
 
+	public int getProgress(Progress progress) {
+		switch (progress) {
+		case SAVE_PROGRESS:
+			return saveProgress;
+		case CONTACTS_PROGRESS:
+			return parser.getContactsLoadProgress();
+		case USER_ACCOUNTS_PROGRESS:
+			return parser.getUserAccountsLoadProgress();
+		}
+		return 0;
+	}
+
 	/**
 	 * Returns saveProgress
 	 * @return saveProgress
@@ -70,23 +85,7 @@ public abstract class DataSource {
 	}
 
 	/**
-	 * Returns userAccountLoadProgress
-	 * @return userAccountLoadProgress
-	 */
-	public int getUserAccountLoadProgress() {
-		return parser.getUserAccountsLoadProgress();
-	}
-
-	/**
-	 * Returns contactsLoadProgress
-	 * @return contactsLoadProgress
-	 */
-	public int getContactsLoadProgress() {
-		return parser.getContactsLoadProgress();
-	}
-
-	/**
-	 * Returs user accounts found in archive files or null if user should to set this manually
+	 * Returns user accounts found in archive files or null if user should to set this manually
 	 * @return list of user accounts
 	 */
 	public List<UserAccount> getUserAccounts() {
@@ -111,7 +110,7 @@ public abstract class DataSource {
 	}
 	
 	/**
-	 * Returs all contacts with conversations (but not necessarily messages)
+	 * Returns all contacts with conversations (but not necessarily messages)
 	 * @return list of contacts
 	 */
 	public List<Contact> getContacts() {
@@ -147,15 +146,16 @@ public abstract class DataSource {
 	 * @throws SQLException 
 	 * @throws SormulaException 
 	 */
-	public final void save() throws SQLException, SormulaException {
+	public final void save(List<Contact> contacts) throws SQLException, SormulaException {
 		saveProgress = 0;
 		int messagesCount = parser.getMessagesCount();
+		int msgs = 0;
 		ORM orm = SIA.getInstance().getORM();
 		SIA.getInstance().tmpInit();
 		for (UserAccount userAccount : userAccounts) 
 			if (userAccount.getId() == 0)
 				orm.getTempTable(UserAccount.class).insert(userAccount);
-		for (Contact contact : Dictionaries.getInstance().getContacts()) {
+		for (Contact contact : contacts) {
 			if (contact.getId() == 0)
 				orm.getTempTable(Contact.class).insert(contact);
 			for (ContactAccount contactAccount : contact.getContactAccounts()) {
@@ -169,18 +169,17 @@ public abstract class DataSource {
 						Conversation conv = orm.getTable(Conversation.class).selectCustom(
 							"WHERE (time BETWEEN "+begin+" AND "+end+
 							" OR endTime BETWEEN "+begin+" AND "+end+
-							" OR "+begin+" BETWEEN time AND endTime"+
-							" OR "+end+" BETWEEN time AND endTime" +
-							" OR "+begin+" <= (endTime + "+interval+")" +
-							" OR "+end+" >= (time - "+interval+"))" +
+							" OR "+begin+" BETWEEN time AND (endTime + "+interval+")"+
+							" OR "+end+" BETWEEN (time - "+interval+") AND endTime)" +
 							" AND contactAccountId = "+conversation.getContactAccountId() +
-							" and userAccountId = "+conversation.getUserAccountId());
+							" AND userAccountId = "+conversation.getUserAccountId());
 						if (conv != null)
 							conversation.setId(conv.getId());
 						else
 							orm.getTempTable(Conversation.class).insert(conversation);
 						for (Message message : conversation.getMessages()) {
 							if (message.getId() == 0) {
+								saveProgress = msgs++ / messagesCount;
 								try {
 									orm.getTempTable(Message.class).insert(message);
 								} catch (SormulaException e) {
@@ -193,18 +192,20 @@ public abstract class DataSource {
 				}
 			}
 		}
-		String sql = "UPDATE aux1.conversation " +
-				"SET time = (SELECT MIN(time) FROM aux1.message WHERE conversationId = aux1.conversation.id), " +
-				"endTime = (SELECT MAX(time) FROM aux1.message WHERE conversationId = aux1.conversation.id), " +
-				"length = (SELECT COUNT(1) FROM aux1.message WHERE conversationId = aux1.conversation.id)";
-		Statement stmt = SIA.getInstance().getConnection().createStatement();
-		System.out.println("Conversation update "+stmt.executeUpdate(sql));
 		SIA.getInstance().tmpSave();
+		String uas = "";
+		for (int i=0; i<userAccounts.size(); i++)
+			uas += (i==0 ? "" : ",") + userAccounts.get(i).getId();
+		String sql = "UPDATE main.conversation " +
+				"SET time = (SELECT MIN(time) FROM main.message WHERE conversationId = main.conversation.id), " +
+				"endTime = (SELECT MAX(time) FROM main.message WHERE conversationId = main.conversation.id), " +
+				"length = (SELECT COUNT(1) FROM main.message WHERE conversationId = main.conversation.id) " +
+				"WHERE userAccountId IN ("+uas+")";
+		Statement stmt = SIA.getInstance().getConnection().createStatement();
 		saveProgress = 100;
 	}
 
-	public void mapContacts() {
-		List<Contact> dbContacts = Dictionaries.getInstance().getContacts();
+	public void mapContacts(List<Contact> dbContacts) {
 		Map<ContactAccount, Contact> mapContacts = new HashMap<ContactAccount, Contact>();
 		for (Contact c : dbContacts) {
 			for(ContactAccount ca : c.getContactAccounts()) {
@@ -230,6 +231,7 @@ public abstract class DataSource {
 						}
 					}
 					contacts.remove(i);
+					i--;
 					break;
 				} 
 			}
