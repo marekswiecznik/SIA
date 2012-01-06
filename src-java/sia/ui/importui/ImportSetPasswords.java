@@ -67,7 +67,7 @@ public class ImportSetPasswords extends WizardPage {
 					labels[i].setText(passwordDescriptions[i]);
 					textfields[i] = new Text(container, SWT.BORDER);
 				}
-				textfields[i].setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+				textfields[i].setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 			}
 			container.layout();
 		}

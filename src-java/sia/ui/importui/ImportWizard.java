@@ -97,9 +97,15 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		if (event.getTargetPage() == chooseFiles) {
 			im = chooseIM.getSelected();
 			this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
-			chooseFiles.setFileExtensions(datasource.getFileExtensions());
-			chooseFiles.setDescriptions(datasource.getFileDescriptions());
-			chooseFiles.setControls();
+			if (datasource.getFileExtensions() == null || datasource.getFileExtensions().length == 0) {
+				dialog.showPage(setPasswords);
+				event.doit = false;
+			} else {
+				chooseFiles.setFileExtensions(datasource.getFileExtensions());
+				chooseFiles.setDescriptions(datasource.getFileDescriptions());
+				chooseFiles.setControls();
+			}
+			// TODO: [Aga] fix this
 			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		} else if (event.getTargetPage() == setPasswords) {
 			setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
@@ -144,7 +150,9 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	@Override
 	public void pageChanged(PageChangedEvent event) {
 		if (event.getSelectedPage() == accountsLoading) {
-<<<<<<< HEAD
+			if(datasource.getRequiredPassword()!=null && datasource.getRequiredPassword().length>0) {
+				datasource.setPasswords(setPasswords.getPasswords());
+			}
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -153,13 +161,6 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				}
 			}).start();
 			new Thread(new Loader(DataSource.Progress.USER_ACCOUNTS_PROGRESS, accountsLoading)).start();
-=======
-			datasource.loadFiles(chooseFiles.getFiles());
-			datasource.getUserAccounts();
-			if(datasource.getRequiredPassword()!=null && datasource.getRequiredPassword().length>0) {
-				datasource.setPasswords(setPasswords.getPasswords());
-			}
->>>>>>> bfbcb9a794fc190fddd49fbb9ba8974720b6ceee
 		} else if (event.getSelectedPage() == messageLoading) {
 			if (wasSetAccounts) {
 				datasource.setUserAccounts(setAccounts.getUserAccounts());
@@ -193,11 +194,11 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					try {
 						datasource.save(contacts);
 					} catch (SQLException e) {
-						// TODO catch block
+						// TODO: [Marek] catch block
 						MessageDialog.openError(getShell(), "SQLException", e.getMessage());
 						e.printStackTrace();
 					} catch (SormulaException e) {
-						// TODO catch block
+						// TODO: [Marek] catch block
 						MessageDialog.openError(getShell(), "SormulaException", e.getMessage());
 						e.printStackTrace();
 					}
@@ -244,7 +245,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				});
 				try {
 					Thread.sleep(100);
-				} catch (InterruptedException e) {/*TODO: logger*/}
+				} catch (InterruptedException e) {/*TODO: [Marek] logger*/}
 			}
 		} 
 	}

@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
@@ -35,6 +37,7 @@ public class SIA {
 	public void init() {
 		String error = null;
 		try {
+			Logger.getAnonymousLogger().log(Level.INFO, "SIA init");
 			dbInit("sia.db");
 			tmpInit();
 			ormInit();
@@ -138,13 +141,15 @@ public class SIA {
 	    Statement stmt = connection.createStatement();
 	    Statement select = connection.createStatement();
 	    String val;
+	    int affected = 0;
 	    ResultSet result = select.executeQuery("SELECT name FROM main.sqlite_master WHERE type = 'table'");
 	    connection.setAutoCommit(true);
 		while (result.next()) { 
 			val = result.getString(1);
 			if (val.indexOf("sqlite_") != 0 && val.indexOf("configuration") != 0) {
-				System.out.print("tmpSave"+val);
-				System.out.println(""+stmt.executeUpdate("INSERT OR REPLACE INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)"));
+				affected = stmt.executeUpdate("INSERT OR REPLACE INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)");
+				//TODO: [Marek] loggerSystem.out.println("temp -> file "+val+", affected: "+affected);
+				Logger.getAnonymousLogger().log(Level.FINE, "temp -> file "+val+", affected: "+affected);
 			}
 		}
 	}

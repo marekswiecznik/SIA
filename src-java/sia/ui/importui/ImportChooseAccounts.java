@@ -64,7 +64,6 @@ public class ImportChooseAccounts extends WizardPage {
 				userAccounts.remove(userAccountsTmp[i]);
 			}
 		}
-		System.out.println("TTTTTT "+userAccounts.size());
 		return userAccounts;
 	}
 	

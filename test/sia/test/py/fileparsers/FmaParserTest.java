@@ -142,7 +142,7 @@ public class FmaParserTest {
 	public void testGetContact() {
 		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-sample.xml" } );
 		parser.getContacts(parser.getUserAccounts());
-		//TODO: test conversations etc, maybe in other test case?
+		//TODO: [Marek] test conversations etc, maybe in other test case?
 	}
 
 }

@@ -138,7 +138,7 @@ public abstract class DataSource {
 	 * @param passwords
 	 */
 	public void setPasswords(String[] passwords) {
-		parser.setPassowrds(passwords);
+		parser.setPasswords(passwords);
 	}
 
 	/**

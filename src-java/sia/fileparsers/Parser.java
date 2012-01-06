@@ -42,8 +42,16 @@ public abstract class Parser {
 	 * Set passwords and other parameters
 	 * @param passwords
 	 */
-	public void setPassowrds(String[] passwords) {
+	public void setPasswords(String[] passwords) {
 		this.passwords = passwords;
+	}
+	
+	/**
+	 * Returns passwords
+	 * @return passwords
+	 */
+	public String[] getPasswords() {
+		return passwords;
 	}
 
 	/**
