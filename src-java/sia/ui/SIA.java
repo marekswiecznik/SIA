@@ -77,9 +77,12 @@ public class SIA {
 		connection = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
 		connection.setAutoCommit(true);
 		Statement stmt = connection.createStatement();
-		stmt.execute("PRAGMA main.foreign_keys = ON");
+		stmt.executeUpdate("PRAGMA foreign_keys = ON");
+		stmt.execute("PRAGMA journal_mode = OFF");
+		stmt.executeUpdate("PRAGMA temp_store = 1");
+		stmt.executeUpdate("PRAGMA synchronous = OFF");
 		stmt = connection.createStatement();
-		stmt.execute("ATTACH DATABASE '' AS aux1");
+		stmt.execute("ATTACH DATABASE ':memory:' AS aux1");
 		stmt.execute("PRAGMA aux1.foreign_keys = OFF");
 	}
 	
@@ -135,6 +138,7 @@ public class SIA {
 	    Statement select = connection.createStatement();
 	    String val;
 	    ResultSet result = select.executeQuery("SELECT name FROM main.sqlite_master WHERE type = 'table'");
+	    connection.setAutoCommit(true);
 		while (result.next()) { 
 			val = result.getString(1);
 			if (val.indexOf("sqlite_") != 0 && val.indexOf("configuration") != 0) {
