@@ -8,6 +8,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ProgressBar;
 
 public class ImportLoading extends WizardPage {
+	private ProgressBar progressBar;
+	
 	/**
 	 * Create the wizard.
 	 */
@@ -15,6 +17,14 @@ public class ImportLoading extends WizardPage {
 		super(name);
 		setTitle("Accounts loading");
 		setDescription("Please wait...");
+	}
+	
+	/**
+	 * Set progress
+	 * @param value progress value
+	 */
+	public void setProgress(int value) {
+		progressBar.setSelection(value);
 	}
 
 	/**
@@ -25,7 +35,7 @@ public class ImportLoading extends WizardPage {
 		Composite container = new Composite(parent, SWT.NULL);
 		container.setLayout(new GridLayout(1, false));
 		
-		ProgressBar progressBar = new ProgressBar(container, SWT.INDETERMINATE);
+		progressBar = new ProgressBar(container, SWT.SMOOTH);
 		progressBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		setControl(container);

@@ -2,12 +2,15 @@ package sia.datasources;
 
 import sia.utils.ParserFactory;
 
+/**
+ * FMA Data source
+ * 
+ * Float's Mobile Agent (for Sony Ericsson)
+ */
 public class FMADataSource extends DataSource {
 	
 	/**
-	 * FMA Data source
-	 * 
-	 * Float's Mobile Agent (for Sony Ericsson)
+	 * Default and only constructor
 	 */
 	public FMADataSource() {
 		extensions = new String[] {"*.xml" };
@@ -18,9 +21,7 @@ public class FMADataSource extends DataSource {
 
 	@Override
 	public void loadFiles(String[] files) {
-		if (files.length == 1)
-			parser.loadFiles(files);
-		else
-			throw new IllegalArgumentException("Only one XML file allowed");
+		if (files.length != 0)
+			throw new IllegalArgumentException("No files required");
 	}
 }

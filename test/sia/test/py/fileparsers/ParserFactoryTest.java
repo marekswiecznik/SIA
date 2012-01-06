@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.python.core.PyException;
 
-import sia.fileparsers.IParser;
+import sia.fileparsers.Parser;
 import sia.ui.SIA;
 import sia.utils.Dictionaries;
 import sia.utils.ParserFactory;
@@ -46,7 +46,7 @@ public class ParserFactoryTest {
 	@Test
 	public void testCreate() {
 		ParserFactory factory = new ParserFactory("FmaParser");
-		IParser parser = factory.create();
+		Parser parser = factory.create();
 		assertTrue("Incorrect python proxy type",
 			parser.toString().indexOf("org.python.proxies.sia.py.fileparsers.FmaParser$FmaParser$") == 0);
 	}

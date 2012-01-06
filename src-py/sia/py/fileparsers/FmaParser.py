@@ -10,11 +10,11 @@ from sia.models import ContactAccount
 from sia.models import UserAccount
 from sia.models import Message
 from sia.utils import Dictionaries
-from sia.fileparsers import IParser
+from sia.fileparsers import Parser
 from java.text import SimpleDateFormat
 import re
 
-class FmaParser(IParser):
+class FmaParser(Parser):
 	'''
 	FMA Parser
 	
@@ -32,17 +32,19 @@ class FmaParser(IParser):
 		f.close()
 
 	def getUserAccounts(self):
+		self.userAccountsLoadProgress = 100
 		if self.messagesContent <> None: 
 			return [UserAccount(0, self.protocol, "")]
 		return None
 		
 	def getContacts(self, userAccounts):
+		self.contactsLoadProgress = 0
 		contactsTemp = {}
 		sms = re.split('\<sms\>', self.messagesContent)
 		pattern = '\<from\>(.*)\s*\[(.*)\]\<\/from\>\s*\<msg\>(.*)\<\/msg\>\s*\<date\>(.*)\<\/date\>'
 		prog = re.compile(pattern)
-		for s in sms:
-			res = prog.search(s)
+		for i in range(len(sms)):
+			res = prog.search(sms[i])
 			if res <> None:
 				df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 				date = df.parse(res.group(4).strip())
@@ -55,9 +57,12 @@ class FmaParser(IParser):
 					contactsTemp[cnt] = []
 				msg = Message(0, None, res.group(3).strip(), date, True)
 				contactsTemp[cnt].append(msg)
+				self.messagesCount += 1
+			self.contactsLoadProgress = i * 100 /len(sms)
 				
 		contacts = []
 		for cnt in contactsTemp.iterkeys():
 			cnt.contactAccounts[0].conversations = ConversationHelper.messagesToConversations(contactsTemp[cnt], cnt.contactAccounts[0], userAccounts[0])
 			contacts.append(cnt)
+		self.contactsLoadProgress = 100
 		return contacts

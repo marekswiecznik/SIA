@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.python.core.PyException;
 
-import sia.fileparsers.IParser;
+import sia.fileparsers.Parser;
 import sia.models.Contact;
 import sia.models.UserAccount;
 import sia.ui.SIA;
@@ -27,7 +27,7 @@ import com.ibm.icu.util.Calendar;
  * @author jumper
  */
 public class FmaParserTest {
-	private IParser parser;
+	private Parser parser;
 
 	/**
 	 * @throws java.lang.Exception

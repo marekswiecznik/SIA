@@ -37,6 +37,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	ImportLoading messageLoading;
 	ImportLoading saveLoading;
 	ImportSetContacts setContacts;
+
 	public ImportWizard() {
 		setWindowTitle("Import messages");
 
@@ -89,8 +90,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		if (event.getTargetPage() == chooseFiles) {
 			// from chooseIM
 			System.out.println("chooseFiles");
-			this.datasource = Dictionaries.getInstance().getDataSource(
-					imNames[chooseIM.getSelected()]);
+			this.datasource = Dictionaries.getInstance().getDataSource(imNames[chooseIM.getSelected()]);
 			chooseFiles.setFileExtensions(datasource.getFileExtensions());
 			chooseFiles.setDescriptions(datasource.getFileDescriptions());
 			chooseFiles.setControls();
@@ -152,14 +152,40 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		if (event.getSelectedPage() == accountsLoading) {
 			datasource.getUserAccounts();
 		} else if (event.getSelectedPage() == messageLoading) {
-			if(wasSetAccounts) {
+			if (wasSetAccounts) {
 				datasource.setUserAccounts(setAccounts.getUserAccounts());
 			} else {
 				datasource.setUserAccounts(chooseAccounts.getUserAccounts());
 			}
-			datasource.getContacts();
-			datasource.mapContacts();
-			mapContacts.setContacts(datasource.getContacts());
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					datasource.getContacts();
+					datasource.mapContacts();
+					mapContacts.setContacts(datasource.getContacts());
+				}
+			}).start();
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					int value = 0;
+					while (value < 100) {
+						value = datasource.getContactsLoadProgress();
+						final int valueToSet = value;
+						getShell().getDisplay().asyncExec(new Runnable() {
+							public void run() {
+								messageLoading.setProgress(valueToSet);
+							}
+						});
+						try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+			}).start();
 		} else if (event.getSelectedPage() == saveLoading) {
 			try {
 				long start = System.currentTimeMillis();

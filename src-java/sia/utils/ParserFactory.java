@@ -3,7 +3,7 @@ package sia.utils;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 
-import sia.fileparsers.IParser;
+import sia.fileparsers.Parser;
 
 /**
  * Parser factory
@@ -34,8 +34,8 @@ public class ParserFactory {
      * 
      * @return parser
      */
-    public IParser create() {
+    public Parser create() {
         PyObject buildingObject = parserClass.__call__();
-        return (IParser)buildingObject.__tojava__(IParser.class);
+        return (Parser)buildingObject.__tojava__(Parser.class);
     }
 }

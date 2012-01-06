@@ -9,6 +9,7 @@ import org.sormula.SormulaException;
 import sia.datasources.DataSource;
 import sia.datasources.ExampleDataSource;
 import sia.datasources.FMADataSource;
+import sia.datasources.GtalkDataSource;
 import sia.models.Configuration;
 import sia.models.Contact;
 import sia.models.ContactAccount;
@@ -63,6 +64,7 @@ public class Dictionaries {
 		dataSources = new HashMap<String, DataSource>();
 		//dataSources.put("kadu", new KaduDataSource());
 		dataSources.put("Float's Mobile Agent", new FMADataSource());
+		dataSources.put("Google Talk", new GtalkDataSource());
 		dataSources.put("Example", new ExampleDataSource());
 	}
 	

@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.sormula.SormulaException;
 
-import sia.fileparsers.IParser;
+import sia.fileparsers.Parser;
 import sia.models.Contact;
 import sia.models.ContactAccount;
 import sia.models.Conversation;
@@ -31,13 +31,12 @@ public abstract class DataSource {
 	protected List<UserAccount> userAccounts;
 	protected List<Contact> contacts;
 	protected String[] passwordDescriptions;
-	private String[] passwords;
 	protected Map<String,Protocol> protocols;
-	
-	protected IParser parser;
+	private int saveProgress = 0;
+	protected Parser parser;
 	
 	/**
-	 * Return accepted by parser file extensions 
+	 * Returs accepted by parser file extensions 
 	 * @return array of extensions
 	 */
 	public String[] getFileExtensions() {
@@ -45,7 +44,7 @@ public abstract class DataSource {
 	}
 	
 	/**
-	 * Return description for required files for every file [short description ie. "Database file" , hint how to find this file ie. "usually in home/.kadu/"]
+	 * Returs description for required files for every file [short description ie. "Database file" , hint how to find this file ie. "usually in home/.kadu/"]
 	 * @return array of descriptions
 	 */
 	public String[][] getFileDescriptions() {
@@ -57,18 +56,48 @@ public abstract class DataSource {
 	 *  
 	 * @return parser
 	 */
-	public IParser getParser() {
+	public Parser getParser() {
 		return parser;
 		
 	}
 
 	/**
-	 * Return user accounts found in archive files or null if user should to set this manually
+	 * Returns saveProgress
+	 * @return saveProgress
+	 */
+	public int getSaveProgress() {
+		return saveProgress;
+	}
+
+	/**
+	 * Returns userAccountLoadProgress
+	 * @return userAccountLoadProgress
+	 */
+	public int getUserAccountLoadProgress() {
+		return parser.getUserAccountsLoadProgress();
+	}
+
+	/**
+	 * Returns contactsLoadProgress
+	 * @return contactsLoadProgress
+	 */
+	public int getContactsLoadProgress() {
+		return parser.getContactsLoadProgress();
+	}
+
+	/**
+	 * Returs user accounts found in archive files or null if user should to set this manually
 	 * @return list of user accounts
 	 */
 	public List<UserAccount> getUserAccounts() {
 		if(userAccounts==null) {
 			userAccounts = parser.getUserAccounts();
+			List <UserAccount> dictUserAccounts = Dictionaries.getInstance().getUserAccounts();
+			for (UserAccount ua : userAccounts) {
+				if (dictUserAccounts.contains(ua)) {
+					ua.setId(dictUserAccounts.get(dictUserAccounts.indexOf(ua)).getId());
+				}
+			}
 		}
 		return userAccounts;
 	}
@@ -82,7 +111,7 @@ public abstract class DataSource {
 	}
 	
 	/**
-	 * Return all contacts with conversations (but not necessarily messages)
+	 * Returs all contacts with conversations (but not necessarily messages)
 	 * @return list of contacts
 	 */
 	public List<Contact> getContacts() {
@@ -110,7 +139,7 @@ public abstract class DataSource {
 	 * @param passwords
 	 */
 	public void setPasswords(String[] passwords) {
-		this.passwords = passwords;
+		parser.setPassowrds(passwords);
 	}
 
 	/**
@@ -118,7 +147,9 @@ public abstract class DataSource {
 	 * @throws SQLException 
 	 * @throws SormulaException 
 	 */
-	public void save() throws SQLException, SormulaException {
+	public final void save() throws SQLException, SormulaException {
+		saveProgress = 0;
+		int messagesCount = parser.getMessagesCount();
 		ORM orm = SIA.getInstance().getORM();
 		SIA.getInstance().tmpInit();
 		for (UserAccount userAccount : userAccounts) 
@@ -136,17 +167,18 @@ public abstract class DataSource {
 						long end = conversation.getEndTime().getTime();
 						long interval = Config.get("conversation_interval") != null ? Long.parseLong(Config.get("interval")) : 3600000;
 						Conversation conv = orm.getTable(Conversation.class).selectCustom(
-							"where (time between "+begin+" AND "+end+
-							" or endTime between "+begin+" AND "+end+
-							" or "+begin+" between time AND endTime"+
-							" or "+end+" between time AND endTime" +
-							" or "+begin+" <= (endTime + "+interval+")" +
-							" or "+end+" >= (time - "+interval+"))" +
-							" and contactAccountId = "+conversation.getContactAccountId() +
+							"WHERE (time BETWEEN "+begin+" AND "+end+
+							" OR endTime BETWEEN "+begin+" AND "+end+
+							" OR "+begin+" BETWEEN time AND endTime"+
+							" OR "+end+" BETWEEN time AND endTime" +
+							" OR "+begin+" <= (endTime + "+interval+")" +
+							" OR "+end+" >= (time - "+interval+"))" +
+							" AND contactAccountId = "+conversation.getContactAccountId() +
 							" and userAccountId = "+conversation.getUserAccountId());
 						if (conv != null)
 							conversation.setId(conv.getId());
-						orm.getTempTable(Conversation.class).insert(conversation);
+						else
+							orm.getTempTable(Conversation.class).insert(conversation);
 						for (Message message : conversation.getMessages()) {
 							if (message.getId() == 0) {
 								try {
@@ -168,6 +200,7 @@ public abstract class DataSource {
 		Statement stmt = SIA.getInstance().getConnection().createStatement();
 		System.out.println("Conversation update "+stmt.executeUpdate(sql));
 		SIA.getInstance().tmpSave();
+		saveProgress = 100;
 	}
 
 	public void mapContacts() {
