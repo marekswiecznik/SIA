@@ -165,4 +165,15 @@ public class Contact {
 		return true;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	public Contact clone() {
+		Contact c = new Contact(this.id, this.firstname, this.lastname, this.name);
+		for(ContactAccount ca : getContactAccounts()) {
+			c.addContactAccount(ca.clone());
+		}
+		return c;
+	}
+	
 }

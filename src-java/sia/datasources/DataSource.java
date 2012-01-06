@@ -118,13 +118,13 @@ public abstract class DataSource {
 	 * @throws SQLException 
 	 * @throws SormulaException 
 	 */
-	public void save() throws SQLException, SormulaException {
+	public void save(List<Contact> contacts) throws SQLException, SormulaException {
 		ORM orm = SIA.getInstance().getORM();
 		SIA.getInstance().tmpInit();
 		for (UserAccount userAccount : userAccounts) 
 			if (userAccount.getId() == 0)
 				orm.getTempTable(UserAccount.class).insert(userAccount);
-		for (Contact contact : Dictionaries.getInstance().getContacts()) {
+		for (Contact contact : contacts) {
 			if (contact.getId() == 0)
 				orm.getTempTable(Contact.class).insert(contact);
 			for (ContactAccount contactAccount : contact.getContactAccounts()) {
@@ -170,8 +170,7 @@ public abstract class DataSource {
 		SIA.getInstance().tmpSave();
 	}
 
-	public void mapContacts() {
-		List<Contact> dbContacts = Dictionaries.getInstance().getContacts();
+	public void mapContacts(List<Contact> dbContacts) {
 		Map<ContactAccount, Contact> mapContacts = new HashMap<ContactAccount, Contact>();
 		for (Contact c : dbContacts) {
 			for(ContactAccount ca : c.getContactAccounts()) {
@@ -197,6 +196,7 @@ public abstract class DataSource {
 						}
 					}
 					contacts.remove(i);
+					i--;
 					break;
 				} 
 			}

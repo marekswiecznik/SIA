@@ -1,6 +1,7 @@
 package sia.ui.importui;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.dialogs.IPageChangedListener;
@@ -37,6 +38,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	ImportLoading messageLoading;
 	ImportLoading saveLoading;
 	ImportSetContacts setContacts;
+	List<Contact> contacts;
 	public ImportWizard() {
 		setWindowTitle("Import messages");
 
@@ -62,6 +64,12 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		saveLoading.setTitle("Saving");
 		setContacts = new ImportSetContacts();
 		im = -1;
+		List<Contact> tmpContacts = Dictionaries.getInstance().getContacts();
+		contacts = new ArrayList<Contact>();
+		for (int i = 0; i < tmpContacts.size(); i++) {
+			contacts.add(tmpContacts.get(i).clone());
+		}
+		mapContacts.setNextPage(setContacts);
 	}
 
 	@Override
@@ -89,8 +97,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		if (event.getTargetPage() == chooseFiles) {
 			// from chooseIM
 			System.out.println("chooseFiles");
-			this.datasource = Dictionaries.getInstance().getDataSource(
-					imNames[chooseIM.getSelected()]);
+			im = chooseIM.getSelected();
+			this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
 			chooseFiles.setFileExtensions(datasource.getFileExtensions());
 			chooseFiles.setDescriptions(datasource.getFileDescriptions());
 			chooseFiles.setControls();
@@ -111,7 +119,6 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		} else if (event.getTargetPage() == setAccounts) {
 			// from chooseFiles or from setPasswords
 			System.out.println("setAccounts");
-			datasource.loadFiles(chooseFiles.getFiles());
 			if (datasource.getUserAccounts() != null && datasource.getUserAccounts().size() > 0
 					&& datasource.getUserAccounts().get(0).getUid().length() > 0) {
 				wasSetAccounts = false;
@@ -134,15 +141,15 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		} else if (event.getTargetPage() == messageLoading) {
 			System.out.println("messageLoading");
 		} else if (event.getTargetPage() == mapContacts) {
-			mapContacts.setControls();
+			//mapContacts.setPreviousPage(null); // TODO check this !
+			//mapContacts.setControls();
 			System.out.println("mapContacts");
 		} else if (event.getTargetPage() == setContacts) {
-			List<Contact> empty = mapContacts.getEmptyContacts();
-			setContacts.setContacts(empty);
-			setContacts.setControls();
+			//List<Contact> empty = mapContacts.getEmptyContacts();
+			//setContacts.setControls();
+			setContacts.layout();
 			System.out.println("setContacts");
 		} else if (event.getTargetPage() == saveLoading) {
-			Dictionaries.getInstance().getContacts().addAll(setContacts.getContacts());
 			System.out.println("saveLoading");
 		}
 	}
@@ -150,6 +157,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	@Override
 	public void pageChanged(PageChangedEvent event) {
 		if (event.getSelectedPage() == accountsLoading) {
+			datasource.loadFiles(chooseFiles.getFiles());
 			datasource.getUserAccounts();
 		} else if (event.getSelectedPage() == messageLoading) {
 			if(wasSetAccounts) {
@@ -158,12 +166,19 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				datasource.setUserAccounts(chooseAccounts.getUserAccounts());
 			}
 			datasource.getContacts();
-			datasource.mapContacts();
-			mapContacts.setContacts(datasource.getContacts());
+			datasource.mapContacts(contacts);
+			mapContacts.setParsedContacts(datasource.getContacts());
+			mapContacts.setContacts(contacts);
+			mapContacts.setControls();
+			setContacts.setParsedContacts(datasource.getContacts());
+			setContacts.setContacts(contacts);
+			setContacts.setControls();
 		} else if (event.getSelectedPage() == saveLoading) {
 			try {
 				long start = System.currentTimeMillis();
-				datasource.save();
+				mapContacts.addContactAccounts(); //merge new ContactAccounts with existing Contacts
+				setContacts.addNewContacts();
+				datasource.save(contacts);
 				System.out.println(System.currentTimeMillis() - start + "");
 			} catch (SQLException e) {
 				// TODO catch block

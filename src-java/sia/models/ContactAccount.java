@@ -206,6 +206,9 @@ public class ContactAccount {
 	 */
 	public void setConversations(List<Conversation> conversations) {
 		this.conversations = conversations;
+		for (Conversation c : conversations) {
+			c.setContactAccount(this);
+		}
 	}
 
 	/**
@@ -278,4 +281,10 @@ public class ContactAccount {
 		return true;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ContactAccount clone() {
+		return new ContactAccount(id, uid, name, otherinfo, contact, protocol);
+	}
 }

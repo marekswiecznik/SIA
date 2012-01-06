@@ -73,6 +73,7 @@ public class SIA {
 	 * @throws SormulaException 
 	 */
 	public void dbInit(String dbPath) throws ClassNotFoundException, SQLException, SormulaException {
+		System.setProperty("sqlite.purejava", "true");
 		Class.forName("org.sqlite.JDBC");
 		connection = DriverManager.getConnection("jdbc:sqlite:"+dbPath);
 		connection.setAutoCommit(true);
