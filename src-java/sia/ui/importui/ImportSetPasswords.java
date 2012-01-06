@@ -33,7 +33,11 @@ public class ImportSetPasswords extends WizardPage {
 	}
 	
 	public String[] getPasswords() {
-		return null;
+		String[] passwords = new String[passwordDescriptions.length];
+		for (int i = 0; i < passwords.length; i++) {
+			passwords[i] = textfields[i].getText();
+		}
+		return passwords;
 	}
 	
 	/**
@@ -56,10 +60,16 @@ public class ImportSetPasswords extends WizardPage {
 			for (int i = 0; i < passwordDescriptions.length; i++) {
 				labels[i] = new Label(container, SWT.NONE);
 				labels[i].setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-				labels[i].setText(passwordDescriptions[i]);
-				textfields[i] = new Text(container, SWT.BORDER | SWT.PASSWORD);
+				if(passwordDescriptions[i].startsWith("*")) {
+					labels[i].setText(passwordDescriptions[i].substring(1));
+					textfields[i] = new Text(container, SWT.BORDER | SWT.PASSWORD);
+				} else {
+					labels[i].setText(passwordDescriptions[i]);
+					textfields[i] = new Text(container, SWT.BORDER);
+				}
 				textfields[i].setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 			}
+			container.layout();
 		}
 	}
 }

@@ -95,8 +95,6 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	public void handlePageChanging(PageChangingEvent event) {
 		WizardDialog dialog = (WizardDialog) event.getSource();
 		if (event.getTargetPage() == chooseFiles) {
-			// from chooseIM
-			System.out.println("chooseFiles");
 			im = chooseIM.getSelected();
 			this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
 			chooseFiles.setFileExtensions(datasource.getFileExtensions());
@@ -104,8 +102,6 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			chooseFiles.setControls();
 			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		} else if (event.getTargetPage() == setPasswords) {
-			// from chooseFiles
-			System.out.println("setPasswords");
 			setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
 			if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
 				setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
@@ -115,10 +111,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				event.doit = false;
 			}
 		} else if (event.getTargetPage() == accountsLoading) {
-			System.out.println("accountsLoading");
 		} else if (event.getTargetPage() == setAccounts) {
-			// from chooseFiles or from setPasswords
-			System.out.println("setAccounts");
 			if (datasource.getUserAccounts() != null && datasource.getUserAccounts().size() > 0
 					&& datasource.getUserAccounts().get(0).getUid().length() > 0) {
 				wasSetAccounts = false;
@@ -132,25 +125,19 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				wasSetAccounts = true;
 			}
 		} else if (event.getTargetPage() == chooseAccounts) {
-			// from setAccounts?
-			System.out.println("chooseAccounts");
 			if (wasSetAccounts) {
 				dialog.showPage(messageLoading);
 				event.doit = false;
 			}
 		} else if (event.getTargetPage() == messageLoading) {
-			System.out.println("messageLoading");
 		} else if (event.getTargetPage() == mapContacts) {
-			//mapContacts.setPreviousPage(null); // TODO check this !
-			//mapContacts.setControls();
-			System.out.println("mapContacts");
+			if(datasource.getContacts().size()==0) {
+				dialog.showPage(saveLoading);
+				event.doit = false;
+			}
 		} else if (event.getTargetPage() == setContacts) {
-			//List<Contact> empty = mapContacts.getEmptyContacts();
-			//setContacts.setControls();
 			setContacts.layout();
-			System.out.println("setContacts");
 		} else if (event.getTargetPage() == saveLoading) {
-			System.out.println("saveLoading");
 		}
 	}
 
@@ -159,6 +146,9 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		if (event.getSelectedPage() == accountsLoading) {
 			datasource.loadFiles(chooseFiles.getFiles());
 			datasource.getUserAccounts();
+			if(datasource.getRequiredPassword()!=null && datasource.getRequiredPassword().length>0) {
+				datasource.setPasswords(setPasswords.getPasswords());
+			}
 		} else if (event.getSelectedPage() == messageLoading) {
 			if(wasSetAccounts) {
 				datasource.setUserAccounts(setAccounts.getUserAccounts());
