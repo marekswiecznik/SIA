@@ -41,14 +41,6 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	List<Contact> contacts;
 	public ImportWizard() {
 		setWindowTitle("Import messages");
-
-		// imNames = new String[] {"applications-accessories",
-		// "applications-games", "applications-multimedia",
-		// "applications-science", "empathy", "applications-development",
-		// "applications-graphics", "applications-office",
-		// "applications-system", "kadu", "applications-engineering",
-		// "applications-internet", "applications-other",
-		// "applications-utilities", "phone"};
 		imNames = Dictionaries.getInstance().getDataSources().keySet().toArray(new String[] {});
 		chooseIM = new ImportChooseIM(imNames);
 		chooseFiles = new ImportChooseFiles();

@@ -8,6 +8,8 @@ import org.sormula.annotation.Transient;
 import org.sormula.annotation.cascade.OneToOneCascade;
 import org.sormula.annotation.cascade.SelectCascade;
 
+import sia.ui.SIA;
+
 /**
  * Contact
  * 
@@ -286,7 +288,11 @@ public class ContactAccount {
 	 */
 	@Override
 	public ContactAccount clone() {
+<<<<<<< HEAD
+		ContactAccount ca = new ContactAccount(id, name, uid, otherinfo, contact, protocol);
+=======
 		ContactAccount ca = new ContactAccount(id, uid, name, otherinfo, contact, protocol);
+>>>>>>> 56a16cbc6b4c776b9e14334c040ebdfc521d2017
 		ca.setConversations(conversations);
 		return ca;
 	}

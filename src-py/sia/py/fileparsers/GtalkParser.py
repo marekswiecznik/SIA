@@ -11,9 +11,14 @@ from sia.models import UserAccount
 from sia.models import Message
 from sia.utils import Dictionaries
 from sia.fileparsers import Parser
+<<<<<<< HEAD
+from java.util import Date
+from xml.parsers.expat import ExpatError
+=======
 
 from java.util import Date
 
+>>>>>>> 56a16cbc6b4c776b9e14334c040ebdfc521d2017
 from xml.etree import ElementTree
 import imaplib
 import re
@@ -90,7 +95,15 @@ class GtalkParser(Parser):
 			if m == None:
 				print data
 				continue
+<<<<<<< HEAD
+			try:
+				root = ElementTree.XML(m.group(0))
+			except ExpatError:
+				print m.group(0)
+				continue
+=======
 			root = ElementTree.XML(m.group(0))
+>>>>>>> 56a16cbc6b4c776b9e14334c040ebdfc521d2017
 			
 			# create conversation
 			time = Date()
@@ -104,9 +117,19 @@ class GtalkParser(Parser):
 			for msg in root:
 				time = Date()
 				time.setTime(long(msg.find('{google:timestamp}time').get('ms')))
+<<<<<<< HEAD
+				if msg.find('{jabber:client}body') == None:
+					txt = ""
+				else:
+					txt = msg.find('{jabber:client}body').text
+				message = Message(0, 
+					conversation, 
+					txt, 
+=======
 				message = Message(0, 
 					conversation, 
 					msg.find('{jabber:client}body').text, 
+>>>>>>> 56a16cbc6b4c776b9e14334c040ebdfc521d2017
 					time, 
 					msg.attrib['from'].find(uid) == -1)
 				conversation.addMessage(message)

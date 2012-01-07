@@ -1,5 +1,11 @@
 package sia.ui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -8,22 +14,33 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.TouchEvent;
+import org.eclipse.swt.events.TouchListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
-
+import sia.models.Contact;
+import sia.models.ContactAccount;
+import sia.models.Conversation;
 import sia.ui.importui.ImportWizard;
+import sia.utils.Dictionaries;
+import org.eclipse.swt.widgets.TreeItem;
+import org.sormula.SormulaException;
 
 /**
  * 
@@ -32,7 +49,10 @@ import sia.ui.importui.ImportWizard;
  */
 public class Start extends ApplicationWindow {
 	private Table conversationsTable;
-
+	private Composite composite;
+	private Tree contactsTree;
+	private Map<TreeItem, ContactAccount> mapContactAccount;
+	private Map<TreeItem, Contact> mapContact;
 	/**
 	 * Launch the application.
 	 * 
@@ -75,7 +95,7 @@ public class Start extends ApplicationWindow {
 	 * Create contents of the window.
 	 */
 	protected Control createContents(Composite parent) {
-		final Composite composite = new Composite(parent, SWT.NONE);
+		composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout(1, false));
 
 		// TOOLBAR
@@ -141,10 +161,23 @@ public class Start extends ApplicationWindow {
 		gridData.horizontalSpan = 2;
 		contactsScrolledComposite.setLayoutData(gridData);
 
-		Tree contactsTree = new Tree(contactsScrolledComposite, SWT.BORDER);
+		contactsTree = new Tree(contactsScrolledComposite, SWT.BORDER);
+		contactsTree.addListener(SWT.Selection, new Listener() {
+		      public void handleEvent(Event e) {
+		        TreeItem[] selection = contactsTree.getSelection();
+		        for (int i = 0; i < selection.length; i++) {
+		        	if(mapContact.containsKey(selection[i])) {
+		        		setConversations(mapContact.get(selection[i]));
+		        	} else if(mapContactAccount.containsKey(selection[i])){
+		        		setConversations(mapContactAccount.get(selection[i]));
+		        	} else {
+		        		System.out.println(selection[i]);
+		        	}
+		        }
+		      }
+		    });
 		contactsScrolledComposite.setContent(contactsTree);
-		contactsScrolledComposite.setMinSize(contactsTree.computeSize(
-				SWT.DEFAULT, SWT.DEFAULT));
+		contactsScrolledComposite.setMinSize(contactsTree.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		// END LEFT COMPOSITE
 
 		// RIGHT COMPOSITE
@@ -216,6 +249,74 @@ public class Start extends ApplicationWindow {
 		status.setLayoutData(gridData);
 		status.setText("");
 		// END STATUS
+		
+		fillContactTree("");
+		
 		return composite;
+	}
+	
+	private void fillContactTree(String s) {
+		List<Contact> contacts = Dictionaries.getInstance().getContacts();
+		mapContact = new HashMap<TreeItem, Contact>();
+		mapContactAccount = new HashMap<TreeItem, ContactAccount>();
+		for (Contact c : contacts) {
+			TreeItem contactItem = new TreeItem(contactsTree, SWT.NONE);
+			contactItem.setText(c.getName());
+			mapContact.put(contactItem, c);
+			for (ContactAccount ca : c.getContactAccounts()) {
+				TreeItem contactAccountItem = new TreeItem(contactItem, SWT.NONE);
+				contactAccountItem.setText(ca.getUid());
+				contactAccountItem.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager
+						.getImage(Start.class, "/sia/ui/resources/protocols/"+ca.getProtocol().getIcon()));
+				mapContactAccount.put(contactAccountItem, ca);
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void setConversations(Contact contact) {
+		List<Conversation> conversations = new ArrayList<Conversation>();
+		for(ContactAccount ca : contact.getContactAccounts()) {
+			if (ca.getConversations() == null || ca.getConversations().size() == 0) {
+				try {
+					ca.setConversations(SIA.getInstance().getORM().getTable(Conversation.class).selectAllCustom("WHERE contactAccountId = "+ca.getId()));
+				} catch (SormulaException e) {
+					// TODO: [Marek] handle this
+					e.printStackTrace();
+				}
+			}
+			conversations.addAll(ca.getConversations());
+		}
+		Collections.sort(conversations);
+		TableItem[] tis = conversationsTable.getItems();
+		for(TableItem ti : tis) {
+			ti.dispose();
+		}
+		for(Conversation conv : conversations) {
+			TableItem ti = new TableItem(conversationsTable, SWT.NONE);
+			ti.setText(new String[] {conv.getContactAccount().getName(), conv.getTitle(), conv.getTime().toString(), conv.getLength()+""});
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void setConversations(ContactAccount contactAccount) {
+		if (contactAccount.getConversations() == null || contactAccount.getConversations().size() == 0) {
+			try {
+				contactAccount.setConversations(SIA.getInstance().getORM().getTable(Conversation.class).selectAllCustom("WHERE contactAccountId = "+contactAccount.getId()));
+			} catch (SormulaException e) {
+				// TODO: [Marek] handle this
+				e.printStackTrace();
+			}
+		}
+		List<Conversation> conversations = contactAccount.getConversations();
+		Collections.sort(conversations);
+		TableItem[] tis = conversationsTable.getItems();
+		for(TableItem ti : tis) {
+			ti.dispose();
+		}
+		for(Conversation conv : conversations) {
+			TableItem ti = new TableItem(conversationsTable, SWT.NONE);
+			ti.setText(new String[] {conv.getContactAccount().getName(), conv.getTitle(), conv.getTime().toString(), conv.getLength()+""});
+		}
 	}
 }
