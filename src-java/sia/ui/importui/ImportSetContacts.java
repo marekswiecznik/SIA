@@ -21,8 +21,8 @@ import sia.models.Contact;
 import sia.models.ContactAccount;
 
 public class ImportSetContacts extends WizardPage {
-	List<Contact> contacts;
-	List<Contact> parsedContacts;
+	private List<Contact> contacts;
+	private List<Contact> parsedContacts;
 	private Composite container;
 	private ScrolledComposite scrolledComposite;
 	private Map<Contact, Controls> mapControl;
@@ -196,6 +196,13 @@ public class ImportSetContacts extends WizardPage {
 
 		boolean getVisible() {
 			return name.getVisible();
+		}
+		
+		String getSelectedItem() {
+			if (combo.getSelectionIndex() > 0) {
+				return combo.getItem(combo.getSelectionIndex());
+			}
+			return null;
 		}
 		
 		void remove() {

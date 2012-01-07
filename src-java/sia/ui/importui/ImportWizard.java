@@ -3,14 +3,17 @@ package sia.ui.importui;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.IPageChangingListener;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.dialogs.PageChangingEvent;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.sormula.SormulaException;
 
@@ -78,14 +81,89 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		addPage(saveLoading);
 	}
 
+	private boolean validatePage(WizardPage page) {
+		page.setErrorMessage(null);
+		if (page == chooseIM) {
+			if (chooseIM.getSelected() == -1) {
+				chooseIM.setErrorMessage("Choose an application");
+				return false;
+			}
+		} else if (page == chooseFiles) {
+			String msg = datasource.validateFiles(chooseFiles.getFiles());
+			if (msg != null) {
+				chooseFiles.setErrorMessage(msg);
+				return false;
+			}
+		} else if (page == setPasswords) {
+			String msg = datasource.validatePasswords(setPasswords.getPasswords());
+			if (msg != null) {
+				setPasswords.setErrorMessage(msg);
+				return false;
+			}
+		} else if (page == accountsLoading) {
+			if (datasource.getProgress(DataSource.Progress.USER_ACCOUNTS_PROGRESS) != 100) {
+				accountsLoading.setErrorMessage("You can't go to the next page until accounts are loaded.");
+				return false;
+			}
+		} else if (page == setAccounts) {
+			String msg = datasource.validateUid(setAccounts.getUserAccounts().get(0).getUid());
+			if (msg != null) {
+				setAccounts.setErrorMessage(msg);
+				return false;
+			}
+		} else if (page == chooseAccounts) {
+			if (chooseAccounts.getUserAccounts().isEmpty()) {
+				chooseAccounts.setErrorMessage("You have to select at least one account.");
+				return false;
+			}
+		} else if (page == messageLoading) {
+			if (datasource.getProgress(DataSource.Progress.CONTACTS_PROGRESS) != 100) {
+				//TODO: [Marek] try to disable next button
+				messageLoading.setErrorMessage("You can't go to the next page until contacts and messages are loaded.");
+				return false;
+			}
+		//} else if (page == mapContacts) {
+		} else if (page == setContacts) {
+			Map<Contact, ImportSetContacts.Controls> controls = setContacts.getControls();
+			String uid;
+			for (ImportSetContacts.Controls ctls : controls.values()) {
+				for (ImportSetContacts.Controls ctls2 : controls.values()) {
+					if (ctls != ctls2 && ctls.name.getText().equals(ctls2.name.getText())) {
+						setContacts.setErrorMessage("Two contacts can't have the same name ("+ctls.name.getText()+"). Contact one to another or change name.");
+						return false;
+					}
+				}
+				uid = ctls.getSelectedItem();
+				if (uid != null) {
+					for (Contact pc : datasource.getContacts()) {
+						if (pc.getContactAccounts().get(0).getUid().equals(uid) && controls.get(pc).getSelectedItem() != null) {
+							setContacts.setErrorMessage("Chained contact merging disallowed. Contact with UID "+ctls.uids[0].getText()
+									+" can't be attached to contact with UID "+uid+", because it's already attached to another contact.");
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+
 	@Override
 	public boolean performFinish() {
-		return false;
+		if (datasource == null || datasource.getProgress(DataSource.Progress.SAVE_PROGRESS) != 100) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public void handlePageChanging(PageChangingEvent event) {
 		WizardDialog dialog = (WizardDialog) event.getSource();
+		if (((WizardPage)event.getCurrentPage()).getNextPage().equals(event.getTargetPage()) 
+				&& !validatePage(((WizardPage)event.getCurrentPage()))) {
+			event.doit = false;
+			return;
+		}
 		if (event.getTargetPage() == chooseFiles) {
 			im = chooseIM.getSelected();
 			this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);

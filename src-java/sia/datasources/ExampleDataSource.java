@@ -87,6 +87,21 @@ public class ExampleDataSource extends DataSource {
 
 	@Override
 	public void loadFiles(String[] files) {
-		System.out.println("Load files");
+		
+	}
+
+	@Override
+	public String validateFiles(String[] files) {
+		return null;
+	}
+
+	@Override
+	public String validatePasswords(String[] passwords) {
+		return null;
+	}
+
+	@Override
+	public String validateUid(String uid) {
+		return null;
 	}
 }

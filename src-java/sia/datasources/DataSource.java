@@ -35,8 +35,8 @@ public abstract class DataSource {
 	protected List<Contact> contacts;
 	protected String[] passwordDescriptions;
 	protected Map<String,Protocol> protocols;
-	private int saveProgress = 0;
 	protected Parser parser;
+	private int saveProgress = 0;
 	
 	/**
 	 * Returns accepted by parser file extensions 
@@ -63,7 +63,20 @@ public abstract class DataSource {
 		return parser;
 		
 	}
+	
+	/**
+	 * Load files
+	 * @param files
+	 */
+	public void loadFiles(String[] files) {
+		parser.loadFiles(files);
+	}
 
+	/**
+	 * Get specified operation progress
+	 * @param progress
+	 * @return
+	 */
 	public int getProgress(Progress progress) {
 		switch (progress) {
 		case SAVE_PROGRESS:
@@ -121,17 +134,33 @@ public abstract class DataSource {
 	}
 	
 	/**
-	 * Load and validate files
+	 * Validate files
+	 * @param files
+	 * @return error message or null
 	 */
-	public abstract void loadFiles(String[] files);
+	public abstract String validateFiles(String[] files);
 	
 	/**
-	 * Returns descriptions of passwords, ie. ["your pasword to archive 1", "your password to archive 2"]
+	 * Validate passwords and other parameters
+	 * @param passwords
+	 * @return error message or null
+	 */
+	public abstract String validatePasswords(String[] passwords);
+	
+	/**
+	 * Validate user account UID
+	 * @param UID
+	 * @return error message or null
+	 */
+	public abstract String validateUid(String uid);
+	
+	/**
+	 * Returns descriptions of passwords, eg. ["your pasword to archive 1", "your password to archive 2"]
 	 * @return array of descriptions of passwords
 	 */
 	public String[] getRequiredPassword() {
 		return passwordDescriptions;
-	} 
+	}
 	
 	/**
 	 * Set passwords
@@ -202,6 +231,7 @@ public abstract class DataSource {
 				"length = (SELECT COUNT(1) FROM main.message WHERE conversationId = main.conversation.id) " +
 				"WHERE userAccountId IN ("+uas+")";
 		Statement stmt = SIA.getInstance().getConnection().createStatement();
+		stmt.executeUpdate(sql);
 		saveProgress = 100;
 	}
 

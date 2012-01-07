@@ -19,6 +19,7 @@ public class ImportSetPasswords extends WizardPage {
 	private Label[] labels;
 	private Text[] textfields;
 	private Composite container;
+	
 	/**
 	 * Create the wizard.
 	 */
@@ -28,10 +29,18 @@ public class ImportSetPasswords extends WizardPage {
 		setDescription("Set passwords required to read database.");
 	}
 
+	/**
+	 * Set fields descriptions
+	 * @param pds
+	 */
 	public void setPasswordDescpriptions(String[] pds) {
 		passwordDescriptions = pds;
 	}
 	
+	/**
+	 * Get fields values
+	 * @return array of fields values
+	 */
 	public String[] getPasswords() {
 		String[] passwords = new String[passwordDescriptions.length];
 		for (int i = 0; i < passwords.length; i++) {
@@ -51,6 +60,9 @@ public class ImportSetPasswords extends WizardPage {
 		setControl(container);
 	}
 	
+	/**
+	 * Set controls
+	 */
 	public void setControls() {
 		for (Control c : container.getChildren())
 			c.dispose();

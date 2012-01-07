@@ -49,7 +49,8 @@ public class ImportChooseAccounts extends WizardPage {
 		buttons = new Button[userAccounts.size()];
 		for (int i = 0; i < userAccounts.size(); i++) {
 			buttons[i] = new Button(container, SWT.CHECK);
-			buttons[i].setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/"+userAccounts.get(i).getProtocol().getIcon()));
+			if (userAccounts.get(i).getProtocol() != null && userAccounts.get(i).getProtocol().getIcon() != null)
+				buttons[i].setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/"+userAccounts.get(i).getProtocol().getIcon()));
 			buttons[i].setText(userAccounts.get(i).getUid());
 		}
 		container.layout();

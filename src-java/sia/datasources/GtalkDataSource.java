@@ -7,6 +7,7 @@ import sia.utils.ParserFactory;
  * @author jumper
  */
 public class GtalkDataSource extends DataSource {
+	private static final String UID_REGEX ="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[a-z]{2,4}$";
 
 	/**
 	 * Default and only constructor
@@ -18,13 +19,25 @@ public class GtalkDataSource extends DataSource {
 		parser = new ParserFactory("GtalkParser").create();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public void loadFiles(String[] files) {
-		if (files != null && files.length != 0)
-			throw new IllegalArgumentException("No files required");
+	public String validateFiles(String[] files) {
+		return null;
+	}
+
+	@Override
+	public String validatePasswords(String[] passwords) {
+		if (passwords[1].length() == 0)
+			return "Password can't be empty.";
+		if (passwords[2].length() == 0)
+			return "You have to specify chats label, e.g. 'Chats' for US, 'Czat' for PL.";
+		return validateUid(passwords[0]);
+	}
+
+	@Override
+	public String validateUid(String uid) {
+		if (!uid.matches(UID_REGEX))
+			return "JID has to be a valid bare JID (without resource), e.g. your.name@some.company.com";
+		return null;
 	}
 
 }

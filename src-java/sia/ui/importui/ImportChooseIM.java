@@ -45,7 +45,6 @@ public class ImportChooseIM extends WizardPage {
 			radioButtons[i].setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(ImportChooseIM.class, "/sia/ui/resources/ims/"+imNames[i]+".png"));
 			radioButtons[i].setText(imNames[i]); 
 		}
-		radioButtons[0].setSelection(true);
 		
 		scrolledComposite.setContent(composite);
 		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
