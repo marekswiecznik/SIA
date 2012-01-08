@@ -129,9 +129,15 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			for (ImportSetContacts.Controls ctls : controls) {
 				if(ctls.getVisible()) {
 					//TODO [Marek] check this 
+					for (Contact c : contacts) {
+						if (ctls.name.getVisible() && ctls.name.getEnabled() && ctls.name.getText().toLowerCase().trim().equals(c.getName().toLowerCase())) {
+							setContacts.setErrorMessage("A contact with name \""+ctls.name.getText()+"\" already exists. Connect one to another on previous page or change its name.");
+							return false;
+						}
+					}
 					for (ImportSetContacts.Controls ctls2 : controls) {
 						if (ctls != ctls2 && ctls2.getVisible() && ctls2.name.getEnabled() && ctls.name.getEnabled() && ctls.name.getText().equals(ctls2.name.getText())) {
-							setContacts.setErrorMessage("Two contacts can't have the same name ("+ctls.name.getText()+"). Contact one to another or change name.");
+							setContacts.setErrorMessage("Two contacts can't have the same name ("+ctls.name.getText()+"). Connect one to another or change name.");
 							return false;
 						}
 					}

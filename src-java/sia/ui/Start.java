@@ -262,6 +262,7 @@ public class Start extends ApplicationWindow {
 		List<Contact> contacts = Dictionaries.getInstance().getContacts();
 		mapContact = new HashMap<TreeItem, Contact>();
 		mapContactAccount = new HashMap<TreeItem, ContactAccount>();
+		contactsTree.removeAll();
 		for (Contact c : contacts) {
 			TreeItem contactItem = new TreeItem(contactsTree, SWT.NONE);
 			contactItem.setText(c.getName());
