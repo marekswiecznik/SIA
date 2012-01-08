@@ -115,7 +115,7 @@ class GtalkParser(Parser):
 					conversation, 
 					txt, 
 					time, 
-					msg.attrib['from'].find(uid) == -1)
+					msg.attrib['to'].find(uid) == -1)
 				conversation.addMessage(message)
 			self.messagesCount += len(root)
 			

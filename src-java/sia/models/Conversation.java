@@ -216,6 +216,14 @@ public class Conversation implements Comparable {
 	}
 	
 	/**
+	 * Set messages
+	 * @param messages 
+	 */
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+	
+	/**
 	 * Add message 
 	 * @param msg message
 	 */
