@@ -124,22 +124,25 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			}
 		//} else if (page == mapContacts) {
 		} else if (page == setContacts) {
-			Map<Contact, ImportSetContacts.Controls> controls = setContacts.getControls();
+			List<ImportSetContacts.Controls> controls = setContacts.getControls();
 			String uid;
-			for (ImportSetContacts.Controls ctls : controls.values()) {
-				for (ImportSetContacts.Controls ctls2 : controls.values()) {
-					if (ctls != ctls2 && ctls.name.getText().equals(ctls2.name.getText())) {
-						setContacts.setErrorMessage("Two contacts can't have the same name ("+ctls.name.getText()+"). Contact one to another or change name.");
-						return false;
-					}
-				}
-				uid = ctls.getSelectedItem();
-				if (uid != null) {
-					for (Contact pc : datasource.getContacts()) {
-						if (pc.getContactAccounts().get(0).getUid().equals(uid) && controls.get(pc).getSelectedItem() != null) {
-							setContacts.setErrorMessage("Chained contact merging disallowed. Contact with UID "+ctls.uids[0].getText()
-									+" can't be attached to contact with UID "+uid+", because it's already attached to another contact.");
+			for (ImportSetContacts.Controls ctls : controls) {
+				if(ctls.getVisible()) {
+					//TODO [Marek] check this 
+					for (ImportSetContacts.Controls ctls2 : controls) {
+						if (ctls != ctls2 && ctls2.getVisible() && ctls2.name.getEnabled() && ctls.name.getEnabled() && ctls.name.getText().equals(ctls2.name.getText())) {
+							setContacts.setErrorMessage("Two contacts can't have the same name ("+ctls.name.getText()+"). Contact one to another or change name.");
 							return false;
+						}
+					}
+					uid = ctls.getSelectedItem();
+					if (uid != null) {
+						for (int i=0; i<datasource.getContacts().size(); i++) {
+							if (datasource.getContacts().get(i).getContactAccounts().get(0).getUid().equals(uid) && controls.get(i).getSelectedItem() != null) {
+								setContacts.setErrorMessage("Chained contact merging disallowed. Contact with UID "+ctls.uids[0].getText()
+										+" can't be attached to contact with UID "+uid+", because it's already attached to another contact.");
+								return false;
+							}
 						}
 					}
 				}

@@ -1,11 +1,11 @@
 package sia.ui;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -37,6 +37,7 @@ import org.eclipse.swt.widgets.Tree;
 import sia.models.Contact;
 import sia.models.ContactAccount;
 import sia.models.Conversation;
+import sia.models.Message;
 import sia.ui.importui.ImportWizard;
 import sia.utils.Dictionaries;
 import org.eclipse.swt.widgets.TreeItem;
@@ -53,19 +54,8 @@ public class Start extends ApplicationWindow {
 	private Tree contactsTree;
 	private Map<TreeItem, ContactAccount> mapContactAccount;
 	private Map<TreeItem, Contact> mapContact;
-	/**
-	 * Launch the application.
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		try {
-			Start window = new Start();
-			window.run();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private List<Conversation> conversations;
+	private Browser conversationBrowser;
 
 	public Start() {
 		super(null);
@@ -207,7 +197,18 @@ public class Start extends ApplicationWindow {
 				| SWT.FULL_SELECTION);
 		conversationsTable.setHeaderVisible(true);
 		conversationsTable.setLinesVisible(true);
-
+		conversationsTable.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				setConversation(conversationsTable.getSelectionIndex());
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+			}
+		});
+		
 		TableColumn tblclmnContact = new TableColumn(conversationsTable,
 				SWT.NONE);
 		tblclmnContact.setWidth(100);
@@ -236,7 +237,7 @@ public class Start extends ApplicationWindow {
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 
-		Browser conversationBrowser = new Browser(scrolledComposite, SWT.NONE);
+		conversationBrowser = new Browser(scrolledComposite, SWT.NONE);
 		scrolledComposite.setContent(conversationBrowser);
 		scrolledComposite.setMinSize(conversationBrowser.computeSize(
 				SWT.DEFAULT, SWT.DEFAULT));
@@ -257,7 +258,7 @@ public class Start extends ApplicationWindow {
 		return composite;
 	}
 	
-	private void fillContactTree(String s) {
+	private void fillContactTree(String s) {		
 		List<Contact> contacts = Dictionaries.getInstance().getContacts();
 		mapContact = new HashMap<TreeItem, Contact>();
 		mapContactAccount = new HashMap<TreeItem, ContactAccount>();
@@ -290,6 +291,7 @@ public class Start extends ApplicationWindow {
 			conversations.addAll(ca.getConversations());
 		}
 		Collections.sort(conversations);
+		this.conversations = conversations;
 		TableItem[] tis = conversationsTable.getItems();
 		for(TableItem ti : tis) {
 			ti.dispose();
@@ -312,6 +314,7 @@ public class Start extends ApplicationWindow {
 		}
 		List<Conversation> conversations = contactAccount.getConversations();
 		Collections.sort(conversations);
+		this.conversations = conversations;
 		TableItem[] tis = conversationsTable.getItems();
 		for(TableItem ti : tis) {
 			ti.dispose();
@@ -320,5 +323,117 @@ public class Start extends ApplicationWindow {
 			TableItem ti = new TableItem(conversationsTable, SWT.NONE);
 			ti.setText(new String[] {conv.getContactAccount().getName(), conv.getTitle(), conv.getTime().toString(), conv.getLength()+""});
 		}
+	}
+	
+	private void setConversation(int n) {
+		Color c = new Color(0xEFEFEF);
+		Color cReceiver = new Color(0xDEF7FF);
+		Conversation conv = conversations.get(n);
+		List<Message> m;
+		if(conv.getMessages()==null || conv.getMessages().isEmpty()) {
+			try {
+				conv.setMessages(SIA.getInstance().getORM().getTable(Message.class).selectAllCustom("WHERE conversationId = "+conv.getId()+" ORDER BY time"));
+			} catch (SormulaException e) {
+				// TODO [Marek] handle this
+				e.printStackTrace();
+			}
+		}
+		m= conv.getMessages();
+		StringBuilder html = new StringBuilder();
+		html.append("<!doctype html>");
+		html.append("<html>");
+		html.append("<head>");
+		html.append("<title>Tytuł strony</title>");
+		html.append("<style type=\"text/css\">");
+		html.append("body {font: 10px system;}");
+		
+		html.append(".received {");
+		html.append("border: 1px solid "+c2h(cReceiver.darker())+";");
+		html.append("background-color:"+c2h(cReceiver.brighter())+";");
+		html.append("background-image: -webkit-gradient(linear, left top, left bottom, from("+c2h(cReceiver.brighter())+"), +to("+c2h(cReceiver)+"));");
+		html.append("background-image: -webkit-linear-gradient(top, "+c2h(cReceiver.brighter())+", "+c2h(cReceiver)+");");
+		html.append("background-image: -moz-linear-gradient(top, "+c2h(cReceiver.brighter())+", "+c2h(cReceiver)+");");
+		html.append("background-image: linear-gradient(top, "+c2h(cReceiver.brighter())+", "+c2h(cReceiver)+");");
+		html.append("color:"+c2h(cReceiver.darker().darker().darker().darker())+";}");
+		
+		html.append(".sent {");
+		html.append("-webkit-border-radius: 5px;");
+		html.append("-moz-border-radius: 5px; ");
+		html.append("border-radius: 5px;");
+		html.append("border: 1px solid "+c2h(c.darker())+";");
+		html.append("background-color:"+c2h(c.brighter())+";");
+		html.append("background-image: -webkit-gradient(linear, left top, left bottom, from("+c2h(c.brighter())+"), +to("+c2h(c)+"));");
+		html.append("background-image: -webkit-linear-gradient(top, "+c2h(c.brighter())+", "+c2h(c)+");");
+		html.append("background-image: -moz-linear-gradient(top, "+c2h(c.brighter())+", "+c2h(c)+");");
+		html.append("background-image: linear-gradient(top, "+c2h(c.brighter())+", "+c2h(c)+");");
+		html.append("color:"+c2h(c.darker().darker().darker().darker())+";}");
+		
+		html.append(".received p, .sent p {");
+		html.append("margin: 0 0 3px 30px;");
+//		html.append("position: relative;");
+//		html.append("clear: right;");
+		html.append("}");
+		
+		html.append(".received, .sent {");
+		html.append("margin: 5px;");
+		html.append("padding: 5px;");
+		html.append("-webkit-border-radius: 5px;");
+		html.append("-moz-border-radius: 5px; ");
+		html.append("border-radius: 5px;");
+		html.append("}");
+		html.append(".clear {");
+		html.append("clear:both;");
+		html.append("line-height: 0.2em;");
+		html.append("}");
+		html.append(".time {");
+		html.append("float: right;");
+		html.append("clear: right;");
+		html.append("}");
+		html.append(".avatar {");
+		html.append("float: left;");
+		html.append("}");
+		html.append("</style>");
+		html.append("</head>");
+		html.append("<body>");
+		html.append("<header>");
+		html.append("");
+		html.append("</header> ");
+		html.append("");
+		for(int i=0; i<m.size(); i++) {
+			if(m.get(i).getReceived()>0) {
+				html.append("<div class=\"received\">");
+			} else {
+				html.append("<div class=\"sent\">");
+			}
+			html.append("<div class=\"avatar\">");
+			html.append("<img src=\"/sia/ui/resources/properties.png\" />");
+			html.append("</div>");
+			html.append("<p>");
+			html.append(m.get(i).getMessage());
+			html.append("<span class=\"time\">");
+			html.append(m.get(i).getTime());
+			html.append("</span>");
+			html.append("</p>");
+			html.append("<div style=\"clear:both;\"></div>");
+			while(i+1<m.size() && m.get(i).getReceived()==m.get(i+1).getReceived() && m.get(i+1).getTime().getTime()-m.get(i).getTime().getTime()<1800000) {
+				html.append("<p>");
+				html.append(m.get(i+1).getMessage());
+				html.append("<span class=\"time\">");
+				html.append(m.get(i+1).getTime());
+				html.append("</span>");
+				html.append("</p>");
+				html.append("<div class=\"clear\">&nbsp;</div>");
+				i++;
+			}
+			
+			html.append("</div>");
+		}
+		html.append("");
+		html.append("</body>");
+		html.append("</html>");
+		conversationBrowser.setText(html.toString());
+	}
+	private String c2h(Color c) {
+		return "#"+Integer.toHexString(c.getRGB()).substring(2);
 	}
 }

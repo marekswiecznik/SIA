@@ -25,7 +25,7 @@ public class ImportSetContacts extends WizardPage {
 	private List<Contact> parsedContacts;
 	private Composite container;
 	private ScrolledComposite scrolledComposite;
-	private Map<Contact, Controls> mapControl;
+	private List<Controls> controls;
 	/**
 	 * Create the wizard.
 	 */
@@ -33,11 +33,11 @@ public class ImportSetContacts extends WizardPage {
 		super("setContacts");
 		setTitle("Set contacts");
 		setDescription("");
-		mapControl = new HashMap<Contact, Controls>();
+		controls = new ArrayList<Controls>();
 	}
 
-	public Map<Contact, Controls> getControls() {
-		return mapControl;
+	public List<Controls> getControls() {
+		return controls;
 	}
 	
 	public void setContacts(List<Contact> contacts) {
@@ -92,7 +92,7 @@ public class ImportSetContacts extends WizardPage {
 		
 		for (int i = 0; i < parsedContacts.size(); i++) {
 			//new Controls lays controls to container
-			mapControl.put(parsedContacts.get(i), new Controls(parsedContacts.get(i)));
+			controls.add(new Controls(parsedContacts.get(i)));
 		}
 		
 		container.layout();
@@ -105,11 +105,35 @@ public class ImportSetContacts extends WizardPage {
 	}
 	
 	public void addNewContacts() {
-		for (Contact c : mapControl.keySet()) {
-			Controls ctrls = mapControl.get(c);
-			if(ctrls.getVisible()) {
+		for (int i = 0; i< parsedContacts.size(); i++) {
+			Controls ctrls = controls.get(i);
+			if(ctrls.getVisible() && ctrls.combo.getSelectionIndex()>0) {
+				String uid = ctrls.combo.getItem(ctrls.combo.getSelectionIndex());
+				Contact cToMerge = null;
+				//finding contact with uid from combo
+				for (Contact c1 : parsedContacts) {
+					for(ContactAccount ca : c1.getContactAccounts()) {
+						if(ca.getUid().equals(uid)) {
+							cToMerge = c1;
+							break;
+						}
+					}
+					if(cToMerge!=null) {
+						break;
+					}
+				}
+				//adding contact accounts from c to cToMerge 
+				for(ContactAccount ca : parsedContacts.get(i).getContactAccounts()) {
+					cToMerge.addContactAccount(ca);
+				}
+			}
+		}
+		
+		for (int i = 0; i< parsedContacts.size(); i++) {
+			Controls ctrls = controls.get(i);
+			if(ctrls.getVisible() && ctrls.combo.getSelectionIndex()<1) {
 				Contact newC = new Contact(0, ctrls.fname.getText(), ctrls.lname.getText(), ctrls.name.getText());
-				for (ContactAccount ca : c.getContactAccounts()) {
+				for (ContactAccount ca : parsedContacts.get(i).getContactAccounts()) {
 					newC.addContactAccount(ca.clone());
 				}
 				contacts.add(newC);
@@ -173,7 +197,7 @@ public class ImportSetContacts extends WizardPage {
 			List<String> contacts4combo = new ArrayList<String>();
 			contacts4combo.add("");
 			for (int j = 0; j < parsedContacts.size(); j++) {
-				if(!c.equals(parsedContacts.get(j))) {
+				if(!c.getContactAccounts().get(0).equals(parsedContacts.get(j).getContactAccounts().get(0))) {
 					contacts4combo.add(parsedContacts.get(j).getContactAccounts().get(0).getUid()); 	
 				}
 			}

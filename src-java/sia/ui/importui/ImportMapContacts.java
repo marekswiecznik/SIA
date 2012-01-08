@@ -153,10 +153,10 @@ public class ImportMapContacts extends WizardPage {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			if(((Combo)e.getSource()).getSelectionIndex()>0) {
-				Controls c = nextPage.getControls().get(parsedContacts.get(n));
+				Controls c = nextPage.getControls().get(n);
 				c.remove();
 			} else {
-				Controls c = nextPage.getControls().get(parsedContacts.get(n));
+				Controls c = nextPage.getControls().get(n);
 				c.add();
 			}
 		}

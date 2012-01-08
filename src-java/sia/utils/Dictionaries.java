@@ -138,7 +138,7 @@ public class Dictionaries {
 	public void loadContacts() throws SormulaException {
 		this.contacts = orm.getTable(Contact.class).selectAll();
 		for (Contact contact : contacts) {
-			for (ContactAccount ca : orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()))
+			for (ContactAccount ca : orm.getTable(ContactAccount.class).selectAllCustom("where contactId = "+ contact.getId()))
 				contact.addContactAccount(ca);
 		}
 		
