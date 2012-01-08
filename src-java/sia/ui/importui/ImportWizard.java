@@ -153,6 +153,12 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		if (datasource == null || datasource.getProgress(DataSource.Progress.SAVE_PROGRESS) != 100) {
 			return false;
 		}
+		try {
+			Dictionaries.getInstance().loadContacts();
+		} catch (SormulaException e) {
+			// TODO: [Marek] logger (Issue #5)
+			e.printStackTrace();
+		}
 		return true;
 	}
 
@@ -165,17 +171,18 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			return;
 		}
 		if (event.getTargetPage() == chooseFiles) {
+			int previousIm = im;
 			im = chooseIM.getSelected();
 			this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
 			if (datasource.getFileExtensions() == null || datasource.getFileExtensions().length == 0) {
 				dialog.showPage(setPasswords);
 				event.doit = false;
-			} else {
+			} else if (previousIm != im) {
 				chooseFiles.setFileExtensions(datasource.getFileExtensions());
 				chooseFiles.setDescriptions(datasource.getFileDescriptions());
 				chooseFiles.setControls();
 			}
-			// TODO: [Aga] fix this
+			// TODO: [Aga] fix this (Issue #10)
 			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		} else if (event.getTargetPage() == setPasswords) {
 			setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());

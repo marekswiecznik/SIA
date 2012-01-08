@@ -114,7 +114,9 @@ public class Start extends ApplicationWindow {
 				dialog.addPageChangingListener(importWizard);
 				dialog.addPageChangedListener(importWizard);
 				dialog.create();
-				dialog.open();
+				if (dialog.open() == 0) {
+					fillContactTree("");
+				}
 			}
 		});
 		importButton.setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(Start.class, "/sia/ui/resources/import.png"));

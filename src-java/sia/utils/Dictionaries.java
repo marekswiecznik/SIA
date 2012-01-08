@@ -24,6 +24,7 @@ import sia.ui.SIA;
  */
 public class Dictionaries {
 	private static Dictionaries instance;
+	private ORM orm;
 	
 	private Map<String, DataSource> dataSources;
 	private Map<String, Protocol> protocols;
@@ -34,15 +35,15 @@ public class Dictionaries {
 	/**
 	 * Default constructor
 	 */
-	private Dictionaries() { }
+	private Dictionaries() {
+		orm = SIA.getInstance().getORM();
+	}
 	
 	/**
 	 * Load dictionaries
 	 * @throws SormulaException 
 	 */
 	public void init() throws SormulaException {
-		ORM orm = SIA.getInstance().getORM();
-		
 		List<Configuration> configuration = orm.getTable(Configuration.class).selectAll();
 		this.configuration = new HashMap<String, Configuration>();
 		for (Configuration c : configuration)
@@ -53,13 +54,7 @@ public class Dictionaries {
 		for (Protocol p : protocols)
 			this.protocols.put(p.getName(), p);
 		
-		this.contacts = orm.getTable(Contact.class).selectAll();
-		for (Contact contact : contacts) {
-			for (ContactAccount ca : orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()))
-				contact.addContactAccount(ca);
-		}
-		
-		this.userAccounts = orm.getTable(UserAccount.class).selectAll();
+		loadContacts();
 	
 		dataSources = new HashMap<String, DataSource>();
 		//dataSources.put("kadu", new KaduDataSource());
@@ -128,7 +123,25 @@ public class Dictionaries {
 		return instance;
 	}
 
+	/**
+	 * Get configuration
+	 * @return
+	 */
 	public Map<String, Configuration> getConfiguration() {
 		return configuration;
+	}
+
+	/**
+	 * (Re)load contacts
+	 * @throws SormulaException 
+	 */
+	public void loadContacts() throws SormulaException {
+		this.contacts = orm.getTable(Contact.class).selectAll();
+		for (Contact contact : contacts) {
+			for (ContactAccount ca : orm.getTable(ContactAccount.class).selectAllCustom("where id = "+ contact.getId()))
+				contact.addContactAccount(ca);
+		}
+		
+		this.userAccounts = orm.getTable(UserAccount.class).selectAll();
 	}
 }
