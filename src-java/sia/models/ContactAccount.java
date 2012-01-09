@@ -8,8 +8,6 @@ import org.sormula.annotation.Transient;
 import org.sormula.annotation.cascade.OneToOneCascade;
 import org.sormula.annotation.cascade.SelectCascade;
 
-import sia.ui.SIA;
-
 /**
  * Contact
  * 

@@ -14,7 +14,7 @@ import org.sormula.annotation.cascade.SelectCascade;
  * 
  * @author jumper
  */
-public class Conversation implements Comparable {
+public class Conversation implements Comparable<Conversation> {
 	@Column(identity=true, primaryKey=true)
 	private int id;
 	private Date time;
@@ -284,7 +284,7 @@ public class Conversation implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object obj) {
+	public int compareTo(Conversation obj) {
 		Conversation conv = (Conversation) obj;
 		if(this.time.before(conv.time)) {
 			return -1;

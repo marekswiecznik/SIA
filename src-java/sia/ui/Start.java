@@ -15,8 +15,6 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.events.TouchEvent;
-import org.eclipse.swt.events.TouchListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -277,7 +275,6 @@ public class Start extends ApplicationWindow {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void setConversations(Contact contact) {
 		List<Conversation> conversations = new ArrayList<Conversation>();
 		for(ContactAccount ca : contact.getContactAccounts()) {
@@ -303,7 +300,6 @@ public class Start extends ApplicationWindow {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void setConversations(ContactAccount contactAccount) {
 		if (contactAccount.getConversations() == null || contactAccount.getConversations().size() == 0) {
 			try {

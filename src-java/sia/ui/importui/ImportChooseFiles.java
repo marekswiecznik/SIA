@@ -28,7 +28,7 @@ public class ImportChooseFiles extends WizardPage {
 	private Label[] separators;
 	private Composite container;
 	private ScrolledComposite scrolledComposite;
-	private int width, height;
+	private int height;
 	/**
 	 * Create the wizard.
 	 */
@@ -110,16 +110,10 @@ public class ImportChooseFiles extends WizardPage {
 		@Override
 		public void mouseEnter(MouseEvent e) {
 			descriptionLabel.setText(descriptions[n][1]);
-			//container.update();
-			//scrolledComposite.update();
-			//scrolledComposite.setContent(container);
-			//scrolledComposite.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-			//width = Math.max(width, getShell().computeSize(getShell().getSize().x, SWT.DEFAULT).x);
 			Point size = getShell().computeSize(getShell().getSize().x, SWT.DEFAULT);
 			size.x = getShell().getSize().x;
 			if (size.y > height)
 				getShell().setSize(size);
-			//width = getShell().getSize().x;
 			height = getShell().getSize().y;
 		}
 		
