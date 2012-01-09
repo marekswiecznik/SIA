@@ -26,7 +26,7 @@ public class Dictionaries {
 	private static Dictionaries instance;
 	private ORM orm;
 	
-	private Map<String, DataSource> dataSources;
+	private Map<String, String> dataSources;
 	private Map<String, Protocol> protocols;
 	private Map<String, Configuration> configuration;
 	private List<Contact> contacts;
@@ -56,18 +56,18 @@ public class Dictionaries {
 		
 		loadContacts();
 	
-		dataSources = new HashMap<String, DataSource>();
+		dataSources = new HashMap<String, String>();
 		//dataSources.put("kadu", new KaduDataSource());
-		dataSources.put("Float's Mobile Agent", new FMADataSource());
-		dataSources.put("Google Talk", new GtalkDataSource());
-		dataSources.put("Example", new ExampleDataSource());
+		dataSources.put("Float's Mobile Agent", FMADataSource.class.getSimpleName());
+		dataSources.put("Google Talk (via IMAP)", GtalkDataSource.class.getSimpleName());
+		dataSources.put("Example", ExampleDataSource.class.getSimpleName());
 	}
 	
 	/**
 	 * Returns data sources dictionary
 	 * @return data sources dictionary
 	 */
-	public Map<String, DataSource> getDataSources() {
+	public Map<String, String> getDataSources() {
 		return dataSources;
 	}
 	
@@ -77,7 +77,19 @@ public class Dictionaries {
 	 * @return data source
 	 */
 	public DataSource getDataSource(String key) {
-		return dataSources.get(key);
+		try {
+			return (DataSource) Class.forName(DataSource.class.getPackage().getName()+"."+dataSources.get(key)).newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**

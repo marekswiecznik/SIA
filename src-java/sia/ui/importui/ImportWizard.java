@@ -164,7 +164,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	public boolean performFinish() {
 		if (datasource == null || datasource.getProgress(DataSource.Progress.SAVE_PROGRESS) != 100) {
 			return false;
-		}
+		} 
 		try {
 			Dictionaries.getInstance().loadContacts();
 		} catch (SormulaException e) {

@@ -45,9 +45,7 @@ public class ImportChooseIM extends WizardPage {
 		for (int i = 0; i < imNames.length; i++) {
 			radioButtons[i] = new Button(composite, SWT.RADIO);
 			radioButtons[i].setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(ImportChooseIM.class, 
-					"/sia/ui/resources/ims/"+Dictionaries.getInstance().getDataSource(imNames[i]).getClass().getSimpleName()+".png"));
-			System.out.println(Dictionaries.getInstance().getDataSource(imNames[i]).getClass().getSimpleName());
-			System.out.println("/sia/ui/resources/ims/"+Dictionaries.getInstance().getDataSource(imNames[i]).getClass().getSimpleName()+".png");
+					"/sia/ui/resources/ims/"+Dictionaries.getInstance().getDataSources().get(imNames[i])+".png"));
 			radioButtons[i].setText(imNames[i]);
 			radioButtons[i].addSelectionListener((ImportWizard)getWizard());
 		}

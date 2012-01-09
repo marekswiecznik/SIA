@@ -7,7 +7,6 @@ import sia.utils.ParserFactory;
  * @author jumper
  */
 public class GtalkDataSource extends DataSource {
-	public static final String NAME = "Google Talk (via IMAP)";
 	private static final String UID_REGEX ="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[a-z]{2,4}$";
 
 	/**

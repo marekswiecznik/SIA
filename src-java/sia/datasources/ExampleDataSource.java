@@ -12,13 +12,15 @@ import sia.models.UserAccount;
 import sia.utils.Dictionaries;
 
 
+/**
+ * Example Data source
+ * 
+ * Float's Mobile Agent (for Sony Ericsson)
+ */
 public class ExampleDataSource extends DataSource {
-	public static final String NAME = "Example";
 	
 	/**
-	 * Example Data source
-	 * 
-	 * Float's Mobile Agent (for Sony Ericsson)
+	 * Default and only constructor
 	 */
 	public ExampleDataSource() {
 		extensions = new String[] {"*.*", "*.*", "*.*","*.*"};
