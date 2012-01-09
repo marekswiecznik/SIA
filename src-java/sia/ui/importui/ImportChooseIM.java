@@ -7,6 +7,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
+import sia.utils.Dictionaries;
+
 /**
  * 
  * @author Agnieszka Glabala
@@ -42,7 +44,10 @@ public class ImportChooseIM extends WizardPage {
 		radioButtons = new Button[imNames.length];
 		for (int i = 0; i < imNames.length; i++) {
 			radioButtons[i] = new Button(composite, SWT.RADIO);
-			radioButtons[i].setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(ImportChooseIM.class, "/sia/ui/resources/ims/"+imNames[i]+".png"));
+			radioButtons[i].setImage(sia.ui.org.eclipse.wb.swt.SWTResourceManager.getImage(ImportChooseIM.class, 
+					"/sia/ui/resources/ims/"+Dictionaries.getInstance().getDataSource(imNames[i]).getClass().getSimpleName()+".png"));
+			System.out.println(Dictionaries.getInstance().getDataSource(imNames[i]).getClass().getSimpleName());
+			System.out.println("/sia/ui/resources/ims/"+Dictionaries.getInstance().getDataSource(imNames[i]).getClass().getSimpleName()+".png");
 			radioButtons[i].setText(imNames[i]);
 			radioButtons[i].addSelectionListener((ImportWizard)getWizard());
 		}

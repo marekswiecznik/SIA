@@ -13,6 +13,8 @@ import sia.utils.Dictionaries;
 
 
 public class ExampleDataSource extends DataSource {
+	public static final String NAME = "Example";
+	
 	/**
 	 * Example Data source
 	 * 

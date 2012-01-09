@@ -8,6 +8,7 @@ import sia.utils.ParserFactory;
  * Float's Mobile Agent (for Sony Ericsson)
  */
 public class FMADataSource extends DataSource {
+	public static final String NAME = "Float's Mobile Agent";
 	private static final String UID_REGEX = "^\\+?[0-9]+$";
 	
 	/**
