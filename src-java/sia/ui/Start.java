@@ -163,7 +163,7 @@ public class Start extends ApplicationWindow {
 		        	} else if(mapContactAccount.containsKey(selection[i])){
 		        		setConversations(mapContactAccount.get(selection[i]));
 		        	} else {
-		        		System.out.println(selection[i]);
+		        		throw new IllegalArgumentException("Incorrect selection.");
 		        	}
 		        }
 		      }

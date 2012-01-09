@@ -1,5 +1,6 @@
 package sia.ui.importui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.wizard.WizardPage;
@@ -19,7 +20,6 @@ import sia.ui.org.eclipse.wb.swt.SWTResourceManager;
  */
 public class ImportChooseAccounts extends WizardPage {
 	private List<UserAccount> userAccounts;
-	private UserAccount[] userAccountsTmp;
 	private Composite container;
 	private Button[] buttons;
 	/**
@@ -52,19 +52,18 @@ public class ImportChooseAccounts extends WizardPage {
 			if (userAccounts.get(i).getProtocol() != null && userAccounts.get(i).getProtocol().getIcon() != null)
 				buttons[i].setImage(SWTResourceManager.getImage(ImportChooseAccounts.class, "/sia/ui/resources/protocols/"+userAccounts.get(i).getProtocol().getIcon()));
 			buttons[i].setText(userAccounts.get(i).getUid());
+			buttons[i].addSelectionListener((ImportWizard)getWizard());
 		}
 		container.layout();
 	}
 	
 	public List<UserAccount> getUserAccounts() {
-		if(userAccountsTmp==null) {
-			userAccountsTmp = userAccounts.toArray(new UserAccount[] {});
-		}
-		for (int i = 0; i < userAccountsTmp.length; i++) {
-			if(!buttons[i].getSelection()) {
-				userAccounts.remove(userAccountsTmp[i]);
+		List<UserAccount> userAccounts = new ArrayList<UserAccount>();
+		for (int i = 0; i < this.userAccounts.size(); i++) {
+			if(buttons[i].getSelection()) {
+				userAccounts.add(this.userAccounts.get(i));
 			}
-		}
+		} 
 		return userAccounts;
 	}
 	

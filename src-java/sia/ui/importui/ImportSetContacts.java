@@ -1,9 +1,7 @@
 package sia.ui.importui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -156,6 +154,7 @@ public class ImportSetContacts extends WizardPage {
 				c.lname.setEnabled(true);
 				c.name.setEnabled(true);
 			}
+			((ImportWizard)getWizard()).validatePage(ImportSetContacts.this);
 		}
 	}
 	
@@ -191,6 +190,7 @@ public class ImportSetContacts extends WizardPage {
 			this.name = new Text(container, SWT.BORDER);
 			this.name.setText(c.getName());
 			this.name.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, accounts.size()));
+			this.name.addModifyListener((ImportWizard)getWizard());
 
 			this.combo = new Combo(container, SWT.CHECK);
 			this.combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, accounts.size()));

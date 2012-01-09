@@ -6,8 +6,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ProgressBar;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Label;
 
 public class ImportLoading extends WizardPage {
 	private ProgressBar progressBar;

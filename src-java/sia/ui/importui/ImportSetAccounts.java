@@ -102,6 +102,9 @@ public class ImportSetAccounts extends WizardPage {
 			text = new Text(container, SWT.BORDER);
 			text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 			container.layout();
+
+			text.addModifyListener((ImportWizard)getWizard());
+			combo.addSelectionListener((ImportWizard)getWizard());
 		}
 	}
 	

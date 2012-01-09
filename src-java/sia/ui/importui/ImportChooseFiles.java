@@ -143,6 +143,7 @@ public class ImportChooseFiles extends WizardPage {
 		    	files[n]=fileName;
 		    	fileLabels[n].setText(fileName);
 		    }
+		    ((ImportWizard)getWizard()).validatePage(ImportChooseFiles.this);
 		}
 	}
 	

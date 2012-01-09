@@ -3,7 +3,6 @@ package sia.ui.importui;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.IPageChangingListener;
@@ -15,6 +14,10 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.sormula.SormulaException;
 
 import sia.datasources.DataSource;
@@ -26,7 +29,7 @@ import sia.utils.Dictionaries;
  * @author Agnieszka Glabala
  * 
  */
-public class ImportWizard extends Wizard implements IPageChangingListener, IPageChangedListener {
+public class ImportWizard extends Wizard implements IPageChangingListener, IPageChangedListener, SelectionListener, ModifyListener {
 	private String[] imNames;
 	private int im;
 	private boolean wasSetAccounts = false;
@@ -81,8 +84,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		addPage(saveLoading);
 	}
 
-	private boolean validatePage(WizardPage page) {
-		page.setErrorMessage(null);
+	public boolean validatePage(IWizardPage page) {
+		((WizardPage) page).setErrorMessage(null);
 		if (page == chooseIM) {
 			if (chooseIM.getSelected() == -1) {
 				chooseIM.setErrorMessage("Choose an application");
@@ -292,6 +295,20 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			}).start();
 			new Thread(new Loader(DataSource.Progress.SAVE_PROGRESS, saveLoading)).start();
 		}
+	}
+
+	@Override
+	public void widgetDefaultSelected(SelectionEvent arg0) {
+	}
+
+	@Override
+	public void widgetSelected(SelectionEvent e) {		
+		validatePage(this.getContainer().getCurrentPage());
+	}
+
+	@Override
+	public void modifyText(ModifyEvent e) {
+		validatePage(this.getContainer().getCurrentPage());
 	}
 	
 	/**
