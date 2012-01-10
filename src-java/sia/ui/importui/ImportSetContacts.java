@@ -70,6 +70,8 @@ public class ImportSetContacts extends WizardPage {
 	public void setControls() {
 		for (Control c : container.getChildren())
 			c.dispose();
+		controls.clear(); 
+		
 		Label lblProtocol = new Label(container, SWT.FILL);
 		lblProtocol.setText("Protocol");
 		
