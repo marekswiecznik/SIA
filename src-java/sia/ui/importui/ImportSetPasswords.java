@@ -80,6 +80,7 @@ public class ImportSetPasswords extends WizardPage {
 					textfields[i] = new Text(container, SWT.BORDER);
 				}
 				textfields[i].setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+				textfields[i].addModifyListener((ImportWizard)getWizard());
 			}
 			container.layout();
 		}

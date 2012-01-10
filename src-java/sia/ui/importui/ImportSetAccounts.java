@@ -40,7 +40,8 @@ public class ImportSetAccounts extends WizardPage {
 
 	public List<UserAccount> getUserAccounts() {
 		if(combo.getSelectionIndex()>0) {
-			userAccounts.set(0, uas4combo2.get(combo.getSelectionIndex()-1));
+			userAccounts.get(0).setUid(uas4combo2.get(combo.getSelectionIndex()-1).getUid());
+			userAccounts.get(0).setId(uas4combo2.get(combo.getSelectionIndex()-1).getId());
 		} else {
 			userAccounts.get(0).setUid(text.getText());
 		}

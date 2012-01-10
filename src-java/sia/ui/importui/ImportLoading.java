@@ -1,5 +1,6 @@
 package sia.ui.importui;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -37,7 +38,15 @@ public class ImportLoading extends WizardPage {
 		
 		progressBar = new ProgressBar(container, SWT.SMOOTH);
 		progressBar.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1));
-
+		
 		setControl(container);
+	}
+
+	@Override
+	public IWizardPage getPreviousPage() {
+		if (getName().equals("saveLoading")) {
+			return null;
+		}
+		return super.getPreviousPage();
 	}
 }

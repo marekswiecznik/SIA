@@ -39,7 +39,7 @@ class FmaParser(Parser):
 		
 	def getContacts(self, userAccounts):
 		self.contactsLoadProgress = 0
-		contactsTemp = {}
+		contactAccountsTemp = {}
 		sms = re.split('\<sms\>', self.messagesContent)
 		pattern = '\<from\>(.*)\s*\[(.*)\]\<\/from\>\s*\<msg\>(.*)\<\/msg\>\s*\<date\>(.*)\<\/date\>'
 		prog = re.compile(pattern)
@@ -51,18 +51,19 @@ class FmaParser(Parser):
 				name = res.group(1).strip()
 				if name == None:
 					name = ""
-				cnt = Contact(0, "", "", name)
-				cnt.contactAccounts.add(ContactAccount(0, name, res.group(2).strip(), "", cnt, self.protocol))
-				if not contactsTemp.has_key(cnt):
-					contactsTemp[cnt] = []
+				ca = ContactAccount(0, name, res.group(2).strip(), "", None, self.protocol)
+				if not contactAccountsTemp.has_key(ca):
+					contactAccountsTemp[ca] = []
 				msg = Message(0, None, res.group(3).strip(), date, True)
-				contactsTemp[cnt].append(msg)
+				contactAccountsTemp[ca].append(msg)
 				self.messagesCount += 1
 			self.contactsLoadProgress = i * 100 /len(sms)
 				
 		contacts = []
-		for cnt in contactsTemp.iterkeys():
-			cnt.contactAccounts[0].conversations = ConversationHelper.messagesToConversations(contactsTemp[cnt], cnt.contactAccounts[0], userAccounts[0])
+		for ca in contactAccountsTemp.iterkeys():
+			ca.conversations = ConversationHelper.messagesToConversations(contactAccountsTemp[ca], ca, userAccounts[0])
+			cnt = Contact(0, "", "", ca.name)
+			cnt.addContactAccount(ca)
 			contacts.append(cnt)
 		self.contactsLoadProgress = 100
 		return contacts
