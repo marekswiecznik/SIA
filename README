@@ -4,15 +4,19 @@ PROJECT TREE
 |  |
 |  |- sia
 |  |  |
+|  |  |- datasources	# data sources
 |  |  |- models		# models
-|  |  |- ui		# GUI in SWT
+|  |  |- ui		# GUI in SWT + resources (images, icons)
 |  |  |- utils		# utils for DB connection, helpers
+|  |  |- fileparsers	# messages and contacts file parsers
 |  
 |- src-py		# python code
 |  |
-|  |- sia
+|  |- sia/py
 |  |  |
 |  |  |- fileparsers	# messages and contacts file parsers
-|  |  |- utils		# utils for DB connection, helpers
+|  |  |- utils		# utils, helpers
 |
-|- sia-template.db	 	# SIA sqlite database file
+|- test			# JUnit tests
+|
+|- sia-template.db 	# SIA sqlite database file

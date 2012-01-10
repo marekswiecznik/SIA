@@ -312,11 +312,9 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 						datasource.save(contacts);
 					} catch (SQLException e) {
 						// TODO: [Marek] catch block
-						MessageDialog.openError(getShell(), "SQLException", e.getMessage());
 						e.printStackTrace();
 					} catch (SormulaException e) {
 						// TODO: [Marek] catch block
-						MessageDialog.openError(getShell(), "SormulaException", e.getMessage());
 						e.printStackTrace();
 					}
 				}
@@ -369,6 +367,12 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		@Override
 		public void run() {
 			int value = 0;
+			getShell().getDisplay().asyncExec(new Runnable() {
+				public void run() {
+					page.setPageComplete(false);
+					page.canFlipToNextPage();
+				}
+			});
 			while (value < 100) {
 				value = datasource.getProgress(progress);
 				final int valueToSet = value;
