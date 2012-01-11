@@ -409,7 +409,7 @@ public class Start extends ApplicationWindow {
 			}
 			for (Conversation conv : conversations) {
 				TableItem ti = new TableItem(conversationsTable, SWT.NONE);
-				ti.setText(new String[] { conv.getContactAccount().getName(), conv.getTitle(),
+				ti.setText(new String[] { conv.getContactAccount().getContact().getName(), conv.getTitle(),
 						conv.getTime().toString(), conv.getLength() + "" });
 			}
 		}
@@ -450,7 +450,7 @@ public class Start extends ApplicationWindow {
 		}
 		for (Conversation conv : conversations) {
 			TableItem ti = new TableItem(conversationsTable, SWT.NONE);
-			ti.setText(new String[] { conv.getContactAccount().getName(), conv.getTitle(), conv.getTime().toString(),
+			ti.setText(new String[] { conv.getContactAccount().getContact().getName(), conv.getTitle(), conv.getTime().toString(),
 					conv.getLength() + "" });
 		}
 	}

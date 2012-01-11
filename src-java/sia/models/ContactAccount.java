@@ -16,6 +16,7 @@ import org.sormula.annotation.cascade.SelectCascade;
 public class ContactAccount {
 	@Column(identity=true, primaryKey=true)
 	private int id;
+	@Transient
 	private String name;
 	private String uid;
 	private String otherinfo;
