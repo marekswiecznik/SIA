@@ -112,6 +112,7 @@ public class Start extends ApplicationWindow {
 
 				dialog.getShell().setSize(dialog.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				if (dialog.open() == 0) {
+					lastSearchContact = "refreshed";
 					fillContactTree("");
 				}
 			}
