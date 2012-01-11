@@ -48,7 +48,7 @@ public class FmaParserTest {
 	}
 
 	@Test
-	public void testLoadFilesEmptyArray() {
+	public void testLoadFilesEmptyArray() throws Exception {
 		try {
 			parser.loadFiles(new String[] {});
 			fail("Shouldn't get so far.");
@@ -59,7 +59,7 @@ public class FmaParserTest {
 	}
 
 	@Test
-	public void testLoadFilesNotFound() {
+	public void testLoadFilesNotFound() throws Exception {
 		try {
 			parser.loadFiles(new String[] {"dummy-name"});
 			fail("Shouldn't get so far.");
@@ -70,24 +70,24 @@ public class FmaParserTest {
 	}
 	
 	@Test
-	public void testLoadFilesSample() {
+	public void testLoadFilesSample() throws Exception {
 		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-empty.xml" } );
 	}
 	
 	@Test
-	public void testGetUserAccountsNoFileLoaded() {
+	public void testGetUserAccountsNoFileLoaded() throws Exception {
 		assertEquals("User accounts not empty!", null, parser.getUserAccounts());
 	}
 	
 	@Test
-	public void testGetUserAccountsFileOk() {
+	public void testGetUserAccountsFileOk() throws Exception {
 		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-sample.xml" } );
 		assertEquals("User accounts array size <> 1", 1, parser.getUserAccounts().size());
 		assertEquals("User account not the same", new UserAccount(-1, Dictionaries.getInstance().getProtocol("SMS"), ""), parser.getUserAccounts().get(0));
 	}
 	
 	@Test
-	public void testGetContactsEmptyXml() {
+	public void testGetContactsEmptyXml() throws Exception {
 		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-empty.xml" } );
 		List<Contact> contacts = parser.getContacts(parser.getUserAccounts());
 		assertNotNull("Contact list is null", contacts);
@@ -95,7 +95,7 @@ public class FmaParserTest {
 	}
 	
 	@Test
-	public void testGetContactsOneEmptyMessage() {
+	public void testGetContactsOneEmptyMessage() throws Exception {
 		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-one-empty-message.xml" } );
 		List<UserAccount> userAccount = parser.getUserAccounts();
 		List<Contact> contacts = parser.getContacts(userAccount);
@@ -139,7 +139,7 @@ public class FmaParserTest {
 	}
 	
 	@Test
-	public void testGetContact() {
+	public void testGetContact() throws Exception {
 		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-sample.xml" } );
 		parser.getContacts(parser.getUserAccounts());
 		//TODO: [Marek] test conversations etc, maybe in other test case?

@@ -15,39 +15,45 @@ public abstract class Parser {
 	protected int userAccountsLoadProgress = 0;
 	protected int messagesCount = 0;
 	protected String[] passwords = new String[0];
-	
+
 	/**
 	 * Load required files (if neccessary)
+	 * 
+	 * @throws Exception
 	 * @param fileNames
 	 */
-	public abstract void loadFiles(String[] fileNames);
-	
+	public abstract void loadFiles(String[] fileNames) throws Exception;
+
 	/**
 	 * Returns user accounts.
 	 * 
-	 * This method should return all user accounts found in
-	 * parsed files.
+	 * This method should return all user accounts found in parsed files.
 	 * 
+	 * @throws Exception
 	 * @return user accounts
 	 */
-	public abstract List<UserAccount> getUserAccounts();
-	
+	public abstract List<UserAccount> getUserAccounts() throws Exception;
+
 	/**
 	 * Returns contacts with conversations
+	 * 
+	 * @throws Exception
 	 * @return contacts
 	 */
-	public abstract List<Contact> getContacts(List<UserAccount> userAccounts);
-	
+	public abstract List<Contact> getContacts(List<UserAccount> userAccounts) throws Exception;
+
 	/**
 	 * Set passwords and other parameters
+	 * 
 	 * @param passwords
 	 */
 	public void setPasswords(String[] passwords) {
 		this.passwords = passwords;
 	}
-	
+
 	/**
 	 * Returns passwords
+	 * 
 	 * @return passwords
 	 */
 	public String[] getPasswords() {
@@ -56,6 +62,7 @@ public abstract class Parser {
 
 	/**
 	 * Returns user accounts load progress
+	 * 
 	 * @return user accounts load progress
 	 */
 	public int getUserAccountsLoadProgress() {
@@ -64,6 +71,7 @@ public abstract class Parser {
 
 	/**
 	 * Set userAccountsLoadProgress
+	 * 
 	 * @param userAccountsLoadProgress
 	 */
 	public void setUserAccountsLoadProgress(int userAccountsLoadProgress) {
@@ -72,6 +80,7 @@ public abstract class Parser {
 
 	/**
 	 * Returns contacts load progress
+	 * 
 	 * @return contacts load progress
 	 */
 	public int getContactsLoadProgress() {
@@ -80,6 +89,7 @@ public abstract class Parser {
 
 	/**
 	 * Set contactsLoadProgress
+	 * 
 	 * @param contactsLoadProgress
 	 */
 	public void setContactsLoadProgress(int contactsLoadProgress) {
@@ -88,6 +98,7 @@ public abstract class Parser {
 
 	/**
 	 * Returns messages count
+	 * 
 	 * @return messages count
 	 */
 	public int getMessagesCount() {
@@ -96,6 +107,7 @@ public abstract class Parser {
 
 	/**
 	 * Set messagesCount
+	 * 
 	 * @param messagesCount
 	 */
 	public void setMessagesCount(int messagesCount) {

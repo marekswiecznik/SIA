@@ -42,18 +42,28 @@ class GtalkParser(Parser):
 	def getContacts(self, userAccounts):
 		self.contactsLoadProgress = 0
 		M = imaplib.IMAP4_SSL('imap.gmail.com')
-		M.login(self.passwords[0], self.passwords[1])
+		try:
+			M.login(self.passwords[0], self.passwords[1])
+		except Exception, e:
+			ex = ValueError()
+			ex.message = 'Incorrect login and/or password.'
+			raise ex 
 		M.select(mailbox='[Gmail]/'+self.passwords[2], readonly='true')
-		typ, data = M.search(None, 'ALL')
+		try:
+			typ, data = M.search(None, 'ALL')
+		except Exception, e:
+			ex = ValueError()
+			ex.message = 'Incorrect chats label.'
+			raise ex 
 		contactAccounts = {}
 		convNums = data[0].split()
 		for num in convNums:			
 			# parse head
 			typ, head = M.fetch(num, '(BODY.PEEK[HEADER])')
 			if typ <> 'OK':
-				print num + typ
-				# TODO: [Marek] throw exception
-				continue
+				e = Exception()
+				e.message = 'Message '+num+' not found.'
+				raise e
 			head = quopri.decodestring(head[0][1])
 			parser = HeaderParser()
 			fromField = parser.parsestr(head)['From']
@@ -79,21 +89,23 @@ class GtalkParser(Parser):
 			# parse body
 			typ, data = M.fetch(num, '(RFC822)')
 			if typ <> 'OK':
-				print num + typ
-				# TODO: [Marek] throw exception
-				continue
+				e = Exception()
+				e.message = 'Problem with retrieving message body.'
+				raise e
 			data = data[0][1].replace('=\r\n', '')
 			data = quopri.decodestring(data)
 			pattern = re.compile('\<con\:conversation(.*)\<\/con\:conversation\>', re.DOTALL)
 			m = pattern.search(data)
 			if m == None:
-				print data
-				continue
+				e = Exception()
+				e.message = 'Conversation parsing error.'
+				raise e
 			try:
 				root = ElementTree.XML(m.group(0))
 			except ExpatError:
-				print m.group(0)
-				continue
+				e = Exception()
+				e.message = 'Conversation parsing error.'
+				raise e
 			
 			# create conversation
 			time = Date()

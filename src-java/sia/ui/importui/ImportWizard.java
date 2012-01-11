@@ -1,6 +1,5 @@
 package sia.ui.importui;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ import org.sormula.SormulaException;
 
 import sia.datasources.DataSource;
 import sia.models.Contact;
+import sia.ui.SIA;
 import sia.utils.Dictionaries;
 
 /**
@@ -124,18 +124,17 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				}
 			} else if (page == messageLoading) {
 				if (datasource.getProgress(DataSource.Progress.CONTACTS_PROGRESS) != 100) {
-					// TODO: [Marek] try to disable next button
 					messageLoading
 							.setErrorMessage("You can't go to the next page until contacts and messages are loaded.");
 					return false;
 				}
-				// } else if (page == mapContacts) {
+			} else if (page == mapContacts) {
 			} else if (page == setContacts) {
 				List<ImportSetContacts.Controls> controls = setContacts.getControls();
 				String uid;
 				for (ImportSetContacts.Controls ctls : controls) {
 					if (ctls.getVisible()) {
-						// TODO [Marek] check this
+						// TODO [Marek] empty name validation
 						for (Contact c : contacts) {
 							if (ctls.name.getVisible() && ctls.name.getEnabled()
 									&& ctls.name.getText().toLowerCase().trim().equals(c.getName().toLowerCase())) {
@@ -169,6 +168,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					}
 				}
 			}
+		} catch (Exception e) {
+			SIA.getInstance().handleException("An unexpected error occured when validating wizard.", e);
 		} finally {
 			((WizardPage) page).setPageComplete(((WizardPage) page).getErrorMessage() == null);
 			page.canFlipToNextPage();
@@ -184,8 +185,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		try {
 			Dictionaries.getInstance().loadContacts();
 		} catch (SormulaException e) {
-			// TODO: [Marek] logger (Issue #5)
-			e.printStackTrace();
+			SIA.getInstance().handleException("An error occured when reloading contacts.", e);
 		}
 		return true;
 	}
@@ -199,127 +199,158 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			event.doit = false;
 			return;
 		}
-		if (target == chooseFiles) {
-			int previousIm = im;
-			im = chooseIM.getSelected();
-			this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
-			if (datasource.getFileExtensions() == null || datasource.getFileExtensions().length == 0) {
-				dialog.showPage(setPasswords);
-				event.doit = false;
-			} else if (previousIm != im) {
-				chooseFiles.setFileExtensions(datasource.getFileExtensions());
-				chooseFiles.setDescriptions(datasource.getFileDescriptions());
-				chooseFiles.setControls();
-				chooseFiles.setPageComplete(false);
-				chooseFiles.canFlipToNextPage();
-				this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
-			}
-		} else if (target == setPasswords) {
-			setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
-			if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
-				setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
-				setPasswords.setControls();
-				setPasswords.setPageComplete(false);
-				setPasswords.canFlipToNextPage();
-			} else {
-				dialog.showPage(accountsLoading);
-				event.doit = false;
-			}
-		} else if (target == accountsLoading) {
-		} else if (target == setAccounts) {
-			if (!wasSetAccounts) {
-				if (datasource.getUserAccounts() != null && datasource.getUserAccounts().size() > 0
-						&& datasource.getUserAccounts().get(0).getUid().length() > 0) {
-					chooseAccounts.setUserAccounts(datasource.getUserAccounts());
-					chooseAccounts.setControls();
-					chooseAccounts.setPageComplete(false);
-					chooseAccounts.canFlipToNextPage();
-					dialog.showPage(chooseAccounts);
-					event.doit = false;
-				} else {
-					setAccounts.setUserAccounts(datasource.getUserAccounts());
-					setAccounts.setControls();
-					setAccounts.setPageComplete(false);
-					setAccounts.canFlipToNextPage();
-					wasSetAccounts = true;
+		try {
+			if (target == chooseFiles) {
+				int previousIm = im;
+				im = chooseIM.getSelected();
+				this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
+				if (previousIm != im) {
+					if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
+						setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
+						setPasswords.setControls();
+					}
 				}
+				if (datasource.getFileExtensions() == null || datasource.getFileExtensions().length == 0) {
+					dialog.showPage(setPasswords);
+					event.doit = false;
+				} else if (previousIm != im) {
+					chooseFiles.setFileExtensions(datasource.getFileExtensions());
+					chooseFiles.setDescriptions(datasource.getFileDescriptions());
+					chooseFiles.setControls();
+					chooseFiles.setPageComplete(false);
+					chooseFiles.canFlipToNextPage();
+					this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
+				}
+			} else if (target == setPasswords) {
+				if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
+					setPasswords.setPageComplete(false);
+					setPasswords.canFlipToNextPage();
+				} else {
+					dialog.showPage(accountsLoading);
+					event.doit = false;
+				}
+			} else if (target == accountsLoading) {
+			} else if (target == setAccounts) {
+				if (!wasSetAccounts) {
+					if (datasource.getUserAccounts() != null && datasource.getUserAccounts().size() > 0
+							&& datasource.getUserAccounts().get(0).getUid().length() > 0) {
+						chooseAccounts.setUserAccounts(datasource.getUserAccounts());
+						chooseAccounts.setControls();
+						chooseAccounts.setPageComplete(false);
+						chooseAccounts.canFlipToNextPage();
+						dialog.showPage(chooseAccounts);
+						event.doit = false;
+					} else {
+						setAccounts.setUserAccounts(datasource.getUserAccounts());
+						setAccounts.setControls();
+						setAccounts.setPageComplete(false);
+						setAccounts.canFlipToNextPage();
+						wasSetAccounts = true;
+					}
+				}
+			} else if (target == chooseAccounts) {
+				if (wasSetAccounts) {
+					dialog.showPage(current == messageLoading ? setAccounts : messageLoading);
+					event.doit = false;
+				}
+			} else if (target == messageLoading) {
+			} else if (target == mapContacts) {
+				if (datasource.getContacts().size() == 0) {
+					dialog.showPage(saveLoading);
+					event.doit = false;
+				}
+				this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
+			} else if (target == setContacts) {
+				validatePage(setContacts);
+				setContacts.layout();
+			} else if (target == saveLoading) {
 			}
-		} else if (target == chooseAccounts) {
-			if (wasSetAccounts) {
-				dialog.showPage(current == messageLoading ? setAccounts : messageLoading);
-				event.doit = false;
-			}
-		} else if (target == messageLoading) {
-		} else if (target == mapContacts) {
-			if (datasource.getContacts().size() == 0) {
-				dialog.showPage(saveLoading);
-				event.doit = false;
-			}
-			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		} else if (target == setContacts) {
-			validatePage(setContacts);
-			setContacts.layout();
-		} else if (target == saveLoading) {
+		} catch (Exception e) {
+			SIA.getInstance().handleException("An unexpected error occured.", e);
 		}
 	}
 
 	@Override
 	public void pageChanged(PageChangedEvent event) {
-		if (event.getSelectedPage() == accountsLoading) {
-			if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
-				datasource.setPasswords(setPasswords.getPasswords());
-			}
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					datasource.loadFiles(chooseFiles.getFiles());
-					datasource.getUserAccounts();
+		try {
+			if (event.getSelectedPage() == accountsLoading) {
+				if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
+					datasource.setPasswords(setPasswords.getPasswords());
 				}
-			}).start();
-			new Thread(new Loader(DataSource.Progress.USER_ACCOUNTS_PROGRESS, accountsLoading)).start();
-		} else if (event.getSelectedPage() == messageLoading) {
-			if (wasSetAccounts) {
-				datasource.setUserAccounts(setAccounts.getUserAccounts());
-			} else {
-				datasource.setUserAccounts(chooseAccounts.getUserAccounts());
-			}
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					datasource.getContacts();
-					datasource.mapContacts(contacts);
-					mapContacts.setParsedContacts(datasource.getContacts());
-					mapContacts.setContacts(contacts);
-					setContacts.setParsedContacts(datasource.getContacts());
-					setContacts.setContacts(contacts);
-					getShell().getDisplay().asyncExec(new Runnable() {
-						public void run() {
-							mapContacts.setControls();
-							setContacts.setControls();
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							datasource.loadFiles(chooseFiles.getFiles());
+							datasource.getUserAccounts();
+						} catch (Exception e) {
+							SIA.getInstance().handleException("Loading files and parsing user accounts failed.", e);
+							getShell().getDisplay().asyncExec(new Runnable() {
+								public void run() {
+									accountsLoading.setErrorMessage("Loading files and parsing user accounts failed.");
+								}
+							});
 						}
-					});
-				}
-			}).start();
-			new Thread(new Loader(DataSource.Progress.CONTACTS_PROGRESS, messageLoading)).start();
-		} else if (event.getSelectedPage() == saveLoading) {
-			mapContacts.addContactAccounts(); // merge new ContactAccounts with
-												// existing Contacts
-			setContacts.addNewContacts();
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						datasource.save(contacts);
-					} catch (SQLException e) {
-						// TODO: [Marek] catch block
-						e.printStackTrace();
-					} catch (SormulaException e) {
-						// TODO: [Marek] catch block
-						e.printStackTrace();
 					}
+				}).start();
+				new Thread(new Loader(DataSource.Progress.USER_ACCOUNTS_PROGRESS, accountsLoading)).start();
+			} else if (event.getSelectedPage() == messageLoading) {
+				if (wasSetAccounts) {
+					datasource.setUserAccounts(setAccounts.getUserAccounts());
+				} else {
+					datasource.setUserAccounts(chooseAccounts.getUserAccounts());
 				}
-			}).start();
-			new Thread(new Loader(DataSource.Progress.SAVE_PROGRESS, saveLoading)).start();
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							datasource.getContacts();
+							datasource.mapContacts(contacts);
+							mapContacts.setParsedContacts(datasource.getContacts());
+							mapContacts.setContacts(contacts);
+							setContacts.setParsedContacts(datasource.getContacts());
+							setContacts.setContacts(contacts);
+							getShell().getDisplay().asyncExec(new Runnable() {
+								public void run() {
+									mapContacts.setControls();
+									setContacts.setControls();
+								}
+							});
+						} catch (Exception e) {
+							SIA.getInstance().handleException("Retrieving contacts and conversations failed.", e);
+							getShell().getDisplay().asyncExec(new Runnable() {
+								public void run() {
+									messageLoading.setErrorMessage("Retrieving contacts and conversations failed.");
+								}
+							});
+						}
+					}
+				}).start();
+				new Thread(new Loader(DataSource.Progress.CONTACTS_PROGRESS, messageLoading)).start();
+			} else if (event.getSelectedPage() == saveLoading) {
+				mapContacts.addContactAccounts(); // merge new ContactAccounts
+													// with
+													// existing Contacts
+				setContacts.addNewContacts();
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							datasource.save(contacts);
+						} catch (Exception e) {
+							SIA.getInstance().handleException("Unexpected error on saving data into database.", e);
+							getShell().getDisplay().asyncExec(new Runnable() {
+								public void run() {
+									saveLoading.setErrorMessage("Unexpected error on saving data into database.");
+								}
+							});
+						}
+					}
+				}).start();
+				new Thread(new Loader(DataSource.Progress.SAVE_PROGRESS, saveLoading)).start();
+			}
+		} catch (Exception e) {
+			SIA.getInstance().handleException("An unexpected error occured on page changing.", e);
 		}
 	}
 
@@ -383,7 +414,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				});
 				try {
 					Thread.sleep(100);
-				} catch (InterruptedException e) {/* TODO: [Marek] logger */
+				} catch (InterruptedException e) {
+					SIA.getInstance().handleException("Loader thread interrupted.", e);
 				}
 			}
 			getShell().getDisplay().asyncExec(new Runnable() {

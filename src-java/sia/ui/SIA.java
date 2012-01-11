@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.Logger;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+import org.python.core.PyBaseException;
+import org.python.core.PyException;
 import org.sormula.Database;
 import org.sormula.SormulaException;
 
@@ -31,44 +31,61 @@ public class SIA {
 	private ORM orm;
 	private Start window;
 	
+	private static final Logger logger = Logger.getLogger(SIA.class);
+	
 	/**
 	 * Initialize database and GUI
 	 */
 	public void init() {
-		String error = null;
+		PropertyConfigurator.configure("log4j.properties");
+		logger.debug("init");
+		Exception exception = null;
 		try {
-			Logger.getAnonymousLogger().log(Level.INFO, "SIA init");
 			dbInit("sia.db");
 			tmpInit();
 			ormInit();
 			Dictionaries.getInstance().init();
 			guiInit();
 		} catch (SQLException e) {
-			error = e.getLocalizedMessage();
-			e.printStackTrace();
+			handleException("Unexpected problem with database connection (SQL).", exception);
 		} catch (ClassNotFoundException e) {
-			error = e.getLocalizedMessage();
-			e.printStackTrace();
+			handleException("Application module is missing.", exception);
 		} catch (SormulaException e) {
-			error = e.getLocalizedMessage();
-			e.printStackTrace();
+			handleException("Unexpected problem with database connection (ORM).", exception);
 		} catch (Exception e) {
-			error = e.getLocalizedMessage();
-			e.printStackTrace();
+			handleException("Unexpected error.", exception);
 		} finally {
 			if (connection != null)
 				try {
 					dbClose();
 				} catch (SQLException e) {
-					error += "\n" + e.getLocalizedMessage();
-					e.printStackTrace();
+					handleException("Unexpected error on database connection closing.", exception);
 				}
-		}
-		if (error != null) {
-			MessageDialog.openError(new Shell(Display.getCurrent()), "Error", error);
 		}
 	}
 	
+	/**
+	 * General exception handler
+	 * @param ex
+	 */
+	public void handleException(final String message, final Exception ex) {
+		final String exceptionMessage;
+		if (ex instanceof PyException) {
+			exceptionMessage = ((PyBaseException)((PyException)ex).value).message.toString();
+		} else {
+			exceptionMessage = ex.getLocalizedMessage() == null ? "" : ex.getLocalizedMessage();
+		}
+		logger.error(message, ex);
+		window.getShell().getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				MessageDialog.openError(window.getShell(), 
+					"Error", 
+					(message != null ? message : "") + "\n"
+						+ exceptionMessage + "\nDetails stored in error.log.");
+			}
+		});
+	}
+
 	/**
 	 * Database init
 	 * @throws ClassNotFoundException 
@@ -148,8 +165,7 @@ public class SIA {
 			val = result.getString(1);
 			if (val.indexOf("sqlite_") != 0 && val.indexOf("configuration") != 0) {
 				affected = stmt.executeUpdate("INSERT OR REPLACE INTO main."+val+" SELECT * FROM aux1."+val+" WHERE aux1."+val+".id > IFNULL((SELECT MAX(id) FROM main."+val+"), 0)");
-				//TODO: [Marek] loggerSystem.out.println("temp -> file "+val+", affected: "+affected);
-				Logger.getAnonymousLogger().log(Level.FINE, "temp -> file "+val+", affected: "+affected);
+				logger.debug("temp -> file "+val+", affected: "+affected);
 			}
 		}
 	}

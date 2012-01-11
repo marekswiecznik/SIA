@@ -66,9 +66,10 @@ public abstract class DataSource {
 	
 	/**
 	 * Load files
+	 * @throws Exception
 	 * @param files
 	 */
-	public void loadFiles(String[] files) {
+	public void loadFiles(String[] files) throws Exception {
 		parser.loadFiles(files);
 	}
 
@@ -99,9 +100,10 @@ public abstract class DataSource {
 
 	/**
 	 * Returns user accounts found in archive files or null if user should to set this manually
+	 * @throws Exception
 	 * @return list of user accounts
 	 */
-	public List<UserAccount> getUserAccounts() {
+	public List<UserAccount> getUserAccounts() throws Exception {
 		if(userAccounts==null) {
 			userAccounts = parser.getUserAccounts();
 			List <UserAccount> dictUserAccounts = Dictionaries.getInstance().getUserAccounts();
@@ -124,9 +126,10 @@ public abstract class DataSource {
 	
 	/**
 	 * Returns all contacts with conversations (but not necessarily messages)
+	 * @throws Exception
 	 * @return list of contacts
 	 */
-	public List<Contact> getContacts() {
+	public List<Contact> getContacts() throws Exception {
 		if(contacts==null) {
 			contacts = parser.getContacts(userAccounts);
 		}

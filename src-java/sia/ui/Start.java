@@ -401,8 +401,7 @@ public class Start extends ApplicationWindow {
 								"WHERE id IN (SELECT DISTINCT m.conversationId FROM main.message m JOIN main.conversation c ON m.conversationId = c.id " +
 								" JOIN contactaccount ca ON ca.id = c.contactAccountId AND ca.contactId = " + contact.getId() + " WHERE message LIKE '%" + s + "%') ORDER BY "+order);
 			} catch (SormulaException e) {
-				// TODO: [Marek] handle this
-				e.printStackTrace();
+				SIA.getInstance().handleException("An unexpected error occured when loading conversations.", e);
 			}
 			TableItem[] tis = conversationsTable.getItems();
 			for (TableItem ti : tis) {
@@ -441,8 +440,7 @@ public class Start extends ApplicationWindow {
 										"WHERE id IN (SELECT DISTINCT m.conversationId FROM main.message m JOIN main.conversation c ON m.conversationId = c.id AND c.contactAccountId = "
 												+ contactAccount.getId() + " WHERE message LIKE '%" + s + "%') ORDER BY "+order);
 			} catch (SormulaException e) {
-				// TODO: [Marek] handle this
-				e.printStackTrace();
+				SIA.getInstance().handleException("An unexpected error occured when loading conversations.", e);
 			}
 		}
 		Collections.sort(conversations);
@@ -467,8 +465,7 @@ public class Start extends ApplicationWindow {
 				conv.setMessages(SIA.getInstance().getORM().getTable(Message.class)
 						.selectAllCustom("WHERE conversationId = " + conv.getId() + " ORDER BY time"));
 			} catch (SormulaException e) {
-				// TODO [Marek] handle this
-				e.printStackTrace();
+				SIA.getInstance().handleException("An unexpected error occured when loading messages.", e);
 			}
 		}
 		m = conv.getMessages();
