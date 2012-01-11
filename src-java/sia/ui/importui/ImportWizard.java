@@ -133,11 +133,13 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				List<ImportSetContacts.Controls> controls = setContacts.getControls();
 				String uid;
 				for (ImportSetContacts.Controls ctls : controls) {
-					if (ctls.getVisible()) {
-						// TODO [Marek] empty name validation
+					if (ctls.name.getVisible() && ctls.name.getEnabled()) {
+						if (ctls.name.getText().trim().isEmpty()) {
+							setContacts.setErrorMessage("Contact with uid "+ctls.uids[0].getText()+" has empty name. This field is required.");
+							return false;
+						}
 						for (Contact c : contacts) {
-							if (ctls.name.getVisible() && ctls.name.getEnabled()
-									&& ctls.name.getText().toLowerCase().trim().equals(c.getName().toLowerCase())) {
+							if (ctls.name.getText().toLowerCase().trim().equals(c.getName().toLowerCase())) {
 								setContacts
 										.setErrorMessage("A contact with name \""
 												+ ctls.name.getText()
@@ -147,22 +149,22 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 						}
 						for (ImportSetContacts.Controls ctls2 : controls) {
 							if (ctls != ctls2 && ctls2.getVisible() && ctls2.name.getEnabled()
-									&& ctls.name.getEnabled() && ctls.name.getText().equals(ctls2.name.getText())) {
+									&& ctls.name.getText().equals(ctls2.name.getText())) {
 								setContacts.setErrorMessage("Two contacts can't have the same name ("
 										+ ctls.name.getText() + "). Connect one to another or change name.");
 								return false;
 							}
 						}
-						uid = ctls.getSelectedItem();
-						if (uid != null) {
-							for (int i = 0; i < datasource.getContacts().size(); i++) {
-								if (datasource.getContacts().get(i).getContactAccounts().get(0).getUid().equals(uid)
-										&& controls.get(i).getSelectedItem() != null) {
-									setContacts.setErrorMessage("Chained contact merging disallowed. Contact with UID "
-											+ ctls.uids[0].getText() + " can't be attached to contact with UID " + uid
-											+ ", because it's already attached to another contact.");
-									return false;
-								}
+					}
+					uid = ctls.getSelectedItem();
+					if (ctls.name.isVisible() && uid != null) {
+						for (int i = 0; i < datasource.getContacts().size(); i++) {
+							if (datasource.getContacts().get(i).getContactAccounts().get(0).getUid().equals(uid)
+									&& controls.get(i).getSelectedItem() != null) {
+								setContacts.setErrorMessage("Chained contact merging disallowed. Contact with UID "
+										+ ctls.uids[0].getText() + " can't be attached to contact with UID " + uid
+										+ ", because it's already attached to another contact.");
+								return false;
 							}
 						}
 					}
