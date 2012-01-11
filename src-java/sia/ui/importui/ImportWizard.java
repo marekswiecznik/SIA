@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.IPageChangingListener;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.dialogs.PageChangingEvent;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -196,11 +195,11 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		WizardDialog dialog = (WizardDialog) event.getSource();
 		WizardPage current = (WizardPage) event.getCurrentPage();
 		WizardPage target = (WizardPage) event.getTargetPage();
-		if (current.getNextPage().equals(event.getTargetPage()) && !validatePage(current)) {
+		if (current.getNextPage().equals(target) && !validatePage(current)) {
 			event.doit = false;
 			return;
 		}
-		if (event.getTargetPage() == chooseFiles) {
+		if (target == chooseFiles) {
 			int previousIm = im;
 			im = chooseIM.getSelected();
 			this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
@@ -215,7 +214,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				chooseFiles.canFlipToNextPage();
 				this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 			}
-		} else if (event.getTargetPage() == setPasswords) {
+		} else if (target == setPasswords) {
 			setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
 			if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
 				setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
@@ -226,8 +225,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				dialog.showPage(accountsLoading);
 				event.doit = false;
 			}
-		} else if (event.getTargetPage() == accountsLoading) {
-		} else if (event.getTargetPage() == setAccounts) {
+		} else if (target == accountsLoading) {
+		} else if (target == setAccounts) {
 			if (!wasSetAccounts) {
 				if (datasource.getUserAccounts() != null && datasource.getUserAccounts().size() > 0
 						&& datasource.getUserAccounts().get(0).getUid().length() > 0) {
@@ -245,22 +244,22 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					wasSetAccounts = true;
 				}
 			}
-		} else if (event.getTargetPage() == chooseAccounts) {
+		} else if (target == chooseAccounts) {
 			if (wasSetAccounts) {
-				dialog.showPage(event.getCurrentPage() == messageLoading ? setAccounts : messageLoading);
+				dialog.showPage(current == messageLoading ? setAccounts : messageLoading);
 				event.doit = false;
 			}
-		} else if (event.getTargetPage() == messageLoading) {
-		} else if (event.getTargetPage() == mapContacts) {
+		} else if (target == messageLoading) {
+		} else if (target == mapContacts) {
 			if (datasource.getContacts().size() == 0) {
-				dialog.showPage(setContacts);
+				dialog.showPage(saveLoading);
 				event.doit = false;
 			}
 			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		} else if (event.getTargetPage() == setContacts) {
+		} else if (target == setContacts) {
 			validatePage(setContacts);
 			setContacts.layout();
-		} else if (event.getTargetPage() == saveLoading) {
+		} else if (target == saveLoading) {
 		}
 	}
 

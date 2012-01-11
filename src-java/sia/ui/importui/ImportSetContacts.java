@@ -51,20 +51,15 @@ public class ImportSetContacts extends WizardPage {
 	 * @param parent
 	 */
 	public void createControl(Composite parent) {
-		scrolledComposite = new ScrolledComposite(parent, SWT.BORDER | SWT.V_SCROLL);
+		scrolledComposite = new ScrolledComposite(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		setControl(scrolledComposite);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
-		
-		Composite container = new Composite(scrolledComposite, SWT.NULL);
-
-		setControl(container);
+		Composite container =  new Composite(scrolledComposite, SWT.NONE);
+		this.container = container;
 		container.setLayout(new GridLayout(6, false));
-		
 		scrolledComposite.setContent(container);
 		scrolledComposite.setMinSize(container.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		
-		this.container = container;
 	}
 
 	public void setControls() {
