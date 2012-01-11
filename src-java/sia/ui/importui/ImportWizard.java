@@ -212,9 +212,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				chooseFiles.setControls();
 				chooseFiles.setPageComplete(false);
 				chooseFiles.canFlipToNextPage();
+				this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 			}
-			// TODO: [Aga] fix this (Issue #10)
-			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		} else if (event.getTargetPage() == setPasswords) {
 			setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
 			if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
@@ -256,6 +255,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				dialog.showPage(setContacts);
 				event.doit = false;
 			}
+			this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		} else if (event.getTargetPage() == setContacts) {
 			validatePage(setContacts);
 			setContacts.layout();

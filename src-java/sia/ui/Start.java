@@ -114,6 +114,8 @@ public class Start extends ApplicationWindow {
 				dialog.addPageChangingListener(importWizard);
 				dialog.addPageChangedListener(importWizard);
 				dialog.create();
+
+				dialog.getShell().setSize(dialog.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				if (dialog.open() == 0) {
 					fillContactTree("");
 				}

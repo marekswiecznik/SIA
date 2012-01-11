@@ -1,5 +1,7 @@
 package sia.ui.importui;
 
+import java.util.Arrays;
+
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -24,6 +26,7 @@ public class ImportChooseIM extends WizardPage {
 		super("chooseIM");
 		setTitle("Choose IM");
 		setDescription("Choose IM from which you would like to import data:");
+		Arrays.sort(names);
 		this.imNames = names;
 	}
 
