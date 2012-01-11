@@ -84,6 +84,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		addPage(setContacts);
 		addPage(saveLoading);
 		chooseIM.setPageComplete(false);
+		saveLoading.setPageComplete(false);
 	}
 
 	public boolean validatePage(IWizardPage page) {
