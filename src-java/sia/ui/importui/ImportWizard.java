@@ -205,6 +205,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		WizardDialog dialog = (WizardDialog) event.getSource();
 		WizardPage current = (WizardPage) event.getCurrentPage();
 		WizardPage target = (WizardPage) event.getTargetPage();
+		target.setErrorMessage(null);
 		if (current.getNextPage().equals(target) && !validatePage(current)) {
 			event.doit = false;
 			return;
