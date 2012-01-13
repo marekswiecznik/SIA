@@ -57,7 +57,9 @@ class GtalkParser(Parser):
 			raise ex 
 		contactAccounts = {}
 		convNums = data[0].split()
-		for num in convNums:			
+		for num in convNums:
+			if self.isAborted():
+				return None
 			# parse head
 			typ, head = M.fetch(num, '(BODY.PEEK[HEADER])')
 			if typ <> 'OK':

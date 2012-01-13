@@ -44,7 +44,7 @@ public class FmaParserTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		SIA.getInstance().dbClose();
+		SIA.getInstance().close(null);
 	}
 
 	@Test

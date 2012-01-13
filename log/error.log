@@ -1,0 +1,44 @@
+Fri 12:23:45 ERROR [Thread-3] sia.ui.SIA - Retrieving contacts and conversations failed.
+java.lang.NullPointerException
+	at sia.ui.importui.ImportWizard$2.run(ImportWizard.java:333)
+	at java.lang.Thread.run(Thread.java:662)
+Fri 13:25:58 ERROR [Thread-3] sia.ui.SIA - Retrieving contacts and conversations failed.
+Traceback (most recent call last):
+  File "__pyclasspath__/sia/py/fileparsers/FmaParser.py", line 48, in getContacts
+AttributeError: 'FmaParser' object has no attribute 'abort'
+
+	at org.python.core.PyException.fillInStackTrace(PyException.java:70)
+	at java.lang.Throwable.<init>(Throwable.java:181)
+	at java.lang.Exception.<init>(Exception.java:29)
+	at java.lang.RuntimeException.<init>(RuntimeException.java:32)
+	at org.python.core.PyException.<init>(PyException.java:46)
+	at org.python.core.PyException.<init>(PyException.java:43)
+	at org.python.core.PyException.<init>(PyException.java:61)
+	at org.python.core.Py.AttributeError(Py.java:166)
+	at org.python.core.PyObject.noAttributeError(PyObject.java:930)
+	at org.python.core.PyObject.__getattr__(PyObject.java:925)
+	at sia.py.fileparsers.FmaParser$py.getContacts$5(__pyclasspath__/sia/py/fileparsers/FmaParser.py:73)
+	at sia.py.fileparsers.FmaParser$py.call_function(__pyclasspath__/sia/py/fileparsers/FmaParser.py)
+	at org.python.core.PyTableCode.call(PyTableCode.java:165)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:301)
+	at org.python.core.PyBaseCode.call(PyBaseCode.java:194)
+	at org.python.core.PyFunction.__call__(PyFunction.java:387)
+	at org.python.core.PyMethod.instancemethod___call__(PyMethod.java:220)
+	at org.python.core.PyMethod.__call__(PyMethod.java:211)
+	at org.python.core.PyMethod.__call__(PyMethod.java:201)
+	at org.python.core.PyMethod.__call__(PyMethod.java:196)
+	at org.python.core.PyObject._jcallexc(PyObject.java:3502)
+	at org.python.proxies.sia.py.fileparsers.FmaParser$FmaParser$0.getContacts(Unknown Source)
+	at sia.datasources.DataSource.getContacts(DataSource.java:138)
+	at sia.ui.importui.ImportWizard$2.run(ImportWizard.java:328)
+	at java.lang.Thread.run(Thread.java:662)
+Fri 13:30:41 ERROR [Thread-3] sia.ui.SIA - Retrieving contacts and conversations failed.
+java.lang.NullPointerException
+	at sia.datasources.DataSource.mapContacts(DataSource.java:244)
+	at sia.ui.importui.ImportWizard$2.run(ImportWizard.java:329)
+	at java.lang.Thread.run(Thread.java:662)
+Fri 13:32:10 ERROR [Thread-3] sia.ui.SIA - Retrieving contacts and conversations failed.
+java.lang.NullPointerException
+	at sia.datasources.DataSource.mapContacts(DataSource.java:244)
+	at sia.ui.importui.ImportWizard$2.run(ImportWizard.java:330)
+	at java.lang.Thread.run(Thread.java:662)

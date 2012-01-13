@@ -1,0 +1,135 @@
+Thu 19:03:57 ERROR [Thread-7] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: SQLite supports only TRANSACTION_SERIALIZABLE
+	at org.sqlite.Conn.setTransactionIsolation(Conn.java:138)
+	at sia.ui.SIA.tmpSave(SIA.java:164)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:05:40 ERROR [Thread-5] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: SQL logic error or missing database
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.DB.exec(DB.java:68)
+	at org.sqlite.Conn.commit(Conn.java:172)
+	at sia.ui.SIA.tmpSave(SIA.java:174)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:13:57 ERROR [Thread-5] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: SQL logic error or missing database
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.DB.exec(DB.java:68)
+	at org.sqlite.Conn.commit(Conn.java:172)
+	at sia.ui.SIA.tmpSave(SIA.java:174)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:15:03 ERROR [Thread-5] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: SQL logic error or missing database
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.DB.exec(DB.java:68)
+	at org.sqlite.Conn.commit(Conn.java:172)
+	at sia.ui.SIA.tmpSave(SIA.java:164)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:26:59 ERROR [Thread-13] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.BatchUpdateException: batch entry 6: cannot rollback transaction - SQL statements in progress
+	at org.sqlite.Stmt.executeBatch(Stmt.java:168)
+	at sia.ui.SIA.tmpSave(SIA.java:172)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:29:46 ERROR [Thread-5] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.BatchUpdateException: batch entry 6: cannot commit transaction - SQL statements in progress
+	at org.sqlite.Stmt.executeBatch(Stmt.java:168)
+	at sia.ui.SIA.tmpSave(SIA.java:172)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:31:31 ERROR [Thread-5] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: cannot commit transaction - SQL statements in progress
+	at org.sqlite.DB.execute(DB.java:275)
+	at org.sqlite.DB.executeUpdate(DB.java:281)
+	at org.sqlite.Stmt.executeUpdate(Stmt.java:103)
+	at sia.ui.SIA.tmpSave(SIA.java:173)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:33:52 ERROR [Thread-9] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: SQL logic error or missing database
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.DB.exec(DB.java:68)
+	at org.sqlite.Conn.setAutoCommit(Conn.java:166)
+	at sia.ui.SIA.tmpSave(SIA.java:172)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:35:30 ERROR [Thread-5] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: SQL logic error or missing database
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.DB.exec(DB.java:68)
+	at org.sqlite.Conn.setAutoCommit(Conn.java:166)
+	at sia.ui.SIA.tmpSave(SIA.java:173)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 19:36:47 ERROR [Thread-5] sia.ui.SIA - Unexpected error on saving data into database.
+java.sql.SQLException: SQL logic error or missing database
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.DB.exec(DB.java:68)
+	at org.sqlite.Conn.setAutoCommit(Conn.java:166)
+	at sia.ui.SIA.tmpSave(SIA.java:176)
+	at sia.datasources.DataSource.save(DataSource.java:227)
+	at sia.ui.importui.ImportWizard$3.run(ImportWizard.java:341)
+	at java.lang.Thread.run(Thread.java:662)
+Thu 20:43:32 ERROR [main] sia.ui.SIA - Unexpected problem with database connection (SQL).
+java.sql.SQLException: query returns results
+	at org.sqlite.DB.executeUpdate(DB.java:282)
+	at org.sqlite.Stmt.executeUpdate(Stmt.java:103)
+	at sia.ui.SIA.dbInit(SIA.java:101)
+	at sia.ui.SIA.init(SIA.java:44)
+	at sia.ui.SIA.main(SIA.java:260)
+Thu 20:44:30 ERROR [main] sia.ui.SIA - Unexpected problem with database connection (SQL).
+java.sql.SQLException: database locked
+	at org.sqlite.DB.execute(DB.java:270)
+	at org.sqlite.DB.executeUpdate(DB.java:281)
+	at org.sqlite.Stmt.executeUpdate(Stmt.java:103)
+	at sia.ui.SIA.dbInit(SIA.java:102)
+	at sia.ui.SIA.init(SIA.java:44)
+	at sia.ui.SIA.main(SIA.java:261)
+Thu 20:46:15 ERROR [main] sia.ui.SIA - Unexpected problem with database connection (SQL).
+java.sql.SQLException: database is locked
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.NativeDB.prepare(Native Method)
+	at org.sqlite.DB.prepare(DB.java:114)
+	at org.sqlite.Stmt.executeUpdate(Stmt.java:102)
+	at sia.ui.SIA.dbInit(SIA.java:102)
+	at sia.ui.SIA.init(SIA.java:44)
+	at sia.ui.SIA.main(SIA.java:261)
+Thu 20:58:45 ERROR [main] sia.ui.SIA - Unexpected error.
+org.eclipse.core.runtime.AssertionFailedException: null argument:The dialog should be created in UI thread
+	at org.eclipse.core.runtime.Assert.isNotNull(Assert.java:85)
+	at org.eclipse.jface.dialogs.IconAndMessageDialog.getSWTImage(IconAndMessageDialog.java:282)
+	at org.eclipse.jface.dialogs.IconAndMessageDialog.getInfoImage(IconAndMessageDialog.java:251)
+	at org.eclipse.jface.dialogs.MessageDialog.<init>(MessageDialog.java:183)
+	at org.eclipse.jface.dialogs.MessageDialog.open(MessageDialog.java:360)
+	at org.eclipse.jface.dialogs.MessageDialog.openInformation(MessageDialog.java:446)
+	at sia.ui.SIA.close(SIA.java:227)
+	at sia.ui.SIA.dbInit(SIA.java:107)
+	at sia.ui.SIA.init(SIA.java:45)
+	at sia.ui.SIA.main(SIA.java:275)
+Thu 20:59:17 ERROR [main] sia.ui.SIA - Unexpected error.
+java.lang.NullPointerException
+	at sia.ui.SIA.close(SIA.java:227)
+	at sia.ui.SIA.dbInit(SIA.java:107)
+	at sia.ui.SIA.init(SIA.java:45)
+	at sia.ui.SIA.main(SIA.java:275)
+Thu 20:59:51 ERROR [main] sia.ui.SIA - Unexpected problem with database connection (SQL).
+java.sql.SQLException: out of memory
+	at org.sqlite.DB.throwex(DB.java:288)
+	at org.sqlite.NativeDB.prepare(Native Method)
+	at org.sqlite.DB.prepare(DB.java:114)
+	at org.sqlite.Stmt.executeUpdate(Stmt.java:102)
+	at sia.ui.SIA.dbInit(SIA.java:111)
+	at sia.ui.SIA.init(SIA.java:46)
+	at sia.ui.SIA.main(SIA.java:276)

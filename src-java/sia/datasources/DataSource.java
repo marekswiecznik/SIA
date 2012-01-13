@@ -1,7 +1,6 @@
 package sia.datasources;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +69,9 @@ public abstract class DataSource {
 	 * @param files
 	 */
 	public void loadFiles(String[] files) throws Exception {
+		parser.start();
 		parser.loadFiles(files);
+		parser.stop();
 	}
 
 	/**
@@ -105,7 +106,9 @@ public abstract class DataSource {
 	 */
 	public List<UserAccount> getUserAccounts() throws Exception {
 		if(userAccounts==null) {
+			parser.start();
 			userAccounts = parser.getUserAccounts();
+			parser.stop();
 			List <UserAccount> dictUserAccounts = Dictionaries.getInstance().getUserAccounts();
 			for (UserAccount ua : userAccounts) {
 				if (dictUserAccounts.contains(ua)) {
@@ -131,7 +134,9 @@ public abstract class DataSource {
 	 */
 	public List<Contact> getContacts() throws Exception {
 		if(contacts==null) {
+			parser.start();
 			contacts = parser.getContacts(userAccounts);
+			parser.stop();
 		}
 		return contacts;
 	}
@@ -225,16 +230,7 @@ public abstract class DataSource {
 			}
 		}
 		SIA.getInstance().tmpSave();
-		String uas = "";
-		for (int i=0; i<userAccounts.size(); i++)
-			uas += (i==0 ? "" : ",") + userAccounts.get(i).getId();
-		String sql = "UPDATE main.conversation " +
-				"SET time = (SELECT MIN(time) FROM main.message WHERE conversationId = main.conversation.id), " +
-				"endTime = (SELECT MAX(time) FROM main.message WHERE conversationId = main.conversation.id), " +
-				"length = (SELECT COUNT(1) FROM main.message WHERE conversationId = main.conversation.id) " +
-				"WHERE userAccountId IN ("+uas+")";
-		Statement stmt = SIA.getInstance().getConnection().createStatement();
-		stmt.executeUpdate(sql);
+		SIA.getInstance().updateConversations(userAccounts);
 		saveProgress = 100;
 	}
 
@@ -269,5 +265,12 @@ public abstract class DataSource {
 				} 
 			}
 		}
+	}
+
+	/**
+	 * Abort parser's current action
+	 */
+	public void abortParserCurrentAction() {
+		parser.stop();
 	}
 }

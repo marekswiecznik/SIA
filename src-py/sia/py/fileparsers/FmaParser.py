@@ -44,6 +44,10 @@ class FmaParser(Parser):
 		pattern = '\<from\>(.*)\s*\[(.*)\]\<\/from\>\s*\<msg\>(.*)\<\/msg\>\s*\<date\>(.*)\<\/date\>'
 		prog = re.compile(pattern)
 		for i in range(len(sms)):
+			# check if this action was aborted
+			if self.isAborted():
+				return None
+			
 			res = prog.search(sms[i])
 			if res <> None:
 				df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
