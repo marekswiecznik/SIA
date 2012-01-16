@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.Logger;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -39,7 +41,6 @@ public class SIA {
 	public void init() {
 		PropertyConfigurator.configure("log4j.properties");
 		logger.debug("init");
-		Exception exception = null;
 		try {
 			dbInit("sia.db");
 			tmpInit();
