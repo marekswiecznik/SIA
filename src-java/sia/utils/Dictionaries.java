@@ -141,7 +141,7 @@ public class Dictionaries {
 	 * @throws SormulaException 
 	 */
 	public void loadContacts() throws SormulaException {
-		this.contacts = orm.getTable(Contact.class).selectAllCustom("ORDER BY name");
+		this.contacts = orm.getTable(Contact.class).selectAllCustom("ORDER BY lower(name)");
 		for (Contact contact : contacts) {
 			for (ContactAccount ca : orm.getTable(ContactAccount.class).selectAllCustom("WHERE contactId = "+ contact.getId())) {
 				contact.addContactAccount(ca);

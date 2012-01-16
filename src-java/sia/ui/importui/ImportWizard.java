@@ -43,6 +43,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	ImportLoading messageLoading;
 	ImportLoading saveLoading;
 	ImportSetContacts setContacts;
+	ImportSummary summary;
 	List<Contact> contacts;
 
 	public ImportWizard() {
@@ -61,6 +62,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		saveLoading = new ImportLoading("saveLoading");
 		saveLoading.setTitle("Saving");
 		setContacts = new ImportSetContacts();
+		summary = new ImportSummary();
 		im = -1;
 		List<Contact> tmpContacts = Dictionaries.getInstance().getContacts();
 		contacts = new ArrayList<Contact>();
@@ -81,6 +83,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		addPage(messageLoading);
 		addPage(mapContacts);
 		addPage(setContacts);
+		addPage(summary);
 		addPage(saveLoading);
 		chooseIM.setPageComplete(false);
 		saveLoading.setPageComplete(false);
@@ -265,6 +268,27 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			} else if (target == setContacts) {
 				validatePage(setContacts);
 				setContacts.layout();
+			} else if (target == summary) {
+				List<Contact> cloneContacts =new ArrayList<Contact>();
+				for (Contact c : contacts) {
+					cloneContacts.add(c.clone());
+				}
+				List<Contact> cloneParsedContacts =new ArrayList<Contact>();
+				for (Contact c : datasource.getContacts()) {
+					cloneParsedContacts.add(c.clone());
+				}
+				setContacts.setParsedContacts(cloneParsedContacts);
+				mapContacts.setParsedContacts(cloneParsedContacts);
+				setContacts.setContacts(cloneContacts);
+				mapContacts.setContacts(cloneContacts);
+				mapContacts.addContactAccounts();
+				setContacts.addNewContacts();
+				summary.setContacts(cloneContacts);
+				summary.setControls();
+				setContacts.setContacts(contacts);
+				mapContacts.setContacts(contacts);
+				setContacts.setParsedContacts(datasource.getContacts());
+				mapContacts.setParsedContacts(datasource.getContacts());
 			} else if (target == saveLoading) {
 			}
 		} catch (Exception e) {
@@ -330,9 +354,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				}).start();
 				new Thread(new Loader(DataSource.Progress.CONTACTS_PROGRESS, messageLoading)).start();
 			} else if (event.getSelectedPage() == saveLoading) {
-				mapContacts.addContactAccounts(); // merge new ContactAccounts
-													// with
-													// existing Contacts
+				mapContacts.addContactAccounts(); // merge new ContactAccounts with existing Contacts
 				setContacts.addNewContacts();
 				new Thread(new Runnable() {
 					@Override
