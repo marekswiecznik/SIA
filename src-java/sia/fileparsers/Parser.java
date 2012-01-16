@@ -15,6 +15,7 @@ public abstract class Parser {
 	protected int userAccountsLoadProgress = 0;
 	protected int messagesCount = 0;
 	protected String[] passwords = new String[0];
+	protected boolean abort;
 
 	/**
 	 * Load required files (if neccessary)
@@ -112,5 +113,23 @@ public abstract class Parser {
 	 */
 	public void setMessagesCount(int messagesCount) {
 		this.messagesCount = messagesCount;
+	}
+
+	/**
+	 * Stop current action
+	 */
+	public void stop() {
+		abort = true;
+	}
+	
+	/**
+	 * Reset abort flag
+	 */
+	public void start() {
+		abort = false;
+	}
+	
+	public boolean isAborted() {
+		return abort;
 	}
 }

@@ -45,6 +45,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	ImportSetContacts setContacts;
 	ImportSummary summary;
 	List<Contact> contacts;
+	private Thread currentThread;
+	private Loader loader;
 
 	public ImportWizard() {
 		setWindowTitle("Import messages");
@@ -174,12 +176,18 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				}
 			}
 		} catch (Exception e) {
-			SIA.getInstance().handleException("An unexpected error occured when validating wizard.", e);
+			SIA.getInstance().handleException("An unexpected abort occured when validating wizard.", e);
 		} finally {
 			((WizardPage) page).setPageComplete(((WizardPage) page).getErrorMessage() == null);
 			page.canFlipToNextPage();
 		}
 		return true;
+	}
+
+	@Override
+	public boolean performCancel() {
+		cancelCurrentAction();
+		return super.performCancel();
 	}
 
 	@Override
@@ -190,7 +198,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		try {
 			Dictionaries.getInstance().loadContacts();
 		} catch (SormulaException e) {
-			SIA.getInstance().handleException("An error occured when reloading contacts.", e);
+			SIA.getInstance().handleException("An abort occured when reloading contacts.", e);
 		}
 		return true;
 	}
@@ -200,9 +208,13 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		WizardDialog dialog = (WizardDialog) event.getSource();
 		WizardPage current = (WizardPage) event.getCurrentPage();
 		WizardPage target = (WizardPage) event.getTargetPage();
+		target.setErrorMessage(null);
 		if (current.getNextPage().equals(target) && !validatePage(current)) {
 			event.doit = false;
 			return;
+		}
+		if (current instanceof ImportLoading && current.getPreviousPage().equals(target)) {
+			cancelCurrentAction();
 		}
 		try {
 			if (target == chooseFiles) {
@@ -292,7 +304,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			} else if (target == saveLoading) {
 			}
 		} catch (Exception e) {
-			SIA.getInstance().handleException("An unexpected error occured.", e);
+			SIA.getInstance().handleException("An unexpected abort occured.", e);
 		}
 	}
 
@@ -303,13 +315,16 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
 					datasource.setPasswords(setPasswords.getPasswords());
 				}
-				new Thread(new Runnable() {
+				currentThread = new Thread(new Runnable() {
 					@Override
 					public void run() {
 						try {
 							datasource.loadFiles(chooseFiles.getFiles());
 							datasource.getUserAccounts();
 						} catch (Exception e) {
+							if (loader != null) {
+								loader.cancel();
+							}
 							SIA.getInstance().handleException("Loading files and parsing user accounts failed.", e);
 							getShell().getDisplay().asyncExec(new Runnable() {
 								public void run() {
@@ -318,31 +333,37 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 							});
 						}
 					}
-				}).start();
-				new Thread(new Loader(DataSource.Progress.USER_ACCOUNTS_PROGRESS, accountsLoading)).start();
+				});
+				currentThread.start();
+				loader = new Loader(DataSource.Progress.USER_ACCOUNTS_PROGRESS, accountsLoading);
+				new Thread(loader).start();
 			} else if (event.getSelectedPage() == messageLoading) {
 				if (wasSetAccounts) {
 					datasource.setUserAccounts(setAccounts.getUserAccounts());
 				} else {
 					datasource.setUserAccounts(chooseAccounts.getUserAccounts());
 				}
-				new Thread(new Runnable() {
+				currentThread = new Thread(new Runnable() {
 					@Override
 					public void run() {
 						try {
-							datasource.getContacts();
-							datasource.mapContacts(contacts);
-							mapContacts.setParsedContacts(datasource.getContacts());
-							mapContacts.setContacts(contacts);
-							setContacts.setParsedContacts(datasource.getContacts());
-							setContacts.setContacts(contacts);
-							getShell().getDisplay().asyncExec(new Runnable() {
-								public void run() {
-									mapContacts.setControls();
-									setContacts.setControls();
-								}
-							});
+							if (datasource.getContacts() != null) {
+								datasource.mapContacts(contacts);
+								mapContacts.setParsedContacts(datasource.getContacts());
+								mapContacts.setContacts(contacts);
+								setContacts.setParsedContacts(datasource.getContacts());
+								setContacts.setContacts(contacts);
+								getShell().getDisplay().asyncExec(new Runnable() {
+									public void run() {
+										mapContacts.setControls();
+										setContacts.setControls();
+									}
+								});
+							}
 						} catch (Exception e) {
+							if (loader != null) {
+								loader.cancel();
+							}
 							SIA.getInstance().handleException("Retrieving contacts and conversations failed.", e);
 							getShell().getDisplay().asyncExec(new Runnable() {
 								public void run() {
@@ -351,30 +372,44 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 							});
 						}
 					}
-				}).start();
-				new Thread(new Loader(DataSource.Progress.CONTACTS_PROGRESS, messageLoading)).start();
+				});
+				currentThread.start();
+				loader = new Loader(DataSource.Progress.CONTACTS_PROGRESS, messageLoading);
+				new Thread(loader).start();
 			} else if (event.getSelectedPage() == saveLoading) {
 				mapContacts.addContactAccounts(); // merge new ContactAccounts with existing Contacts
 				setContacts.addNewContacts();
-				new Thread(new Runnable() {
+				currentThread = new Thread(new Runnable() {
 					@Override
 					public void run() {
 						try {
 							datasource.save(contacts);
 						} catch (Exception e) {
-							SIA.getInstance().handleException("Unexpected error on saving data into database.", e);
+							if (loader != null) {
+								loader.cancel();
+							}
+							try {
+								SIA.getInstance().cleanup();
+								SIA.getInstance().updateConversations(datasource.getUserAccounts());
+							} catch (Exception e1) {
+								SIA.getInstance().handleException("Unexpected abort on saving data into database and during clean-up. This is a critical abort, so application will be closed now.", e1);
+								SIA.getInstance().close(null);
+							}
+							SIA.getInstance().handleException("Unexpected abort on saving data into database.", e);
 							getShell().getDisplay().asyncExec(new Runnable() {
 								public void run() {
-									saveLoading.setErrorMessage("Unexpected error on saving data into database.");
+									saveLoading.setErrorMessage("Unexpected abort on saving data into database.");
 								}
 							});
-						}
+						} 
 					}
-				}).start();
-				new Thread(new Loader(DataSource.Progress.SAVE_PROGRESS, saveLoading)).start();
+				});
+				currentThread.start();
+				loader = new Loader(DataSource.Progress.SAVE_PROGRESS, saveLoading);
+				new Thread(loader).start();
 			}
 		} catch (Exception e) {
-			SIA.getInstance().handleException("An unexpected error occured on page changing.", e);
+			SIA.getInstance().handleException("An unexpected abort occured on page changing.", e);
 		}
 	}
 
@@ -393,6 +428,21 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	}
 
 	/**
+	 * Cancel current action
+	 */
+	private void cancelCurrentAction() {
+		if (datasource != null) {
+			datasource.abortParserCurrentAction();
+			if (loader != null) {
+				loader.cancel();
+			}
+			if (currentThread != null) {
+				currentThread.interrupt();
+			}
+		}
+	}
+
+	/**
 	 * Loader.
 	 * 
 	 * Updates specified operation progress
@@ -402,6 +452,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	class Loader implements Runnable {
 		private DataSource.Progress progress;
 		private ImportLoading page;
+		private boolean cancel;
 
 		/**
 		 * Default and only constructor
@@ -414,6 +465,11 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		public Loader(DataSource.Progress progress, ImportLoading page) {
 			this.progress = progress;
 			this.page = page;
+			this.cancel = false;
+		}
+		
+		public void cancel() {
+			this.cancel = true;
 		}
 
 		/**
@@ -428,7 +484,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					page.canFlipToNextPage();
 				}
 			});
-			while (value < 100) {
+			while (value < 100 && !cancel) {
 				value = datasource.getProgress(progress);
 				final int valueToSet = value;
 				getShell().getDisplay().asyncExec(new Runnable() {
@@ -439,15 +495,17 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					SIA.getInstance().handleException("Loader thread interrupted.", e);
+					// Silent like a ninja
 				}
 			}
-			getShell().getDisplay().asyncExec(new Runnable() {
-				public void run() {
-					page.setPageComplete(true);
-					page.canFlipToNextPage();
-				}
-			});
+			if (getShell() != null && !cancel) {
+				getShell().getDisplay().asyncExec(new Runnable() {
+					public void run() {
+						page.setPageComplete(true);
+						page.canFlipToNextPage();
+					}
+				});
+			}
 		}
 	}
 }

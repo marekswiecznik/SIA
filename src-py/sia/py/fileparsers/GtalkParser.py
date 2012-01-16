@@ -34,32 +34,44 @@ class GtalkParser(Parser):
 		None
 
 	def getUserAccounts(self):
+		self.userAccountsLoadProgress = 0
+		if self.passwords == None:
+			return None
+		self.M = imaplib.IMAP4_SSL('imap.gmail.com')
+		self.userAccountsLoadProgress = 25
+		try:
+			self.M.login(self.passwords[0], self.passwords[1])
+		except Exception:
+			ex = ValueError()
+			ex.message = 'Incorrect login and/or password.'
+			raise ex
+		self.userAccountsLoadProgress = 50
+		self.M.select(mailbox='[Gmail]/'+self.passwords[2], readonly='true')
+		self.userAccountsLoadProgress = 75
+		try:
+			typ, self.data = self.M.search(None, 'ALL')
+		except Exception:
+			ex = ValueError()
+			ex.message = 'Incorrect chats label.'
+			raise ex
 		self.userAccountsLoadProgress = 100
-		if self.passwords <> None:
-			return [UserAccount(0, self.protocol, self.passwords[0])]
-		return None
+		return [UserAccount(0, self.protocol, self.passwords[0])]
 	
 	def getContacts(self, userAccounts):
 		self.contactsLoadProgress = 0
-		M = imaplib.IMAP4_SSL('imap.gmail.com')
 		try:
-			M.login(self.passwords[0], self.passwords[1])
-		except Exception, e:
-			ex = ValueError()
-			ex.message = 'Incorrect login and/or password.'
-			raise ex 
-		M.select(mailbox='[Gmail]/'+self.passwords[2], readonly='true')
-		try:
-			typ, data = M.search(None, 'ALL')
-		except Exception, e:
-			ex = ValueError()
-			ex.message = 'Incorrect chats label.'
-			raise ex 
+			self.M.recent()
+		except:
+			self.getUserAccounts()
 		contactAccounts = {}
-		convNums = data[0].split()
-		for num in convNums:			
+		convNums = self.data[0].split()
+		for num in convNums:
+			if self.isAborted():
+				self.M.close()
+				self.M.logout()
+				return None
 			# parse head
-			typ, head = M.fetch(num, '(BODY.PEEK[HEADER])')
+			typ, head = self.M.fetch(num, '(BODY.PEEK[HEADER])')
 			if typ <> 'OK':
 				e = Exception()
 				e.message = 'Message '+num+' not found.'
@@ -87,7 +99,7 @@ class GtalkParser(Parser):
 				contactAccounts[contactAccount.uid] = contactAccount
 			
 			# parse body
-			typ, data = M.fetch(num, '(RFC822)')
+			typ, data = self.M.fetch(num, '(RFC822)')
 			if typ <> 'OK':
 				e = Exception()
 				e.message = 'Problem with retrieving message body.'
@@ -142,7 +154,7 @@ class GtalkParser(Parser):
 			contacts.append(contact)
 			
 		# close IMAP connection
-		M.close()
-		M.logout()
+		self.M.close()
+		self.M.logout()
 		self.contactsLoadProgress = 100
 		return contacts
