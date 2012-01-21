@@ -220,8 +220,8 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			if (target == chooseFiles) {
 				int previousIm = im;
 				im = chooseIM.getSelected();
-				this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
 				if (previousIm != im) {
+					this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
 					if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
 						setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
 						setPasswords.setControls();

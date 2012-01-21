@@ -13,6 +13,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 
@@ -128,15 +129,24 @@ public class ImportChooseFiles extends WizardPage {
 
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			FileDialog dlg = new FileDialog(getShell(), SWT.OPEN);
-			dlg.setFilterNames(new String[] {extensions[n]});
-
-			dlg.setFilterExtensions(new String[] { extensions[n] });
-			String fileName = dlg.open();
-		    if (fileName != null) {
-		    	files[n]=fileName;
-		    	fileLabels[n].setText(fileName);
-		    }
+			if(extensions[n].length()>0) {
+				FileDialog dlg = new FileDialog(getShell(), SWT.OPEN);
+				dlg.setFilterNames(new String[] {extensions[n]});
+	
+				dlg.setFilterExtensions(new String[] { extensions[n] });
+				String fileName = dlg.open();
+			    if (fileName != null) {
+			    	files[n]=fileName; 
+			    	fileLabels[n].setText(fileName);
+			    }
+			} else {
+				DirectoryDialog dlg = new DirectoryDialog(getShell());
+		        String dir = dlg.open();
+		        if (dir != null) {
+		        	files[n]=dir;
+			    	fileLabels[n].setText(dir);
+		        }
+			}
 		    ((ImportWizard)getWizard()).validatePage(ImportChooseFiles.this);
 		}
 	}

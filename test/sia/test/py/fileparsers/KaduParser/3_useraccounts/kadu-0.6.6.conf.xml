@@ -1,0 +1,154 @@
+<Kadu last_save_time="Mon Jan 16 10:32:35 2012" uuid="{58a358ef-3d43-406b-8df9-5934a7eb2063}" last_save_version="0.9.2">
+ <Deprecated>
+  
+ </Deprecated>
+ <Toolbars blocked="1">
+  
+ </Toolbars>
+ <Identities>
+  <Identity uuid="{91de4ad2-213f-439c-93e5-b20aa8fcf2a3}">
+   <LastStatusDescription/>
+   <LastStatusName>Invisible</LastStatusName>
+   <Permanent>true</Permanent>
+   <Name>Friends</Name>
+  </Identity>
+  <Identity uuid="{36461084-72db-443f-8a12-0831674e9295}">
+   <Permanent>true</Permanent>
+   <Name>Work</Name>
+  </Identity>
+  <Identity uuid="{7ba8cc00-7fbc-4ed6-bb93-125206531049}">
+   <Permanent>true</Permanent>
+   <Name>School</Name>
+  </Identity>
+ </Identities>
+ <Groups>
+  <Group uuid="{afb04c62-1a5e-437a-ad7d-552770eba8d7}">
+   <Name>All</Name>
+   <Icon></Icon>
+   <NotifyAboutStatusChanges>true</NotifyAboutStatusChanges>
+   <ShowInAllGroup>true</ShowInAllGroup>
+   <OfflineTo>false</OfflineTo>
+   <ShowIcon>false</ShowIcon>
+   <ShowName>true</ShowName>
+   <TabPosition>0</TabPosition>
+  </Group>
+  <Group uuid="{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}">
+   <Name>Pokemony</Name>
+   <Icon></Icon>
+   <NotifyAboutStatusChanges>true</NotifyAboutStatusChanges>
+   <ShowInAllGroup>true</ShowInAllGroup>
+   <OfflineTo>false</OfflineTo>
+   <ShowIcon>false</ShowIcon>
+   <ShowName>true</ShowName>
+   <TabPosition>1</TabPosition>
+  </Group>
+ </Groups>
+ <Accounts>
+  <Account uuid="{54928de7-b09c-4095-8b3e-51d221bc90d5}">
+   <Identity>{91de4ad2-213f-439c-93e5-b20aa8fcf2a3}</Identity>
+   <Protocol>gadu</Protocol>
+   <Id>4053074</Id>
+   <RememberPassword>true</RememberPassword>
+   <Password>qvnqhav7</Password>
+   <UseProxy>false</UseProxy>
+   <ProxyHost></ProxyHost>
+   <ProxyPort>3145776</ProxyPort>
+   <ProxyRequiresAuthentication>false</ProxyRequiresAuthentication>
+   <ProxyUser></ProxyUser>
+   <ProxyPassword></ProxyPassword>
+   <PrivateStatus>false</PrivateStatus>
+   <LastStatusDescription></LastStatusDescription>
+   <LastStatusName>Invisible</LastStatusName>
+   <AllowDcc>true</AllowDcc>
+   <MaximumImageSize>255</MaximumImageSize>
+   <ReceiveImagesDuringInvisibility>true</ReceiveImagesDuringInvisibility>
+   <MaximumImageRequests>10</MaximumImageRequests>
+   <InitialRosterImport>false</InitialRosterImport>
+   <TlsEncryption>false</TlsEncryption>
+   <SendTypingNotification>true</SendTypingNotification>
+  </Account>
+  <Account uuid="{627f4e2b-7e50-4986-a876-6449ee6cc3ac}">
+   <Identity>{91de4ad2-213f-439c-93e5-b20aa8fcf2a3}</Identity>
+   <Protocol>jabber</Protocol>
+   <Id>aga.glabala@gmail.com</Id>
+   <RememberPassword>true</RememberPassword>
+   <Password>geb15b548;</Password>
+   <UseProxy>false</UseProxy>
+   <ProxyHost></ProxyHost>
+   <ProxyPort>3145776</ProxyPort>
+   <ProxyRequiresAuthentication>false</ProxyRequiresAuthentication>
+   <ProxyUser></ProxyUser>
+   <ProxyPassword></ProxyPassword>
+   <PrivateStatus>true</PrivateStatus>
+   <LastStatusDescription></LastStatusDescription>
+   <LastStatusName>Invisible</LastStatusName>
+   <AutoResource>true</AutoResource>
+   <Resource>wielkolud</Resource>
+   <Priority>5</Priority>
+   <DataTransferProxy></DataTransferProxy>
+   <UseCustomHostPort>false</UseCustomHostPort>
+   <CustomHost></CustomHost>
+   <CustomPort>5222</CustomPort>
+   <EncryptionMode>2</EncryptionMode>
+   <PlainAuthMode>2</PlainAuthMode>
+   <LegacySSLProbe>false</LegacySSLProbe>
+   <TlsOverrideCert></TlsOverrideCert>
+   <TlsOverrideDomain></TlsOverrideDomain>
+   <SendTypingNotification>true</SendTypingNotification>
+   <SendGoneNotification>true</SendGoneNotification>
+  </Account>
+  <Account uuid="{627f4e2b-7e50-4986-a876-6449ee6cc3ac}">
+   <Identity>{9ddddad2-213f-439c-93e5-b20aa8fcf2a3}</Identity>
+   <Protocol>jabber</Protocol>
+   <Id>agnis@gimpuj.info</Id>
+   <RememberPassword>true</RememberPassword>
+   <Password>geb15b548;</Password>
+   <UseProxy>false</UseProxy>
+   <ProxyHost></ProxyHost>
+   <ProxyPort>3145776</ProxyPort>
+   <ProxyRequiresAuthentication>false</ProxyRequiresAuthentication>
+   <ProxyUser></ProxyUser>
+   <ProxyPassword></ProxyPassword>
+   <PrivateStatus>true</PrivateStatus>
+   <LastStatusDescription></LastStatusDescription>
+   <LastStatusName>Invisible</LastStatusName>
+   <AutoResource>true</AutoResource>
+   <Resource>wielkolud</Resource>
+   <Priority>5</Priority>
+   <DataTransferProxy></DataTransferProxy>
+   <UseCustomHostPort>false</UseCustomHostPort>
+   <CustomHost></CustomHost>
+   <CustomPort>5222</CustomPort>
+   <EncryptionMode>2</EncryptionMode>
+   <PlainAuthMode>2</PlainAuthMode>
+   <LegacySSLProbe>false</LegacySSLProbe>
+   <TlsOverrideCert></TlsOverrideCert>
+   <TlsOverrideDomain></TlsOverrideDomain>
+   <SendTypingNotification>true</SendTypingNotification>
+   <SendGoneNotification>true</SendGoneNotification>
+ </Account>
+ </Accounts>
+ <Buddies imported="true">
+  
+ </Buddies>
+ <Contacts>
+  
+ </Contacts>
+ <ChatWindows/>
+ <Chats>
+  
+ </Chats>
+ <PendingMessages/>
+ <ModuleTabs/>
+ <Keys/>
+ <Avatars>
+  
+ </Avatars>
+ <RecentChats>
+  <Chat uuid="{52da157e-ae92-4089-b14b-c40471c9589e}" time="1325070136"/>
+  <Chat uuid="{ba00e6ec-1587-4fd2-803b-7b4fc8a0e0b2}" time="1326699786"/>
+ </RecentChats>
+ <JabberTrustedCertificates>
+  <JabberTrustedCertificate>MIIC8DCCAdigAwIBAgIIUFEiCmTciZMwDQYJKoZIhvcNAQEFBQAwHjEcMBoGA1UEAwwTbXVzaWMubXN3aWVjem5pay5wbDAeFw0xMTA4MDkxOTE5NDNaFw0xNjA3MTMxOTE5NDNaMB4xHDAaBgNVBAMME211c2ljLm1zd2llY3puaWsucGwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDbOuaZmeuCYcffqK+EAV281TdxrTlH+kUY+mYPsL4XYKV5GPZTNnGXKvmG8tdC+bI0vboauGnYJ0wYhhQz2dRnnVpPVpYkwCUvl7IK6+ufBxOaALL+XjHXzyYA0wAM/NJsrpIxUkdlfvGCNKU6YVYqOQcymT/a4l0q8aEAEcLYiWRg3ELC94V6St1rJWT9MS5dI0sYHD0mMRldHQ7Foc49lpWLjznM0oHdEVKWxaQyOzsVXA/9Witx76enEqaLYnEq2JPGN4nazxuif75xa2aHVLSalP+9ofXbYmIee7D3/dFcKmOsKWcVWpMPuVo7G0XLuH9MCAjQEwpGiF+GCFcfAgMBAAGjMjAwMC4GA1UdEQQnMCWgIwYIKwYBBQUHCAWgFwwVKi5tdXNpYy5tc3dpZWN6bmlrLnBsMA0GCSqGSIb3DQEBBQUAA4IBAQCLoRyUplMkuxH821N4scph6MVnYvqIgKH1BUu8LWpRfR24rMREMWV/qCbuOuUU3HrYUpX/aK8Vlaz1Yc85Spt8v/+Bel8egmEF5IB6yGCwybB5eLDJr4O18aKvUAz69I7DIPxcn23gm9P1pB88UpWen3uMYvLYXLW2U7xV5cgU75BS5frinGmj/cvD9gXB2G9gmVtS88gwmt1ZcRM4Os+Rf5MYyMRetjICui2gwqkAFDjTYFg4nzSEmAbufDfl0WR3F6iihwHaYOkazz+OosbEs0ZW//CorHKucF1IhlFlT7GdM/WjIYTF2hVZKjO3Hw3AKsm+kulqSuFyUaXR0gIC</JabberTrustedCertificate>
+ </JabberTrustedCertificates>
+</Kadu>

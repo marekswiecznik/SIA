@@ -67,7 +67,7 @@ public class SIA {
 	 */
 	public void handleException(final String message, final Exception ex) {
 		final String exceptionMessage;
-		if (ex instanceof PyException) {
+		if (ex instanceof PyException && ((PyException) ex).value instanceof PyBaseException) {
 			exceptionMessage = ((PyBaseException) ((PyException) ex).value).message.toString();
 		} else {
 			exceptionMessage = ex.getLocalizedMessage() == null ? "" : ex.getLocalizedMessage();

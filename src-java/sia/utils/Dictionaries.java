@@ -10,6 +10,7 @@ import sia.datasources.DataSource;
 import sia.datasources.ExampleDataSource;
 import sia.datasources.FMADataSource;
 import sia.datasources.GtalkDataSource;
+import sia.datasources.KaduDataSource;
 import sia.models.Configuration;
 import sia.models.Contact;
 import sia.models.ContactAccount;
@@ -61,6 +62,7 @@ public class Dictionaries {
 		dataSources.put("Float's Mobile Agent", FMADataSource.class.getSimpleName());
 		dataSources.put("Google Talk (via IMAP)", GtalkDataSource.class.getSimpleName());
 		dataSources.put("Example", ExampleDataSource.class.getSimpleName());
+		dataSources.put("Kadu", KaduDataSource.class.getSimpleName());
 	}
 	
 	/**

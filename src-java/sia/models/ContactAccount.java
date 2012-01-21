@@ -202,7 +202,7 @@ public class ContactAccount {
 	}
 
 	/**
-	 * Set conversations
+	 * Sets conversations
 	 * @param conversations 
 	 */
 	public void setConversations(List<Conversation> conversations) {
@@ -212,6 +212,15 @@ public class ContactAccount {
 		}
 	}
 
+	/**
+	 * Adds conversation
+	 * @param conversation
+	 */
+	public void addConversation(Conversation conversation) {
+		conversation.setContactAccount(this);
+		conversations.add(conversation);
+	}
+	
 	/**
 	 * Returns avatar
 	 * @return avatar

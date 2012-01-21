@@ -1,0 +1,3646 @@
+<Kadu last_save_time="Tue Jan 17 13:06:07 2012" uuid="{58a358ef-3d43-406b-8df9-5934a7eb2063}" last_save_version="0.9.2">
+ <Deprecated>
+  
+ </Deprecated>
+ <Toolbars blocked="1">
+  
+ </Toolbars>
+ <Identities>
+  <Identity uuid="{91de4ad2-213f-439c-93e5-b20aa8fcf2a3}">
+   <LastStatusDescription/>
+   <LastStatusName>Invisible</LastStatusName>
+   <Permanent>true</Permanent>
+   <Name>Friends</Name>
+  </Identity>
+  <Identity uuid="{36461084-72db-443f-8a12-0831674e9295}">
+   <Permanent>true</Permanent>
+   <Name>Work</Name>
+  </Identity>
+  <Identity uuid="{7ba8cc00-7fbc-4ed6-bb93-125206531049}">
+   <Permanent>true</Permanent>
+   <Name>School</Name>
+  </Identity>
+ </Identities>
+ <Groups>
+  <Group uuid="{}">
+   <Name>All</Name>
+   <Icon></Icon>
+   <NotifyAboutStatusChanges>true</NotifyAboutStatusChanges>
+   <ShowInAllGroup>true</ShowInAllGroup>
+   <OfflineTo>false</OfflineTo>
+   <ShowIcon>false</ShowIcon>
+   <ShowName>true</ShowName>
+   <TabPosition>0</TabPosition>
+  </Group>
+  <Group uuid="{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}">
+   <Name>Pokemony</Name>
+   <Icon></Icon>
+   <NotifyAboutStatusChanges>true</NotifyAboutStatusChanges>
+   <ShowInAllGroup>true</ShowInAllGroup>
+   <OfflineTo>false</OfflineTo>
+   <ShowIcon>false</ShowIcon>
+   <ShowName>true</ShowName>
+   <TabPosition>1</TabPosition>
+  </Group>
+ </Groups>
+ <Accounts>
+  <Account uuid="{54928de7-b09c-4095-8b3e-51d221bc90d5}">
+   <Identity>{91de4ad2-213f-439c-93e5-b20aa8fcf2a3}</Identity>
+   <Protocol>gadu</Protocol>
+   <Id>4053074</Id>
+   <RememberPassword>true</RememberPassword>
+   <Password>qvnqhav7</Password>
+   <UseProxy>false</UseProxy>
+   <ProxyHost></ProxyHost>
+   <ProxyPort>3145776</ProxyPort>
+   <ProxyRequiresAuthentication>false</ProxyRequiresAuthentication>
+   <ProxyUser></ProxyUser>
+   <ProxyPassword></ProxyPassword>
+   <PrivateStatus>false</PrivateStatus>
+   <LastStatusDescription></LastStatusDescription>
+   <LastStatusName>Invisible</LastStatusName>
+   <AllowDcc>true</AllowDcc>
+   <MaximumImageSize>255</MaximumImageSize>
+   <ReceiveImagesDuringInvisibility>true</ReceiveImagesDuringInvisibility>
+   <MaximumImageRequests>10</MaximumImageRequests>
+   <InitialRosterImport>false</InitialRosterImport>
+   <TlsEncryption>false</TlsEncryption>
+   <SendTypingNotification>true</SendTypingNotification>
+  </Account>
+  <Account uuid="{627f4e2b-7e50-4986-a876-6449ee6cc3ac}">
+   <Identity>{91de4ad2-213f-439c-93e5-b20aa8fcf2a3}</Identity>
+   <Protocol>jabber</Protocol>
+   <Id>aga.glabala@gmail.com</Id>
+   <RememberPassword>true</RememberPassword>
+   <Password>geb15b548;</Password>
+   <UseProxy>false</UseProxy>
+   <ProxyHost></ProxyHost>
+   <ProxyPort>3145776</ProxyPort>
+   <ProxyRequiresAuthentication>false</ProxyRequiresAuthentication>
+   <ProxyUser></ProxyUser>
+   <ProxyPassword></ProxyPassword>
+   <PrivateStatus>true</PrivateStatus>
+   <LastStatusDescription></LastStatusDescription>
+   <LastStatusName>Online</LastStatusName>
+   <AutoResource>true</AutoResource>
+   <Resource>wielkolud</Resource>
+   <Priority>5</Priority>
+   <DataTransferProxy></DataTransferProxy>
+   <UseCustomHostPort>false</UseCustomHostPort>
+   <CustomHost></CustomHost>
+   <CustomPort>5222</CustomPort>
+   <EncryptionMode>2</EncryptionMode>
+   <PlainAuthMode>2</PlainAuthMode>
+   <LegacySSLProbe>false</LegacySSLProbe>
+   <TlsOverrideCert></TlsOverrideCert>
+   <TlsOverrideDomain></TlsOverrideDomain>
+   <SendTypingNotification>true</SendTypingNotification>
+   <SendGoneNotification>true</SendGoneNotification>
+  </Account>
+ </Accounts>
+ <Buddies imported="true">
+  <Buddy uuid="{917bcbc8-72d8-469d-be22-8349a5bba256}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Robert Szymborski</Display>
+   <FirstName>Robert Szymborski</FirstName>
+   <LastName>Robert Szymborski</LastName>
+   <NickName>Robert Szymborski</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{860877d9-7183-4f75-916d-a60cac6af8a1}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Michał Fuks</Display>
+   <FirstName>Michał Fuks</FirstName>
+   <LastName>Michał Fuks</LastName>
+   <NickName>Michał Fuks</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{4a400508-8a70-44f8-a517-cdfd705ff109}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>bra krokodyl</Display>
+   <FirstName>bra krokodyl</FirstName>
+   <LastName>bra krokodyl</LastName>
+   <NickName>bra krokodyl</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{1b51f255-408b-484b-ba21-4e1a829fb7a8}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Adrian Michalak</Display>
+   <FirstName>Adrian Michalak</FirstName>
+   <LastName>Adrian Michalak</LastName>
+   <NickName>Adrian Michalak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{90508fe9-5d27-4ce6-89d2-45395b993108}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Jagoda Pierścińska</Display>
+   <FirstName>Jagoda Pierścińska</FirstName>
+   <LastName>Jagoda Pierścińska</LastName>
+   <NickName>Jagoda Pierścińska</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{62f6bf32-7a5c-4ff9-91e0-d6ebb5773129}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Marta Koncerewicz</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{3fe2e7b4-9be0-4c6f-88d8-8c16ed39f520}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>bra napis</Display>
+   <FirstName>bra napis</FirstName>
+   <LastName>bra napis</LastName>
+   <NickName>bra napis</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{efea13cb-f1ea-44ed-9a27-8f347d6e9364}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Bartek Dolewski</Display>
+   <FirstName>Bartek Dolewski</FirstName>
+   <LastName>Bartek Dolewski</LastName>
+   <NickName>Bartek Dolewski</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{e7288db0-d1d5-48b8-a409-a6fa0d6d24f0}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Paweł Nieradka</Display>
+   <FirstName>Paweł Nieradka</FirstName>
+   <LastName>Paweł Nieradka</LastName>
+   <NickName>Paweł Nieradka</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{e833ba35-e07e-42b6-89f6-051217804f40}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Konrad Popławski</Display>
+   <FirstName>Konrad Popławski</FirstName>
+   <LastName>Konrad Popławski</LastName>
+   <NickName>Konrad Popławski</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>false</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{dcd7444c-bdca-4181-9014-480d2e7d0f44}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Kamil Frankiewicz</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>true</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{c08d31d1-2d52-423f-8c0b-a804829df3ad}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Marta</Display>
+   <FirstName>Marta</FirstName>
+   <LastName>Marta</LastName>
+   <NickName>Marta</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{cce014d3-305f-4d53-bd37-f23f5fd0751c}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Asia Grzegorek</Display>
+   <FirstName>Asia Grzegorek</FirstName>
+   <LastName>Asia Grzegorek</LastName>
+   <NickName>Asia Grzegorek</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{1938bae2-4559-4409-862c-fff57c50942d}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>bra koraliki</Display>
+   <FirstName>bra koraliki</FirstName>
+   <LastName>bra koraliki</LastName>
+   <NickName>bra koraliki</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{54b30b9f-b63c-499a-97de-b34ce02a4729}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Ewa Kaczmarek</Display>
+   <FirstName>Ewa Kaczmarek</FirstName>
+   <LastName>Ewa Kaczmarek</LastName>
+   <NickName>Ewa Kaczmarek</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{ab174696-85c4-47b8-b3e8-55e01bb4ab70}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Anka Kustosik</Display>
+   <FirstName>Anka Kustosik</FirstName>
+   <LastName>Anka Kustosik</LastName>
+   <NickName>Anka Kustosik</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{5f7dd7fd-73e6-4961-9104-4fee5594dcc0}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Marek Kulessa</Display>
+   <FirstName>Marek (mark1989)</FirstName>
+   <LastName>Marek (mark1989)</LastName>
+   <NickName>Marek (mark1989)</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{2989c433-0aa1-4abd-917f-71a368495397}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>gv</Display>
+   <FirstName>gv</FirstName>
+   <LastName>gv</LastName>
+   <NickName>gv</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{08c2f98c-2f59-49df-996b-41c938e6028b}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Bartek Berus</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>true</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{cf49a0bc-17a3-44d0-80dc-dbdad989d691}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Maciek Krakowiak</Display>
+   <FirstName>Maciek Krakowiak</FirstName>
+   <LastName>Maciek Krakowiak</LastName>
+   <NickName>Maciek Krakowiak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{c4561926-5950-443f-8e6c-bd986c595377}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Justyna Szczerba</Display>
+   <FirstName>Justyna Szczerba</FirstName>
+   <LastName>Justyna Szczerba</LastName>
+   <NickName>Justyna Szczerba</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{80ca7b82-7718-4fad-b2ac-9df1a75a7422}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Maciek Buła</Display>
+   <FirstName>Maciek Buła</FirstName>
+   <LastName>Maciek Buła</LastName>
+   <NickName>Maciek Buła</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{9d987482-979d-47e1-a62d-f941fd612bda}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Sylwia Pelc</Display>
+   <FirstName>Sylwia Pelc</FirstName>
+   <LastName>Sylwia Pelc</LastName>
+   <NickName>Sylwia Pelc</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{131763ee-d08f-43ed-b50b-ab2cd7370a1f}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Krzysiek Matuszek</Display>
+   <FirstName>Krzysiek Matuszek</FirstName>
+   <LastName>Krzysiek Matuszek</LastName>
+   <NickName>Krzysiek Matuszek</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{61e3d141-1778-4aae-aa85-ac2295a93253}">
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>ja</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>true</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{eb179fab-e49e-4417-83bc-895838141bc1}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Paweł Filipiak</Display>
+   <FirstName>Paweł Filipiak</FirstName>
+   <LastName>Paweł Filipiak</LastName>
+   <NickName>Paweł Filipiak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{03da9e31-c78b-436f-b9e0-31cfb0b06d39}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Kamil Karol Góralczyk</Display>
+   <FirstName>Kamil Karol Góralczyk</FirstName>
+   <LastName>Kamil Karol Góralczyk</LastName>
+   <NickName>Kamil Karol Góralczyk</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{f6be4662-b5ee-40db-a8a0-a58727711ad8}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Wojtek Frys</Display>
+   <FirstName>Wojtek Fryc</FirstName>
+   <LastName>Wojtek Fryc</LastName>
+   <NickName>Wojtek Fryc</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{4c638020-d3e6-4172-b08f-3e580976bcd3}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Ania Zięba</Display>
+   <FirstName>Ania Zięba</FirstName>
+   <LastName>Ania Zięba</LastName>
+   <NickName>Ania Zięba</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{5bda4394-8261-47ba-8644-018fffde09ed}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Aga Rzemieniecka</Display>
+   <FirstName>Aga Rzemieniecka</FirstName>
+   <LastName>Aga Rzemieniecka</LastName>
+   <NickName>Aga Rzemieniecka</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{4bd149d8-6e62-4a36-ac08-18dd21f9d3eb}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Marcin Kasprzyk</Display>
+   <FirstName>Marcin Kasprzyk</FirstName>
+   <LastName>Marcin Kasprzyk</LastName>
+   <NickName>Marcin Kasprzyk</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{950eb993-32c5-41d9-9bef-893d48f90622}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Radek Grębski</Display>
+   <FirstName>Radek Grębski</FirstName>
+   <LastName>Radek Grębski</LastName>
+   <NickName>Radek Grębski</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{e2186d50-32e7-4e0e-bda5-3cc300630993}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Łukasz (inf)</Display>
+   <FirstName>Łukasz (inf)</FirstName>
+   <LastName>Łukasz (inf)</LastName>
+   <NickName>Łukasz (inf)</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{21010589-3b0a-40fa-b552-3cf3cce779ac}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Jakub Gramsz</Display>
+   <FirstName>Jakub Gramsz</FirstName>
+   <LastName>Jakub Gramsz</LastName>
+   <NickName>Jakub Gramsz</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{2ccc7279-a078-4478-91b9-08aca722c520}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Ola Piasta</Display>
+   <FirstName>Ola Piasta</FirstName>
+   <LastName>Ola Piasta</LastName>
+   <NickName>Ola Piasta</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{044cab6e-7c34-4d3f-85a6-f192b94f802b}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Sufixx</Display>
+   <FirstName>Sufixx</FirstName>
+   <LastName>Sufixx</LastName>
+   <NickName>Sufixx</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{876d9440-0298-4ff4-abf5-6a76e85f8dd4}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Jacek Miśkiewicz</Display>
+   <FirstName>Jacek Miśkiewicz</FirstName>
+   <LastName>Jacek Miśkiewicz</LastName>
+   <NickName>Jacek Miśkiewicz</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{3070a022-9f70-400f-ab7e-b8b82a6c0e4f}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Błażej Stanek</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>true</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{c89b9fde-5fa6-4ddd-bc34-25cb5015c20b}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Kasia Otto</Display>
+   <FirstName>Kasia Otto</FirstName>
+   <LastName>Kasia Otto</LastName>
+   <NickName>Kasia Otto</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{2b7ddc00-c56b-437e-b9e6-304dc60b5cff}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Michał Pawłowski</Display>
+   <FirstName>Michał Pawłowski</FirstName>
+   <LastName>Michał Pawłowski</LastName>
+   <NickName>Michał Pawłowski</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{1acc16b8-9332-48f7-8583-f1a04e270854}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Piotr Kaźmierczak</Display>
+   <FirstName>Piotr Kaźmierczak</FirstName>
+   <LastName>Piotr Kaźmierczak</LastName>
+   <NickName>Piotr Kaźmierczak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{83fa066e-dc25-482f-af31-60e92091f163}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Justyna Tkaczyk</Display>
+   <FirstName>Justyna Tkaczyk</FirstName>
+   <LastName>Justyna Tkaczyk</LastName>
+   <NickName>Justyna Tkaczyk</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{4fbc93b1-5103-401c-8688-27f9ba0b1533}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Ola Urbaniak</Display>
+   <FirstName>Ola Urbaniak</FirstName>
+   <LastName>Ola Urbaniak</LastName>
+   <NickName>Ola Urbaniak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{172db39b-4266-44f4-8e8b-252ac797bef2}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Kamil Krystecki</Display>
+   <FirstName>Kamil Krystecki</FirstName>
+   <LastName>Kamil Krystecki</LastName>
+   <NickName>Kamil Krystecki</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{5c33e159-99ef-4611-8449-395122bc06df}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Milenka Michalak</Display>
+   <FirstName>Milenka Michalak</FirstName>
+   <LastName>Milenka Michalak</LastName>
+   <NickName>Milenka Michalak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{f0c1f24a-55ae-4e90-bab9-07926de11f5c}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Wojtek Ścieszko</Display>
+   <FirstName>Wojtek Ścieszko</FirstName>
+   <LastName>Wojtek Ścieszko</LastName>
+   <NickName>Wojtek Ścieszko</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{8e0a11d5-9a2b-41e6-9b4a-82f6a5b59858}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>s</Display>
+   <FirstName>s</FirstName>
+   <LastName>s</LastName>
+   <NickName>s</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{1462ba12-4383-4f47-b31b-21b5744e74c2}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Marek Świecznik</Display>
+   <FirstName>Marek Świecznik</FirstName>
+   <LastName>Marek Świecznik</LastName>
+   <NickName>Marek Świecznik</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{5a8d08c4-d72d-458f-a01c-ac6d339018e4}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Rafał Szpak</Display>
+   <FirstName>Rafał Szpak</FirstName>
+   <LastName>Rafał Szpak</LastName>
+   <NickName>Rafał Szpak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{530c05ee-d30d-49ed-b209-1d5c135c5874}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Grzegorz Piasta</Display>
+   <FirstName>Grzegorz Piasta</FirstName>
+   <LastName>Grzegorz Piasta</LastName>
+   <NickName>Grzegorz Piasta</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{609fa98b-1d91-47c2-9806-e6be6ced2f9c}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Sylwia Chorąży</Display>
+   <FirstName>Sylwia Chorąży</FirstName>
+   <LastName>Sylwia Chorąży</LastName>
+   <NickName>Sylwia Chorąży</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{905f8e57-3071-4176-85af-c4959e1b7c3a}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>bra</Display>
+   <FirstName>bra</FirstName>
+   <LastName>bra</LastName>
+   <NickName>bra</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{0e958b39-db53-488a-9c2d-a9e4f815a662}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Paweł Zaręba</Display>
+   <FirstName>Paweł Zaręba</FirstName>
+   <LastName>Paweł Zaręba</LastName>
+   <NickName>Paweł Zaręba</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{776821fd-82d7-4bc0-a9d1-592a0126aa3b}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Michał Mandrysz</Display>
+   <FirstName>Michał Mandrysz</FirstName>
+   <LastName>Michał Mandrysz</LastName>
+   <NickName>Michał Mandrysz</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{e478f31a-7e39-48b5-b3b6-ccbfa8b17d84}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Łukasz Dziądziak</Display>
+   <FirstName>Łukasz Dziądziak</FirstName>
+   <LastName>Łukasz Dziądziak</LastName>
+   <NickName>Łukasz Dziądziak</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{69cf63fd-7cba-43b7-aafd-37181606767a}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Gośka</Display>
+   <FirstName>Gośka</FirstName>
+   <LastName>Gośka</LastName>
+   <NickName>Gośka</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{defdb531-8397-4644-a8fd-4dd23c3fd81a}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Słomek</Display>
+   <FirstName>Słomek</FirstName>
+   <LastName>Słomek</LastName>
+   <NickName>Słomek</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{691d2dd3-950c-407d-9a9d-5b7137b58903}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Justyna Janik</Display>
+   <FirstName>Justyna Janik</FirstName>
+   <LastName>Justyna Janik</LastName>
+   <NickName>Justyna Janik</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{0b8de280-c633-48cd-a004-9aaa1acf35ed}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>mama i tata </Display>
+   <FirstName>mama i tata </FirstName>
+   <LastName>mama i tata </LastName>
+   <NickName>mama i tata </NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{d055e7f4-2ad1-4a4d-9780-46d0d1298254}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Ciocia Marzenka</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>true</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{4b2426d4-601f-4e24-8633-be0d0cf2788e}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Andrzej Kowalski</Display>
+   <FirstName>Andrzej Kowalski</FirstName>
+   <LastName>Andrzej Kowalski</LastName>
+   <NickName>Andrzej Kowalski</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{340a66c9-2ed6-4a19-9f77-8250fc1ab49d}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Zygmunt Horodyski</Display>
+   <FirstName>Zygmunt Horodyski</FirstName>
+   <LastName>Zygmunt Horodyski</LastName>
+   <NickName>Zygmunt Horodyski</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{23e673fb-4852-4f9b-bf6a-e656aef5fb93}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Ania Wądrzyk</Display>
+   <FirstName>Ania Wądrzyk</FirstName>
+   <LastName>Ania Wądrzyk</LastName>
+   <NickName>Ania Wądrzyk</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{1becda04-1b78-4cdd-80cd-057ca3afa863}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>bra haft</Display>
+   <FirstName>bra haft</FirstName>
+   <LastName>bra haft</LastName>
+   <NickName>bra haft</NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{f4ecff5b-d1b6-4192-b158-01f0c9fc940d}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{982ae20a-6952-4ffe-a219-5ca108b817c1}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Anna Zieba</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{696f7cbc-84da-4bde-be52-2d88baeefffc}">
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Marek Stasiak</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{7a95f31b-6926-4fbd-aba9-4da1403653c1}">
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>małgorzata głąbała</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{2d89091b-1b1f-4255-8ef9-3cd5a35ff84d}">
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Łukasz Jerciński</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{8a324b1f-14e0-420b-a6be-e62f69eecfb2}">
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Kamil</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{6fdfde8b-d812-4992-9445-3c469c28cfbd}">
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>m.krakowiak@gmail.com</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{875388df-c5cc-464f-a4d1-9d0260714c59}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Mateusz Murawski</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{ff605c0e-be5a-4bd8-847f-541b20c88fe9}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Asia Kaczmarek</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{386d27ca-1e69-45db-a18e-7b6e858e91b4}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Kamil Szatkowski</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{c50a1000-1ead-4861-84a2-25e197270f15}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Tomasz Klimek</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{8d71da48-4627-40bb-ac23-1109998a0a84}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Dominik Dolny</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{dd187d35-ace8-4ad8-9013-cab70d65d05b}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <ModuleData name="notify">
+    <Notify>false</Notify>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Wojciech Indyk</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{2e9077df-5d18-4891-9fd1-edf19d1eb144}">
+   <ModuleData name="kadu">
+    <HideDescription>false</HideDescription>
+   </ModuleData>
+   <CustomDataValues>
+    <CustomDataValue name="uin"></CustomDataValue>
+   </CustomDataValues>
+   <Display>Adam Jordanek</Display>
+   <FirstName></FirstName>
+   <LastName></LastName>
+   <NickName></NickName>
+   <HomePhone></HomePhone>
+   <Mobile></Mobile>
+   <Email></Email>
+   <Website></Website>
+   <Anonymous>false</Anonymous>
+   <Blocked>false</Blocked>
+   <OfflineTo>false</OfflineTo>
+   <Gender>0</Gender>
+   <PreferHigherStatuses>true</PreferHigherStatuses>
+   <ContactGroups>
+    <Group>{afb04c62-1a5e-437a-ad7d-552770eba8d7}</Group>
+   </ContactGroups>
+  </Buddy>
+  <Buddy uuid="{f5f9bbfd-6a2c-41ec-a797-e2f8649a45aa}"/>
+ </Buddies>
+ <Contacts>
+  <Contact uuid="{5ad64586-01d0-4e1c-b3ba-0a88f07ab60f}">
+   <Id>4053074</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{f5f9bbfd-6a2c-41ec-a797-e2f8649a45aa}</Buddy>
+   <Avatar>{d7396e51-8349-4219-9cd7-d9ec0a6ee037}</Avatar>
+  </Contact>
+  <Contact uuid="{9b23bc60-34eb-4a56-86a8-4059a59d4fb8}">
+   <Id>9112904</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{0b8de280-c633-48cd-a004-9aaa1acf35ed}</Buddy>
+  </Contact>
+  <Contact uuid="{5c5c3af4-23f1-4f3a-89aa-acac6065d7f0}">
+   <Id>1007225</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{917bcbc8-72d8-469d-be22-8349a5bba256}</Buddy>
+  </Contact>
+  <Contact uuid="{2396916e-b3ec-4cc3-95a2-e8683e0c1f82}">
+   <Id>1020377</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{860877d9-7183-4f75-916d-a60cac6af8a1}</Buddy>
+  </Contact>
+  <Contact uuid="{d29222a6-2784-4a45-94f2-66d881473853}">
+   <Id>10979335</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{19184db8-7d4f-4996-8ad9-c3a92640a41e}">
+   <Id>11162873</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{4a400508-8a70-44f8-a517-cdfd705ff109}</Buddy>
+  </Contact>
+  <Contact uuid="{ac805a2e-bc5e-4d9d-bf12-f408bd77182e}">
+   <Id>1140642</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{1b51f255-408b-484b-ba21-4e1a829fb7a8}</Buddy>
+   <Avatar>{90d10253-317d-40ab-aec0-d496f4d10a4d}</Avatar>
+  </Contact>
+  <Contact uuid="{30b2c1fe-4a30-4cff-a702-6b5ce69d76ab}">
+   <Id>11864655</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{63206c2d-47be-4539-84ac-2fab1777d79b}">
+   <Id>11905264</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+   <Avatar>{9b822bb2-83be-4824-af1c-40d33fdc7fe4}</Avatar>
+  </Contact>
+  <Contact uuid="{d72867c2-63fd-4641-9fc7-222c5e8c1f76}">
+   <Id>12402198</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{90508fe9-5d27-4ce6-89d2-45395b993108}</Buddy>
+   <Avatar>{e5a7d38c-a5c2-4d01-b754-af906be4f314}</Avatar>
+  </Contact>
+  <Contact uuid="{018b24a6-3f70-4651-8c3f-32e0ef5d0c53}">
+   <Id>12651273</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{62f6bf32-7a5c-4ff9-91e0-d6ebb5773129}</Buddy>
+  </Contact>
+  <Contact uuid="{0e1a63a0-0402-46ac-a183-1c176043250e}">
+   <Id>1684875</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{3fe2e7b4-9be0-4c6f-88d8-8c16ed39f520}</Buddy>
+   <Avatar>{85276407-c90c-4381-bffd-6dc91bdbba2c}</Avatar>
+  </Contact>
+  <Contact uuid="{59ffc49d-180a-422d-abc5-b126486a84e9}">
+   <Id>1781197</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{efea13cb-f1ea-44ed-9a27-8f347d6e9364}</Buddy>
+   <Avatar>{ec09da7a-5561-4224-89b3-1fb62c58e09e}</Avatar>
+  </Contact>
+  <Contact uuid="{02f4afd5-6cf0-4f06-be98-ff05c6545686}">
+   <Id>1872752</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{e7288db0-d1d5-48b8-a409-a6fa0d6d24f0}</Buddy>
+   <Avatar>{8a48dd76-0e4f-48a2-9bbf-7d25ab17e69e}</Avatar>
+  </Contact>
+  <Contact uuid="{a845440c-0d3e-498e-ae50-9661cdd8c87a}">
+   <Id>2232910</Id>
+   <Priority>1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{e833ba35-e07e-42b6-89f6-051217804f40}</Buddy>
+   <Avatar>{767c6f41-d53b-44ee-a8fa-d81ea911757a}</Avatar>
+  </Contact>
+  <Contact uuid="{9c7f1795-0605-491a-8b35-f9abdd1492c2}">
+   <Id>2268758</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{dcd7444c-bdca-4181-9014-480d2e7d0f44}</Buddy>
+   <Avatar>{d2db9f92-a866-456e-b83f-dcb2a74f8574}</Avatar>
+  </Contact>
+  <Contact uuid="{eafc0240-9385-45ae-9049-21c7b55c91f2}">
+   <Id>23196345</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{c08d31d1-2d52-423f-8c0b-a804829df3ad}</Buddy>
+   <Avatar>{f21d84c9-7ad9-46a2-8498-ed6d9f81dba7}</Avatar>
+  </Contact>
+  <Contact uuid="{0180f110-31cd-45df-b04e-97cf96974d94}">
+   <Id>2348721</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{a870e469-fd60-404d-9972-f36c568ef541}">
+   <Id>2414911</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{cce014d3-305f-4d53-bd37-f23f5fd0751c}</Buddy>
+  </Contact>
+  <Contact uuid="{b2af5ca2-8438-429e-9aec-98c8432950cb}">
+   <Id>242565</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{1938bae2-4559-4409-862c-fff57c50942d}</Buddy>
+   <Avatar>{1228f253-0836-4a4c-9e1e-55bacd0f08d8}</Avatar>
+  </Contact>
+  <Contact uuid="{86fee18d-ca83-4ef1-bb99-c7bc0b0fc9cd}">
+   <Id>2464616</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{54b30b9f-b63c-499a-97de-b34ce02a4729}</Buddy>
+  </Contact>
+  <Contact uuid="{b12e18f1-b1ee-4a75-bc2f-10c71b902838}">
+   <Id>2517537</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{ab174696-85c4-47b8-b3e8-55e01bb4ab70}</Buddy>
+   <Avatar>{84b89032-e208-492c-bccc-bdfc3261e72e}</Avatar>
+  </Contact>
+  <Contact uuid="{d247f704-59c9-4799-9298-a7b322cba0b6}">
+   <Id>2644021</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{5f7dd7fd-73e6-4961-9104-4fee5594dcc0}</Buddy>
+  </Contact>
+  <Contact uuid="{586eb1c5-891a-40bd-8615-f9e88ff48fff}">
+   <Id>2779304</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{2989c433-0aa1-4abd-917f-71a368495397}</Buddy>
+  </Contact>
+  <Contact uuid="{a03a2540-e8ee-417c-999d-efcf7989c48a}">
+   <Id>3065958</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{08c2f98c-2f59-49df-996b-41c938e6028b}</Buddy>
+   <Avatar>{69366df0-2aa3-483b-9e05-d9b42c3eba57}</Avatar>
+  </Contact>
+  <Contact uuid="{3ee0d028-8762-4fa5-bfa6-d7979cfc64c9}">
+   <Id>3164507</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{cf49a0bc-17a3-44d0-80dc-dbdad989d691}</Buddy>
+  </Contact>
+  <Contact uuid="{d79b0f8d-5684-4c14-9eb2-ca553e37cf82}">
+   <Id>3365582</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{c4561926-5950-443f-8e6c-bd986c595377}</Buddy>
+   <Avatar>{f30596e9-c609-413c-933d-7ef9793a35d3}</Avatar>
+  </Contact>
+  <Contact uuid="{3c04c0b9-12f5-4f72-a4f1-b6188292a09f}">
+   <Id>3462048</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{14d790b4-aff6-4170-9f6f-58be45aae069}">
+   <Id>3938029</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{80ca7b82-7718-4fad-b2ac-9df1a75a7422}</Buddy>
+  </Contact>
+  <Contact uuid="{3f3886fb-ec51-4a07-81c4-59e14278cd39}">
+   <Id>3947752</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{9d987482-979d-47e1-a62d-f941fd612bda}</Buddy>
+   <Avatar>{d4e7e22e-3588-480c-9773-ea58f36fcc48}</Avatar>
+  </Contact>
+  <Contact uuid="{cfb5e857-2b1b-4b12-99c1-413e1e33872f}">
+   <Id>3975570</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{131763ee-d08f-43ed-b50b-ab2cd7370a1f}</Buddy>
+  </Contact>
+  <Contact uuid="{19435fc2-d0b6-40b7-95be-dee72387bef0}">
+   <Id>4249815</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{eb179fab-e49e-4417-83bc-895838141bc1}</Buddy>
+  </Contact>
+  <Contact uuid="{7fe7b2ca-1f5f-4efe-b392-b4a444b0f35f}">
+   <Id>4402970</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{03da9e31-c78b-436f-b9e0-31cfb0b06d39}</Buddy>
+   <Avatar>{ca898c6c-66e3-4d4e-b289-38c74e1a1dce}</Avatar>
+  </Contact>
+  <Contact uuid="{10681c12-1b93-4630-a5ff-ef7a2ad3036c}">
+   <Id>4475213</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{f6be4662-b5ee-40db-a8a0-a58727711ad8}</Buddy>
+  </Contact>
+  <Contact uuid="{8ba822cf-f775-4cb6-bdc7-5312501278da}">
+   <Id>4652939</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{4c638020-d3e6-4172-b08f-3e580976bcd3}</Buddy>
+  </Contact>
+  <Contact uuid="{d595342b-083d-4500-9f41-ebf5b39d9796}">
+   <Id>4681304</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{5bda4394-8261-47ba-8644-018fffde09ed}</Buddy>
+   <Avatar>{9ae67236-bbf7-486f-af6e-736ca9a36ee6}</Avatar>
+  </Contact>
+  <Contact uuid="{1cbe07d6-8ba1-446a-be7e-e4e1dc01a0c8}">
+   <Id>4857478</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+   <Avatar>{644dae0f-663a-4347-bcd0-7de6e5b343a7}</Avatar>
+  </Contact>
+  <Contact uuid="{b60b6df9-9c95-4586-b750-7fc7955f8492}">
+   <Id>5206465</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{2d03e63c-3e1d-4642-834e-5eee59467f63}">
+   <Id>5328463</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{4bd149d8-6e62-4a36-ac08-18dd21f9d3eb}</Buddy>
+  </Contact>
+  <Contact uuid="{86a7f9ee-8b11-40c6-91ea-ac47be657b3f}">
+   <Id>5383659</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{950eb993-32c5-41d9-9bef-893d48f90622}</Buddy>
+  </Contact>
+  <Contact uuid="{4b789553-2863-4db6-9864-6bb017af6926}">
+   <Id>5386158</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{e2186d50-32e7-4e0e-bda5-3cc300630993}</Buddy>
+  </Contact>
+  <Contact uuid="{55d52315-17a8-490c-b0fa-0a5fffc68ef1}">
+   <Id>5420731</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{21010589-3b0a-40fa-b552-3cf3cce779ac}</Buddy>
+  </Contact>
+  <Contact uuid="{f89b6b96-5b2a-4011-a1da-9d9846ade670}">
+   <Id>5432578</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{2ccc7279-a078-4478-91b9-08aca722c520}</Buddy>
+  </Contact>
+  <Contact uuid="{f7dd949a-c3e0-4acc-bc13-08009d545550}">
+   <Id>5701499</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{32e1f39a-60ed-461a-8607-6982caad4033}">
+   <Id>575797</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{044cab6e-7c34-4d3f-85a6-f192b94f802b}</Buddy>
+   <Avatar>{2c717db2-6434-45ee-9a88-3d66eed6aca0}</Avatar>
+  </Contact>
+  <Contact uuid="{1d83f0ea-d964-48bc-b023-f972a0355526}">
+   <Id>5959025</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+   <Avatar>{49eecb43-6858-43ac-b1e7-35736727bbe9}</Avatar>
+  </Contact>
+  <Contact uuid="{681caa8f-42a0-4c5a-91af-97163cb45d27}">
+   <Id>5976502</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{85bd3f3a-e9b4-46af-9c07-d6eee3cea436}">
+   <Id>5977997</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{876d9440-0298-4ff4-abf5-6a76e85f8dd4}</Buddy>
+  </Contact>
+  <Contact uuid="{4afb2c25-2e3a-4452-a34e-bd3ae02cb8d8}">
+   <Id>606000</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{3070a022-9f70-400f-ab7e-b8b82a6c0e4f}</Buddy>
+  </Contact>
+  <Contact uuid="{138980e5-2bfc-4d29-84bd-4fcc21e4f507}">
+   <Id>6121139</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{c89b9fde-5fa6-4ddd-bc34-25cb5015c20b}</Buddy>
+  </Contact>
+  <Contact uuid="{45eb91d6-f86c-4549-9680-414db199966f}">
+   <Id>616071</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+   <Avatar>{1a6f8cf7-856f-4a52-97a1-c88b3c3a0159}</Avatar>
+  </Contact>
+  <Contact uuid="{35ef957b-1318-4510-bbee-0d4eb63bbcb3}">
+   <Id>6170208</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{2b7ddc00-c56b-437e-b9e6-304dc60b5cff}</Buddy>
+  </Contact>
+  <Contact uuid="{b16c4a71-772f-4def-a75a-cb9cabf3cd89}">
+   <Id>6173361</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{1acc16b8-9332-48f7-8583-f1a04e270854}</Buddy>
+   <Avatar>{5137651f-1814-41f5-be0b-6bf4437bcd29}</Avatar>
+  </Contact>
+  <Contact uuid="{5421eed9-deb1-4810-990f-f714d151850e}">
+   <Id>6429511</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{83fa066e-dc25-482f-af31-60e92091f163}</Buddy>
+   <Avatar>{6a25b7e8-a0ec-4bad-9b82-851f9add6007}</Avatar>
+  </Contact>
+  <Contact uuid="{9150a7f6-6b07-499e-8788-46a8515d0d12}">
+   <Id>6475064</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{4fbc93b1-5103-401c-8688-27f9ba0b1533}</Buddy>
+  </Contact>
+  <Contact uuid="{8f1531e5-bf36-4901-8c3c-acb9949a8838}">
+   <Id>6481417</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{172db39b-4266-44f4-8e8b-252ac797bef2}</Buddy>
+  </Contact>
+  <Contact uuid="{c1234d71-2ad4-4bb3-93df-bacecbc14c27}">
+   <Id>659868</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{5c33e159-99ef-4611-8449-395122bc06df}</Buddy>
+   <Avatar>{4fd4f5e1-861a-4e22-a55d-47eb077ffe15}</Avatar>
+  </Contact>
+  <Contact uuid="{b317193b-af7a-43fd-b697-12833b2c4240}">
+   <Id>6717544</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{f0c1f24a-55ae-4e90-bab9-07926de11f5c}</Buddy>
+   <Avatar>{943c201d-0552-40e1-acf4-231861745869}</Avatar>
+  </Contact>
+  <Contact uuid="{7e22ce64-4520-481b-9955-fd9d2c6b5445}">
+   <Id>7077939</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{8e0a11d5-9a2b-41e6-9b4a-82f6a5b59858}</Buddy>
+   <Avatar>{48f8dba4-f2a0-41ce-92ce-f591fc35a8c7}</Avatar>
+  </Contact>
+  <Contact uuid="{a196a193-097d-46fe-af79-27103c0c4fd9}">
+   <Id>7102654</Id>
+   <Priority>1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{1462ba12-4383-4f47-b31b-21b5744e74c2}</Buddy>
+   <Avatar>{75de1b2e-5f5d-4a1c-9e68-a48711fc6e30}</Avatar>
+  </Contact>
+  <Contact uuid="{7b8709c9-52f3-41a8-a84f-0717ce369ebf}">
+   <Id>7130771</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{5a8d08c4-d72d-458f-a01c-ac6d339018e4}</Buddy>
+   <Avatar>{013b609a-6899-47b3-863a-49a4bde3decc}</Avatar>
+  </Contact>
+  <Contact uuid="{422bce55-a153-4920-8130-d0ea05307067}">
+   <Id>7141382</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{ff77a3de-1f2e-4fa5-befd-3b709c3b078f}">
+   <Id>7572014</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{6f992c18-2bea-459e-8576-397da0456cc0}">
+   <Id>7598833</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{530c05ee-d30d-49ed-b209-1d5c135c5874}</Buddy>
+   <Avatar>{ddeede14-404f-4b4b-95ca-e2808d377daf}</Avatar>
+  </Contact>
+  <Contact uuid="{7cf7238e-7478-43c1-b02a-9d199c4b39a3}">
+   <Id>7731829</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+   <Avatar>{fe89f7c2-92fe-43d6-8bd6-56413352590d}</Avatar>
+  </Contact>
+  <Contact uuid="{f26564bb-5d95-4ca4-874d-b5385ecaf549}">
+   <Id>7824164</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{609fa98b-1d91-47c2-9806-e6be6ced2f9c}</Buddy>
+  </Contact>
+  <Contact uuid="{b7d2840c-8cad-4c84-b510-2d97312c20c0}">
+   <Id>7883829</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{905f8e57-3071-4176-85af-c4959e1b7c3a}</Buddy>
+   <Avatar>{0dc5c199-f826-4932-884d-773d32433e6e}</Avatar>
+  </Contact>
+  <Contact uuid="{88e63f0b-b419-415e-a54a-31aee4590a98}">
+   <Id>8008895</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{0e958b39-db53-488a-9c2d-a9e4f815a662}</Buddy>
+  </Contact>
+  <Contact uuid="{b56d6de4-df79-4d6a-8176-d73f93a50b39}">
+   <Id>8243336</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{776821fd-82d7-4bc0-a9d1-592a0126aa3b}</Buddy>
+  </Contact>
+  <Contact uuid="{727a3858-1a38-4902-8e2d-ae7bf1cf0d38}">
+   <Id>8296617</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{e478f31a-7e39-48b5-b3b6-ccbfa8b17d84}</Buddy>
+  </Contact>
+  <Contact uuid="{4958d400-f48d-46a4-ba65-9f7bee4f3a63}">
+   <Id>884981</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{69cf63fd-7cba-43b7-aafd-37181606767a}</Buddy>
+  </Contact>
+  <Contact uuid="{e1c0dc9b-f059-4fb9-a91b-bbc2d570a5a5}">
+   <Id>8866011</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{defdb531-8397-4644-a8fd-4dd23c3fd81a}</Buddy>
+  </Contact>
+  <Contact uuid="{aa4e7bec-502e-4538-9213-1cea79aabf00}">
+   <Id>8960814</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{691d2dd3-950c-407d-9a9d-5b7137b58903}</Buddy>
+   <Avatar>{05c2fcbf-504e-4a3a-bee9-91a8ac36feab}</Avatar>
+  </Contact>
+  <Contact uuid="{48f8c33b-8e43-414c-94ed-ad0af6cdfbe2}">
+   <Id>9391924</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{d055e7f4-2ad1-4a4d-9780-46d0d1298254}</Buddy>
+  </Contact>
+  <Contact uuid="{9c90bc29-9364-4216-9756-cecff90b5a02}">
+   <Id>9425930</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{4b2426d4-601f-4e24-8633-be0d0cf2788e}</Buddy>
+   <Avatar>{ab25b073-af10-4173-b1f5-332ebad5f6c2}</Avatar>
+  </Contact>
+  <Contact uuid="{9568d7e7-deab-4ecc-a2b1-8e71b914d300}">
+   <Id>9576452</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{340a66c9-2ed6-4a19-9f77-8250fc1ab49d}</Buddy>
+   <Avatar>{5cba455b-a6d9-41e9-b82d-b6788d561bca}</Avatar>
+  </Contact>
+  <Contact uuid="{864c2baf-13c2-4451-bc92-440cdc2acaab}">
+   <Id>9664998</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{23e673fb-4852-4f9b-bf6a-e656aef5fb93}</Buddy>
+  </Contact>
+  <Contact uuid="{8c225545-2615-422f-a77a-b7daee056948}">
+   <Id>9742336</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{1becda04-1b78-4cdd-80cd-057ca3afa863}</Buddy>
+   <Avatar>{3f26b554-0044-45fc-b17d-cd3546138c6a}</Avatar>
+  </Contact>
+  <Contact uuid="{324f9e87-40f3-4ffb-ad28-9f884466c907}">
+   <Id>1430339</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{d3fb22e3-9a61-46f6-9326-90be64f991a5}">
+   <Id>1355032</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+   <Avatar>{6571bb3c-c213-4c5f-9a26-056dee9eec87}</Avatar>
+  </Contact>
+  <Contact uuid="{b6ed84f6-06f3-4cb5-a211-c89611f1d70d}">
+   <Id>aga.glabala@gmail.com</Id>
+   <Priority>-1</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{f5f9bbfd-6a2c-41ec-a797-e2f8649a45aa}</Buddy>
+   <Avatar>{8485e696-63b3-4fd5-8da2-fc443558c395}</Avatar>
+  </Contact>
+  <Contact uuid="{6392e329-735e-4ad5-8891-4bf8721d4728}">
+   <Id>swieczman@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{1462ba12-4383-4f47-b31b-21b5744e74c2}</Buddy>
+   <Avatar>{dac3a504-acac-4e70-928b-ba74f616002c}</Avatar>
+  </Contact>
+  <Contact uuid="{6125a24e-5965-4c63-8415-dbdc9ae7289c}">
+   <Id>ast3rot@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{e833ba35-e07e-42b6-89f6-051217804f40}</Buddy>
+   <Avatar>{f0ffa47a-0cdb-4389-ac96-8c9c22d470c8}</Avatar>
+  </Contact>
+  <Contact uuid="{242f7013-521c-4e32-ab9c-71dd69f96910}">
+   <Id>tifosa89@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{23e673fb-4852-4f9b-bf6a-e656aef5fb93}</Buddy>
+   <Avatar>{feec8f9c-748e-4405-922e-0894e7451d43}</Avatar>
+  </Contact>
+  <Contact uuid="{06713636-5f61-49cb-b1c3-ca7e3b3826c3}">
+   <Id>anderson37i@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{21010589-3b0a-40fa-b552-3cf3cce779ac}</Buddy>
+   <Avatar>{e612f46c-a495-4ca7-af00-86daae04f2e3}</Avatar>
+  </Contact>
+  <Contact uuid="{b01cf47e-8f3b-4da2-87b1-718f39d679f5}">
+   <Id>bartek.berus@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{08c2f98c-2f59-49df-996b-41c938e6028b}</Buddy>
+   <Avatar>{46db967e-c110-48f7-9c19-ae00bf460419}</Avatar>
+  </Contact>
+  <Contact uuid="{bb93ca77-929e-410e-917e-f5e82a3a8c64}">
+   <Id>doles2@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{efea13cb-f1ea-44ed-9a27-8f347d6e9364}</Buddy>
+   <Avatar>{d318c38f-8314-4c86-a91c-196604a9b671}</Avatar>
+  </Contact>
+  <Contact uuid="{46615356-acd5-4faa-9db5-96e3aad18db5}">
+   <Id>em.stasiak@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{696f7cbc-84da-4bde-be52-2d88baeefffc}</Buddy>
+   <Avatar>{507d5be7-5826-4c85-aa34-46cd3444dc75}</Avatar>
+  </Contact>
+  <Contact uuid="{da2bf319-dac7-4cd5-9f18-e557a9e7ccf6}">
+   <Id>gosemka@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{7a95f31b-6926-4fbd-aba9-4da1403653c1}</Buddy>
+   <Avatar>{3f139e81-720e-477f-977e-b9e0650a794e}</Avatar>
+  </Contact>
+  <Contact uuid="{6210d448-1ada-46f7-bf56-016e72ff3847}">
+   <Id>jercik@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{2d89091b-1b1f-4255-8ef9-3cd5a35ff84d}</Buddy>
+   <Avatar>{b3258e87-eb8b-49e0-b2e3-863f06b424b6}</Avatar>
+  </Contact>
+  <Contact uuid="{649d2bec-cf6a-47bb-8613-d78048cbd1f3}">
+   <Id>konieckropka@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{8a324b1f-14e0-420b-a6be-e62f69eecfb2}</Buddy>
+   <Avatar>{b1c1e956-60b2-45b4-847e-5313e370f2af}</Avatar>
+  </Contact>
+  <Contact uuid="{de72f481-92d7-45cc-b2f9-b9ad17ba2680}">
+   <Id>ppawelslomka@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{defdb531-8397-4644-a8fd-4dd23c3fd81a}</Buddy>
+   <Avatar>{e41e8ea5-73e7-4f7d-956e-691bf7868514}</Avatar>
+  </Contact>
+  <Contact uuid="{da4fff55-a64f-4ccb-9911-905d671f099a}">
+   <Id>ziebania@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{982ae20a-6952-4ffe-a219-5ca108b817c1}</Buddy>
+   <Avatar>{009a5bbd-63f4-406c-a421-6bef3a3da152}</Avatar>
+  </Contact>
+  <Contact uuid="{20d25047-d1ca-47d6-9ee8-377289c338bd}">
+   <Id>maciekkrakowiak</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{6fdfde8b-d812-4992-9445-3c469c28cfbd}</Buddy>
+  </Contact>
+  <Contact uuid="{74f3dab7-443c-4a0c-9e98-ffb064be8a23}">
+   <Id>pmaniek89@aqq.eu</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{0e958b39-db53-488a-9c2d-a9e4f815a662}</Buddy>
+   <Avatar>{1de79d79-ab17-41da-96b6-15b7cd873479}</Avatar>
+  </Contact>
+  <Contact uuid="{3a823eb1-2bb7-4bf6-a1db-dd9494282884}">
+   <Id>bisiek9@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{3070a022-9f70-400f-ab7e-b8b82a6c0e4f}</Buddy>
+   <Avatar>{d8a8ab4e-d5aa-45f9-b5ad-175d1ea64e21}</Avatar>
+  </Contact>
+  <Contact uuid="{1e7c1f33-b683-468a-863d-2f56f9922da3}">
+   <Avatar>{93aee671-a480-4130-8e0c-9fffe0c537ea}</Avatar>
+   <Id>makowski.pat@gmail.com</Id>
+   <Priority>-1</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy></Buddy>
+  </Contact>
+  <Contact uuid="{411f6161-8882-463a-9975-6916216a1b54}">
+   <Id>6038117</Id>
+   <Priority>0</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy>{875388df-c5cc-464f-a4d1-9d0260714c59}</Buddy>
+  </Contact>
+  <Contact uuid="{4fa5a9ec-a066-47ec-a736-e73cfdc50546}">
+   <Id>johanne.viv@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{ff605c0e-be5a-4bd8-847f-541b20c88fe9}</Buddy>
+   <Avatar>{8bdba7a7-43f6-41dd-a6fa-f2f4094fae58}</Avatar>
+  </Contact>
+  <Contact uuid="{16c0d9cf-6331-454d-93da-ccbaf7bb6610}">
+   <Id>dominik.dolny@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{8d71da48-4627-40bb-ac23-1109998a0a84}</Buddy>
+   <Avatar>{eefbf8e5-ab86-4614-bf10-5cacb51e4f63}</Avatar>
+  </Contact>
+  <Contact uuid="{3b3f2854-8347-423b-ae1d-7224d068ad14}">
+   <Id>netrix89@gmail.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{386d27ca-1e69-45db-a18e-7b6e858e91b4}</Buddy>
+   <Avatar>{71abec8a-d200-4481-a298-3252ce3ba000}</Avatar>
+  </Contact>
+  <Contact uuid="{23124d3a-55e7-4956-a43d-1f3ced2398f7}">
+   <Id>3e8imifsr392c3vjfid6j2xy9j@public.talk.google.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{dd187d35-ace8-4ad8-9013-cab70d65d05b}</Buddy>
+   <Avatar>{3bf8236b-90d4-4875-b64c-72868bdf4756}</Avatar>
+  </Contact>
+  <Contact uuid="{b1d069c0-5638-4d22-9aa7-c4932f2e4704}">
+   <Id>3ineoomkt28rp2yezsun5swy7z@public.talk.google.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{c50a1000-1ead-4861-84a2-25e197270f15}</Buddy>
+   <Avatar>{522f3d3e-cb74-4dd8-ba84-3e551fc44b40}</Avatar>
+  </Contact>
+  <Contact uuid="{68fa4522-ab92-407c-97c7-f2e2b2f95f2d}">
+   <Id>600</Id>
+   <Priority>-1</Priority>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Buddy></Buddy>
+   <Avatar>{f3b91d73-f8e0-48f6-bfa5-0c93eaa92761}</Avatar>
+  </Contact>
+  <Contact uuid="{09851523-4c51-4d71-9afa-cd7c08e0d7ca}">
+   <Id>00jtw772ow5nx1xvtauo5ec8l7@public.talk.google.com</Id>
+   <Priority>0</Priority>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Buddy>{2e9077df-5d18-4891-9fd1-edf19d1eb144}</Buddy>
+   <Avatar>{3928ed2f-5d75-4de9-b4c4-bdbe4d7e8437}</Avatar>
+  </Contact>
+ </Contacts>
+ <ChatWindows/>
+ <Chats>
+  <Chat uuid="{5df4a736-ca5f-453e-a029-63e03c02ccf9}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>368</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{9b23bc60-34eb-4a56-86a8-4059a59d4fb8}</Contact>
+  </Chat>
+  <Chat uuid="{696d001a-70ca-48ec-93dd-2b8eeab18124}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{b60b6df9-9c95-4586-b750-7fc7955f8492}</Contact>
+  </Chat>
+  <Chat uuid="{ba00e6ec-1587-4fd2-803b-7b4fc8a0e0b2}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>676</WidgetHorizontalSizes>
+    <WidgetVerticalSizes></WidgetVerticalSizes>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{6392e329-735e-4ad5-8891-4bf8721d4728}</Contact>
+  </Chat>
+  <Chat uuid="{7d64afae-3d3b-4da8-b41e-e240c39842c2}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>368</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{32e1f39a-60ed-461a-8607-6982caad4033}</Contact>
+  </Chat>
+  <Chat uuid="{5a7c8721-205f-452a-bac4-5b821a0e04a5}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>694</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{a845440c-0d3e-498e-ae50-9661cdd8c87a}</Contact>
+  </Chat>
+  <Chat uuid="{f5cf77a6-f0a3-47d2-bee2-c45e9c6bff0d}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>468</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{6125a24e-5965-4c63-8415-dbdc9ae7289c}</Contact>
+  </Chat>
+  <Chat uuid="{f04e8b06-f946-4fc9-8455-e5f9436f1578}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>676</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{138980e5-2bfc-4d29-84bd-4fcc21e4f507}</Contact>
+  </Chat>
+  <Chat uuid="{462ac6bc-8559-4bb3-ac96-d4c7f6be20c9}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{6f992c18-2bea-459e-8576-397da0456cc0}</Contact>
+  </Chat>
+  <Chat uuid="{ceac168c-f313-4053-a321-7a2917192ef3}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{f89b6b96-5b2a-4011-a1da-9d9846ade670}</Contact>
+  </Chat>
+  <Chat uuid="{063b7276-97d5-46c6-a185-d10aaf4ef1c4}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{85bd3f3a-e9b4-46af-9c07-d6eee3cea436}</Contact>
+  </Chat>
+  <Chat uuid="{f5309f6a-023f-4fd5-9e66-ed5581129817}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{6210d448-1ada-46f7-bf56-016e72ff3847}</Contact>
+  </Chat>
+  <Chat uuid="{3d628946-3961-424c-9ce7-d1990225ebc1}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{ff77a3de-1f2e-4fa5-befd-3b709c3b078f}</Contact>
+  </Chat>
+  <Chat uuid="{447e8977-29f1-451f-9c19-d54ab06b6a33}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{88e63f0b-b419-415e-a54a-31aee4590a98}</Contact>
+  </Chat>
+  <Chat uuid="{e61cc4c6-78d3-462f-a421-2193eafbb1b6}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{10681c12-1b93-4630-a5ff-ef7a2ad3036c}</Contact>
+  </Chat>
+  <Chat uuid="{f9ffb5ce-ca8c-4ad5-87e2-ec79ce341d3f}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{324f9e87-40f3-4ffb-ad28-9f884466c907}</Contact>
+  </Chat>
+  <Chat uuid="{a76d0ae8-adac-420b-8c48-68fbba2a5004}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>386</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{2d03e63c-3e1d-4642-834e-5eee59467f63}</Contact>
+  </Chat>
+  <Chat uuid="{57a32b4c-b1aa-4f96-9089-e48c684c2ec4}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{19435fc2-d0b6-40b7-95be-dee72387bef0}</Contact>
+  </Chat>
+  <Chat uuid="{bdc4d4e0-bb37-45ea-aed4-054f858f04b2}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{a03a2540-e8ee-417c-999d-efcf7989c48a}</Contact>
+  </Chat>
+  <Chat uuid="{1e352e2e-74a4-4ce4-90f8-56c65d1b5f30}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{b01cf47e-8f3b-4da2-87b1-718f39d679f5}</Contact>
+  </Chat>
+  <Chat uuid="{36243e53-fa91-40d2-aec8-3beeaee01edc}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{48f8c33b-8e43-414c-94ed-ad0af6cdfbe2}</Contact>
+  </Chat>
+  <Chat uuid="{52edd079-6cbd-4d72-adb9-e7afc50ad0cd}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{9150a7f6-6b07-499e-8788-46a8515d0d12}</Contact>
+  </Chat>
+  <Chat uuid="{e589234e-3dee-484a-9dc6-bee6b17fd7a7}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{b56d6de4-df79-4d6a-8176-d73f93a50b39}</Contact>
+  </Chat>
+  <Chat uuid="{918b6a52-6510-4a70-b3e1-4f49829a321a}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>386</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{4958d400-f48d-46a4-ba65-9f7bee4f3a63}</Contact>
+  </Chat>
+  <Chat uuid="{61a0fee2-b117-4f95-9ad9-9177f9d04d0f}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>386</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{eafc0240-9385-45ae-9049-21c7b55c91f2}</Contact>
+  </Chat>
+  <Chat uuid="{3ba7c148-3917-4249-a259-af8a2c6f0434}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{b2af5ca2-8438-429e-9aec-98c8432950cb}</Contact>
+  </Chat>
+  <Chat uuid="{f9cf6b87-7836-4f5b-be22-0d71db9d82e0}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{586eb1c5-891a-40bd-8615-f9e88ff48fff}</Contact>
+  </Chat>
+  <Chat uuid="{824a00e4-d733-4707-be66-763922ab0922}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{649d2bec-cf6a-47bb-8613-d78048cbd1f3}</Contact>
+  </Chat>
+  <Chat uuid="{586e14a4-2a36-4912-b9a2-977d15cc6687}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{7b8709c9-52f3-41a8-a84f-0717ce369ebf}</Contact>
+  </Chat>
+  <Chat uuid="{4ac2a72f-4279-43a7-b3fe-3f8346e73244}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{63206c2d-47be-4539-84ac-2fab1777d79b}</Contact>
+  </Chat>
+  <Chat uuid="{99eef8d0-071a-45a5-a22d-66569eb43cc9}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{7fe7b2ca-1f5f-4efe-b392-b4a444b0f35f}</Contact>
+  </Chat>
+  <Chat uuid="{9fc3ab89-0085-4ae4-923d-dfbfbd1603e1}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{46615356-acd5-4faa-9db5-96e3aad18db5}</Contact>
+  </Chat>
+  <Chat uuid="{4f007312-5c07-4a69-bc34-8238c0942100}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{864c2baf-13c2-4451-bc92-440cdc2acaab}</Contact>
+  </Chat>
+  <Chat uuid="{0afd21e5-3f83-48e0-a0bd-9ed9a02bf08e}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>694</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{411f6161-8882-463a-9975-6916216a1b54}</Contact>
+  </Chat>
+  <Chat uuid="{1ba8c698-5753-41a5-99e5-7cee0a1dbbb1}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{ac805a2e-bc5e-4d9d-bf12-f408bd77182e}</Contact>
+  </Chat>
+  <Chat uuid="{9407d753-ea8e-4db2-a5fe-9082b7dc8052}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{1e7c1f33-b683-468a-863d-2f56f9922da3}</Contact>
+  </Chat>
+  <Chat uuid="{b26b2910-296f-4fff-8128-0c7d600e52a6}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{681caa8f-42a0-4c5a-91af-97163cb45d27}</Contact>
+  </Chat>
+  <Chat uuid="{21c7cb9b-c083-4a11-8cdb-111a8ff5b937}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{7cf7238e-7478-43c1-b02a-9d199c4b39a3}</Contact>
+  </Chat>
+  <Chat uuid="{22cfb370-2818-4b27-bb2e-7cedcc6a7f63}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{d595342b-083d-4500-9f41-ebf5b39d9796}</Contact>
+  </Chat>
+  <Chat uuid="{b775eac5-2933-4208-9340-244e6b6b470b}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{b16c4a71-772f-4def-a75a-cb9cabf3cd89}</Contact>
+  </Chat>
+  <Chat uuid="{bf503e68-2639-4290-8e0c-9813f0598908}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{86fee18d-ca83-4ef1-bb99-c7bc0b0fc9cd}</Contact>
+  </Chat>
+  <Chat uuid="{fcb7bd94-eae1-4d6d-8217-0f355859cded}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{d72867c2-63fd-4641-9fc7-222c5e8c1f76}</Contact>
+  </Chat>
+  <Chat uuid="{b5716a33-ad9e-495d-8163-9b68f71c3956}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{45eb91d6-f86c-4549-9680-414db199966f}</Contact>
+  </Chat>
+  <Chat uuid="{46ffc52e-fc56-46dc-be2d-29c5d8a572fd}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{9568d7e7-deab-4ecc-a2b1-8e71b914d300}</Contact>
+  </Chat>
+  <Chat uuid="{a3f3797a-e545-415c-a7da-0cf0a6cc72b9}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{3f3886fb-ec51-4a07-81c4-59e14278cd39}</Contact>
+  </Chat>
+  <Chat uuid="{77778772-47ad-4289-88ef-1d3dafc13ae9}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>368</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{aa4e7bec-502e-4538-9213-1cea79aabf00}</Contact>
+  </Chat>
+  <Chat uuid="{bc2d0418-3cab-4978-9174-3186cf43461a}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>676</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{c1234d71-2ad4-4bb3-93df-bacecbc14c27}</Contact>
+  </Chat>
+  <Chat uuid="{98c53444-f2a5-4a31-bcae-728ac6fc147c}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{5c5c3af4-23f1-4f3a-89aa-acac6065d7f0}</Contact>
+  </Chat>
+  <Chat uuid="{f6803620-822e-4901-a766-34e8a663e14d}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{4b789553-2863-4db6-9864-6bb017af6926}</Contact>
+  </Chat>
+  <Chat uuid="{0262ce7f-2d0c-4ee4-94bf-d53530184919}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{b7d2840c-8cad-4c84-b510-2d97312c20c0}</Contact>
+  </Chat>
+  <Chat uuid="{bc0f2511-b085-4d09-8afd-907aa4da476f}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{d29222a6-2784-4a45-94f2-66d881473853}</Contact>
+  </Chat>
+  <Chat uuid="{f77db986-d278-46e8-ab9d-31512d3b6b93}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>763</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{59ffc49d-180a-422d-abc5-b126486a84e9}</Contact>
+  </Chat>
+  <Chat uuid="{33b1900c-8bfc-42e0-b10c-e8196cbe20f8}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{30b2c1fe-4a30-4cff-a702-6b5ce69d76ab}</Contact>
+  </Chat>
+  <Chat uuid="{cb092e0e-d3bc-4036-a361-0f0f5a6d3231}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{19184db8-7d4f-4996-8ad9-c3a92640a41e}</Contact>
+  </Chat>
+  <Chat uuid="{ed240f2a-4ad8-4b8d-a347-a8eb3c210b61}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{b12e18f1-b1ee-4a75-bc2f-10c71b902838}</Contact>
+  </Chat>
+  <Chat uuid="{1eaa5c3e-2d63-48b3-8ff0-3102c1d83df3}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{7e22ce64-4520-481b-9955-fd9d2c6b5445}</Contact>
+  </Chat>
+  <Chat uuid="{06d1dc69-123b-43f9-a019-daf343775770}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>422</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{74f3dab7-443c-4a0c-9e98-ffb064be8a23}</Contact>
+  </Chat>
+  <Chat uuid="{e75e1f93-897d-4850-8d7b-ab7382107bc2}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{422bce55-a153-4920-8130-d0ea05307067}</Contact>
+  </Chat>
+  <Chat uuid="{3d964573-a094-4011-b462-049ab1a4056b}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{242f7013-521c-4e32-ab9c-71dd69f96910}</Contact>
+  </Chat>
+  <Chat uuid="{3f7b53c4-05ab-49e7-ba70-7b9f44cf933c}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{1d83f0ea-d964-48bc-b023-f972a0355526}</Contact>
+  </Chat>
+  <Chat uuid="{f62c7831-1ff5-4350-be4d-e18631a5d38d}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>694</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{a196a193-097d-46fe-af79-27103c0c4fd9}</Contact>
+  </Chat>
+  <Chat uuid="{20f7608a-1ec5-41e2-afde-0806fe802d98}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{d247f704-59c9-4799-9298-a7b322cba0b6}</Contact>
+  </Chat>
+  <Chat uuid="{d2ce3540-8ffa-4c5a-961c-dac18dc0f70d}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{cfb5e857-2b1b-4b12-99c1-413e1e33872f}</Contact>
+  </Chat>
+  <Chat uuid="{5cce974f-3dcb-40f5-a353-7249d3e6c232}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{d3fb22e3-9a61-46f6-9326-90be64f991a5}</Contact>
+  </Chat>
+  <Chat uuid="{5ca3d4a9-39ad-4257-bb8c-d5e32e1413b9}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{2396916e-b3ec-4cc3-95a2-e8683e0c1f82}</Contact>
+  </Chat>
+  <Chat uuid="{f005ce49-d74d-4a9f-bd47-ab2a7b73704c}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{bb93ca77-929e-410e-917e-f5e82a3a8c64}</Contact>
+  </Chat>
+  <Chat uuid="{68e5a12c-563f-41a3-b4a6-6ea900275b5b}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>676</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{8ba822cf-f775-4cb6-bdc7-5312501278da}</Contact>
+  </Chat>
+  <Chat uuid="{99f9f0e5-5de7-42f3-aa59-f3ae9f1b6657}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{3c04c0b9-12f5-4f72-a4f1-b6188292a09f}</Contact>
+  </Chat>
+  <Chat uuid="{f723c8db-20c6-4d76-885c-c36cf5bb79a8}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{9c7f1795-0605-491a-8b35-f9abdd1492c2}</Contact>
+  </Chat>
+  <Chat uuid="{b3fc8e0e-f76d-4592-8b01-db070aed8210}">
+   <Contacts>
+    <Contact>{0180f110-31cd-45df-b04e-97cf96974d94}</Contact>
+    <Contact>{1d83f0ea-d964-48bc-b023-f972a0355526}</Contact>
+    <Contact>{d3fb22e3-9a61-46f6-9326-90be64f991a5}</Contact>
+    <Contact>{f7dd949a-c3e0-4acc-bc13-08009d545550}</Contact>
+    <Contact>{1cbe07d6-8ba1-446a-be7e-e4e1dc01a0c8}</Contact>
+    <Contact>{30b2c1fe-4a30-4cff-a702-6b5ce69d76ab}</Contact>
+   </Contacts>
+   <Type>Conference</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+  </Chat>
+  <Chat uuid="{742a84ed-813d-4fe8-9058-0d721f19a25b}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{02f4afd5-6cf0-4f06-be98-ff05c6545686}</Contact>
+  </Chat>
+  <Chat uuid="{af6cfc0f-bc3a-44a8-8a30-017fa8a75028}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{14d790b4-aff6-4170-9f6f-58be45aae069}</Contact>
+  </Chat>
+  <Chat uuid="{e6faef78-ddb1-4ad9-8228-594ec0d6e550}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>468</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{e1c0dc9b-f059-4fb9-a91b-bbc2d570a5a5}</Contact>
+  </Chat>
+  <Chat uuid="{c3c14574-d4ff-422b-8fb5-1fb61265cb56}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{86a7f9ee-8b11-40c6-91ea-ac47be657b3f}</Contact>
+  </Chat>
+  <Chat uuid="{28356ae1-434a-4e85-abb4-ded558c91d79}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{5421eed9-deb1-4810-990f-f714d151850e}</Contact>
+  </Chat>
+  <Chat uuid="{e2fc3d73-4de9-4f04-8c6c-5a9c250a4d70}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{9c90bc29-9364-4216-9756-cecff90b5a02}</Contact>
+  </Chat>
+  <Chat uuid="{dc9d889d-cf3a-43ca-a111-e7f58513f57a}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{d79b0f8d-5684-4c14-9eb2-ca553e37cf82}</Contact>
+  </Chat>
+  <Chat uuid="{8a042cb8-d5b7-4c86-ae9d-ddb6d9f0548a}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{f26564bb-5d95-4ca4-874d-b5385ecaf549}</Contact>
+  </Chat>
+  <Chat uuid="{64e03b5d-bb2c-4cb7-a683-362c8324b9b2}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{da4fff55-a64f-4ccb-9911-905d671f099a}</Contact>
+  </Chat>
+  <Chat uuid="{9d20188c-1858-41f8-901f-cec1d170a2bc}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{a870e469-fd60-404d-9972-f36c568ef541}</Contact>
+  </Chat>
+  <Chat uuid="{3b70279f-92fe-4266-8c07-f899fdb6584f}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{16c0d9cf-6331-454d-93da-ccbaf7bb6610}</Contact>
+  </Chat>
+  <Chat uuid="{736bf2fc-3a65-4a41-af0d-51edfbdfa90c}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{3b3f2854-8347-423b-ae1d-7224d068ad14}</Contact>
+  </Chat>
+  <Chat uuid="{0101980e-cc64-4cf1-8af5-15387fa29e96}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{23124d3a-55e7-4956-a43d-1f3ced2398f7}</Contact>
+  </Chat>
+  <Chat uuid="{303456f4-97e3-4a92-a24a-e284a776ce65}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{de72f481-92d7-45cc-b2f9-b9ad17ba2680}</Contact>
+  </Chat>
+  <Chat uuid="{395d63e0-38f1-4d61-8263-3c371030eb6e}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{b1d069c0-5638-4d22-9aa7-c4932f2e4704}</Contact>
+  </Chat>
+  <Chat uuid="{f536eb2e-cd6c-4037-b3da-6167967de65f}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{4fa5a9ec-a066-47ec-a736-e73cfdc50546}</Contact>
+  </Chat>
+  <Chat uuid="{52da157e-ae92-4089-b14b-c40471c9589e}">
+   <ModuleData name="encryption-ng">
+    <Encrypt>false</Encrypt>
+   </ModuleData>
+   <ModuleData name="chat-geometry">
+    <WindowGeometry>0,0,0,0</WindowGeometry>
+    <WidgetHorizontalSizes>386</WidgetHorizontalSizes>
+    <WidgetVerticalSizes/>
+   </ModuleData>
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{68fa4522-ab92-407c-97c7-f2e2b2f95f2d}</Contact>
+  </Chat>
+  <Chat uuid="{a595f764-f300-4efe-a37b-341a8466cad7}">
+   <Type>Simple</Type>
+   <Account>{627f4e2b-7e50-4986-a876-6449ee6cc3ac}</Account>
+   <Contact>{09851523-4c51-4d71-9afa-cd7c08e0d7ca}</Contact>
+  </Chat>
+  <Chat uuid="{75843374-988c-41c5-8fd9-22f18d1ae097}">
+   <Type>Simple</Type>
+   <Account>{54928de7-b09c-4095-8b3e-51d221bc90d5}</Account>
+   <Contact>{4afb2c25-2e3a-4452-a34e-bd3ae02cb8d8}</Contact>
+  </Chat>
+  <Chat uuid="{a23fe07e-19aa-487f-8ea4-c5eaba2eed47}"/>
+ </Chats>
+ <PendingMessages/>
+ <ModuleTabs/>
+ <Keys/>
+ <Avatars>
+  <Avatar uuid="{d7396e51-8349-4219-9cd7-d9ec0a6ee037}">
+   <LastUpdated>2011-02-15T00:00:58</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:26</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{fe89f7c2-92fe-43d6-8bd6-56413352590d}">
+   <LastUpdated>2009-04-05T14:57:24</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:27</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{644dae0f-663a-4347-bcd0-7de6e5b343a7}">
+   <LastUpdated>2009-09-08T09:47:50</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:28</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{3f26b554-0044-45fc-b17d-cd3546138c6a}">
+   <LastUpdated>2010-12-17T15:08:49</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:28</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{943c201d-0552-40e1-acf4-231861745869}">
+   <LastUpdated>2009-02-26T22:27:52</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:28</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{9ae67236-bbf7-486f-af6e-736ca9a36ee6}">
+   <LastUpdated>2010-10-02T14:07:56</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:29</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{5137651f-1814-41f5-be0b-6bf4437bcd29}">
+   <LastUpdated>2009-07-09T14:36:52</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:29</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{1228f253-0836-4a4c-9e1e-55bacd0f08d8}">
+   <LastUpdated>2009-03-04T20:54:03</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:30</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{6571bb3c-c213-4c5f-9a26-056dee9eec87}">
+   <LastUpdated>2011-07-23T22:13:12</LastUpdated>
+   <NextUpdate>2011-07-24T20:44:35</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{e5a7d38c-a5c2-4d01-b754-af906be4f314}">
+   <LastUpdated>2011-01-16T17:03:58</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:31</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{1a6f8cf7-856f-4a52-97a1-c88b3c3a0159}">
+   <LastUpdated>2009-02-15T19:58:28</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:31</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{f21d84c9-7ad9-46a2-8498-ed6d9f81dba7}">
+   <LastUpdated>2011-07-24T23:20:17</LastUpdated>
+   <NextUpdate>2011-07-25T19:39:45</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{d4e7e22e-3588-480c-9773-ea58f36fcc48}">
+   <LastUpdated>2011-09-25T00:24:26</LastUpdated>
+   <NextUpdate>2011-12-19T22:55:16</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{05c2fcbf-504e-4a3a-bee9-91a8ac36feab}">
+   <LastUpdated>2009-08-02T23:33:11</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:33</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{2c717db2-6434-45ee-9a88-3d66eed6aca0}">
+   <LastUpdated>2011-04-04T23:52:43</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:34</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{ab25b073-af10-4173-b1f5-332ebad5f6c2}">
+   <LastUpdated>2010-01-22T19:28:48</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:34</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{4fd4f5e1-861a-4e22-a55d-47eb077ffe15}">
+   <LastUpdated>2011-05-05T15:38:30</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:35</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{9b822bb2-83be-4824-af1c-40d33fdc7fe4}">
+   <LastUpdated>2009-12-27T17:13:09</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:36</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{6a25b7e8-a0ec-4bad-9b82-851f9add6007}">
+   <LastUpdated>2009-04-14T21:18:07</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:36</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{013b609a-6899-47b3-863a-49a4bde3decc}">
+   <LastUpdated>2009-05-12T19:47:21</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:37</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{0dc5c199-f826-4932-884d-773d32433e6e}">
+   <LastUpdated>2008-08-15T14:59:30</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:37</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{90d10253-317d-40ab-aec0-d496f4d10a4d}">
+   <LastUpdated>2009-01-24T10:50:58</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:37</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{69366df0-2aa3-483b-9e05-d9b42c3eba57}">
+   <LastUpdated>2010-09-16T10:44:41</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:38</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{ddeede14-404f-4b4b-95ca-e2808d377daf}">
+   <LastUpdated>2010-07-08T14:19:28</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:38</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{85276407-c90c-4381-bffd-6dc91bdbba2c}">
+   <LastUpdated>2009-12-24T11:07:49</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:39</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{49eecb43-6858-43ac-b1e7-35736727bbe9}">
+   <LastUpdated>2009-12-03T18:57:46</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:39</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{ec09da7a-5561-4224-89b3-1fb62c58e09e}">
+   <LastUpdated>2010-06-09T21:12:32</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:44</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{ca898c6c-66e3-4d4e-b289-38c74e1a1dce}">
+   <LastUpdated>2010-05-03T13:51:50</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:48</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{84b89032-e208-492c-bccc-bdfc3261e72e}">
+   <LastUpdated>2011-10-26T17:54:41</LastUpdated>
+   <NextUpdate>2011-12-19T22:54:56</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{767c6f41-d53b-44ee-a8fa-d81ea911757a}">
+   <LastUpdated>2011-06-25T01:23:38</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:50</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{d2db9f92-a866-456e-b83f-dcb2a74f8574}">
+   <LastUpdated>2011-07-05T02:13:38</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:50</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{f30596e9-c609-413c-933d-7ef9793a35d3}">
+   <LastUpdated>2009-09-15T17:03:00</LastUpdated>
+   <NextUpdate>2011-07-11T21:14:51</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{48f8dba4-f2a0-41ce-92ce-f591fc35a8c7}">
+   <LastUpdated>2011-12-03T14:04:47</LastUpdated>
+   <NextUpdate>2011-12-19T22:55:19</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{8a48dd76-0e4f-48a2-9bbf-7d25ab17e69e}">
+   <LastUpdated>2011-08-11T15:59:09</LastUpdated>
+   <NextUpdate>2011-08-19T12:15:15</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{8485e696-63b3-4fd5-8da2-fc443558c395}">
+   <LastUpdated>2012-01-17T13:02:16</LastUpdated>
+   <NextUpdate>2012-01-17T15:02:16</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{e41e8ea5-73e7-4f7d-956e-691bf7868514}">
+   <LastUpdated>2012-01-17T13:02:10</LastUpdated>
+   <NextUpdate>2012-01-17T15:02:10</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{b1c1e956-60b2-45b4-847e-5313e370f2af}">
+   <LastUpdated>2012-01-17T13:02:14</LastUpdated>
+   <NextUpdate>2012-01-17T15:02:14</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{507d5be7-5826-4c85-aa34-46cd3444dc75}">
+   <LastUpdated>2012-01-17T13:02:18</LastUpdated>
+   <NextUpdate>2012-01-17T15:02:18</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{e612f46c-a495-4ca7-af00-86daae04f2e3}">
+   <LastUpdated>2012-01-17T13:02:17</LastUpdated>
+   <NextUpdate>2012-01-17T15:02:17</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{dac3a504-acac-4e70-928b-ba74f616002c}">
+   <LastUpdated>2012-01-17T13:02:14</LastUpdated>
+   <NextUpdate>2012-01-17T15:02:14</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{eefbf8e5-ab86-4614-bf10-5cacb51e4f63}">
+   <LastUpdated>2012-01-17T13:02:20</LastUpdated>
+   <NextUpdate>2012-01-17T15:02:20</NextUpdate>
+  </Avatar>
+  <Avatar uuid="{f3b91d73-f8e0-48f6-bfa5-0c93eaa92761}">
+   <LastUpdated>2010-04-26T10:34:33</LastUpdated>
+   <NextUpdate>2011-12-22T00:20:23</NextUpdate>
+  </Avatar>
+ </Avatars>
+ <RecentChats>
+  <Chat uuid="{ba00e6ec-1587-4fd2-803b-7b4fc8a0e0b2}" time="1326751262"/>
+  <Chat uuid="{ba00e6ec-1587-4fd2-803b-7b4fc8a0e0b2}" time="1326797627"/>
+ </RecentChats>
+ <JabberTrustedCertificates>
+  <JabberTrustedCertificate>MIIC8DCCAdigAwIBAgIIUFEiCmTciZMwDQYJKoZIhvcNAQEFBQAwHjEcMBoGA1UEAwwTbXVzaWMubXN3aWVjem5pay5wbDAeFw0xMTA4MDkxOTE5NDNaFw0xNjA3MTMxOTE5NDNaMB4xHDAaBgNVBAMME211c2ljLm1zd2llY3puaWsucGwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDbOuaZmeuCYcffqK+EAV281TdxrTlH+kUY+mYPsL4XYKV5GPZTNnGXKvmG8tdC+bI0vboauGnYJ0wYhhQz2dRnnVpPVpYkwCUvl7IK6+ufBxOaALL+XjHXzyYA0wAM/NJsrpIxUkdlfvGCNKU6YVYqOQcymT/a4l0q8aEAEcLYiWRg3ELC94V6St1rJWT9MS5dI0sYHD0mMRldHQ7Foc49lpWLjznM0oHdEVKWxaQyOzsVXA/9Witx76enEqaLYnEq2JPGN4nazxuif75xa2aHVLSalP+9ofXbYmIee7D3/dFcKmOsKWcVWpMPuVo7G0XLuH9MCAjQEwpGiF+GCFcfAgMBAAGjMjAwMC4GA1UdEQQnMCWgIwYIKwYBBQUHCAWgFwwVKi5tdXNpYy5tc3dpZWN6bmlrLnBsMA0GCSqGSIb3DQEBBQUAA4IBAQCLoRyUplMkuxH821N4scph6MVnYvqIgKH1BUu8LWpRfR24rMREMWV/qCbuOuUU3HrYUpX/aK8Vlaz1Yc85Spt8v/+Bel8egmEF5IB6yGCwybB5eLDJr4O18aKvUAz69I7DIPxcn23gm9P1pB88UpWen3uMYvLYXLW2U7xV5cgU75BS5frinGmj/cvD9gXB2G9gmVtS88gwmt1ZcRM4Os+Rf5MYyMRetjICui2gwqkAFDjTYFg4nzSEmAbufDfl0WR3F6iihwHaYOkazz+OosbEs0ZW//CorHKucF1IhlFlT7GdM/WjIYTF2hVZKjO3Hw3AKsm+kulqSuFyUaXR0gIC</JabberTrustedCertificate>
+ </JabberTrustedCertificates>
+</Kadu>
