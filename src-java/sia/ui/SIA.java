@@ -249,7 +249,9 @@ public class SIA {
 				logger.error(e);
 			}
 		}
-		System.exit(message != null ? -1 : 0);
+		if (message != null) {
+			System.exit(-1);
+		}
 	}
 
 	/**
