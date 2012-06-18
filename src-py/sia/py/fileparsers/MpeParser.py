@@ -1,5 +1,5 @@
 '''
-Created on Dec 20, 2011
+Created on Jun 16, 2012
 
 @author: jumper
 '''
@@ -12,13 +12,13 @@ from sia.models import Message
 from sia.utils import Dictionaries
 from sia.fileparsers import Parser
 from java.text import SimpleDateFormat
-import re
+from xml.dom import minidom
 
-class FmaParser(Parser):
+class MpeParser(Parser):
 	'''
-	FMA Parser
+	MPE Parser
 	
-	Sony Ericsson FMA pseudo-XML parser
+	MyPhoneExplorer pseudo-XML parser
 	'''
 	
 	messagesContent = None
@@ -27,42 +27,43 @@ class FmaParser(Parser):
 		self.protocol = Dictionaries.getInstance().getProtocol('SMS')
 		
 	def loadFiles(self, files):
-		f = open(files[0], 'r')
-		self.messagesContent = f.read()
-		f.close()
+		self.xmlRoot = minidom.parse(files[0])
 
 	def getUserAccounts(self):
 		self.userAccountsLoadProgress = 100
-		if self.messagesContent <> None: 
+		if self.xmlRoot <> None: 
 			return [UserAccount(0, self.protocol, "")]
 		return None
 		
 	def getContacts(self, userAccounts):
 		self.contactsLoadProgress = 0
 		contactAccountsTemp = {}
-		sms = re.split('\<sms\>', self.messagesContent)
-		pattern = '\<from\>(.*)\s*\[(.*)\]\<\/from\>\s*\<msg\>(.*)\<\/msg\>\s*\<date\>(.*)\<\/date\>'
-		prog = re.compile(pattern)
-		for i in range(len(sms)):
+		nodes = self.xmlRoot.firstChild.childNodes
+		for i in range(len(nodes)):
 			# check if this action was aborted
 			if self.isAborted():
 				return None
 			
-			res = prog.search(sms[i])
-			if res <> None:
-				df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-				date = df.parse(res.group(4).strip())
-				name = unicode(res.group(1).strip(), 'utf-8')
-				if name == None:
-					name = ""
-				ca = ContactAccount(0, name, res.group(2).strip(), "", None, self.protocol)
-				if not contactAccountsTemp.has_key(ca):
-					contactAccountsTemp[ca] = []
-				content = unicode(res.group(3).strip(), 'utf-8')
-				msg = Message(0, None, content, date, True)
-				contactAccountsTemp[ca].append(msg)
-				self.messagesCount += 1
-			self.contactsLoadProgress = i * 100 /len(sms)
+			node = nodes[i]
+			if not isinstance(node, minidom.Element):
+				continue
+			
+			df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+			date = df.parse(node.getElementsByTagName('timestamp')[0].firstChild.toxml())
+			name = node.getElementsByTagName('name')
+			if len(name) == 0:
+				name = ""
+			else:
+				name = name[0].firstChild.toxml()
+			uid = node.getElementsByTagName('from')[0].firstChild.toxml()
+			ca = ContactAccount(0, name, uid, "", None, self.protocol)
+			if not contactAccountsTemp.has_key(ca):
+				contactAccountsTemp[ca] = []
+			content = node.getElementsByTagName('body')[0].firstChild.toxml()
+			msg = Message(0, None, content, date, True)
+			contactAccountsTemp[ca].append(msg)
+			self.messagesCount += 1
+			self.contactsLoadProgress = i * 100 /len(nodes)
 		
 		contacts = []
 		for ca in contactAccountsTemp.iterkeys():

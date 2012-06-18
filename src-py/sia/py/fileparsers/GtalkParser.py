@@ -16,9 +16,8 @@ from xml.parsers.expat import ExpatError
 from xml.etree import ElementTree
 import imaplib
 import re
-import quopri
+import email
 from email.header import decode_header
-from email.parser import HeaderParser
 
 class GtalkParser(Parser):
 	'''
@@ -70,16 +69,16 @@ class GtalkParser(Parser):
 				self.M.close()
 				self.M.logout()
 				return None
-			# parse head
-			typ, head = self.M.fetch(num, '(BODY.PEEK[HEADER])')
+			
+			typ, data = self.M.fetch(num, '(RFC822)')
 			if typ <> 'OK':
-				e = Exception()
+				e = Exception(typ+'')
 				e.message = 'Message '+num+' not found.'
 				raise e
-			head = quopri.decodestring(head[0][1])
-			parser = HeaderParser()
-			fromField = parser.parsestr(head)['From']
-			fromField = decode_header(fromField)
+			email_message = email.message_from_string(data[0][1])
+			
+			# parse head
+			fromField = decode_header(email_message['From'])
 			if len(fromField) == 2:
 				name = unicode(fromField[0][0], 'utf-8')
 				uid = unicode(fromField[1][0], 'utf-8')[1:-1].lower()
@@ -99,24 +98,18 @@ class GtalkParser(Parser):
 				contactAccounts[contactAccount.uid] = contactAccount
 			
 			# parse body
-			typ, data = self.M.fetch(num, '(RFC822)')
-			if typ <> 'OK':
-				e = Exception()
-				e.message = 'Problem with retrieving message body.'
-				raise e
-			data = data[0][1].replace('=\r\n', '')
-			data = quopri.decodestring(data)
+			data = self.get_first_text_block(email_message).replace('=\r\n', '')
 			pattern = re.compile('\<con\:conversation(.*)\<\/con\:conversation\>', re.DOTALL)
 			m = pattern.search(data)
 			if m == None:
 				e = Exception()
-				e.message = 'Conversation parsing error.'
+				e.message = 'Conversation parsing error [conversation not found].'
 				raise e
 			try:
 				root = ElementTree.XML(m.group(0))
-			except ExpatError:
-				e = Exception()
-				e.message = 'Conversation parsing error.'
+			except ExpatError, ex:
+				e = Exception(m.group(0))
+				e.message = 'Conversation parsing error. ' + ex
 				raise e
 			
 			# create conversation
@@ -158,3 +151,12 @@ class GtalkParser(Parser):
 		self.M.logout()
 		self.contactsLoadProgress = 100
 		return contacts
+	
+	def get_first_text_block(self, email_message_instance):
+		maintype = email_message_instance.get_content_maintype()
+		if maintype == 'multipart':
+			for part in email_message_instance.get_payload():
+				if part.get_content_maintype() == 'text':
+					return part.get_payload(decode=True)
+		elif maintype == 'text':
+			return email_message_instance.get_payload(decode=True)

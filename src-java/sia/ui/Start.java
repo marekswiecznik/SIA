@@ -1,10 +1,12 @@
 package sia.ui;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -62,8 +64,10 @@ public class Start extends ApplicationWindow {
 	private String lastSearchMessage = "a";
 	private String orderbyConversation = "time";
 	private boolean asc = false;
+	private SimpleDateFormat dateFormat;
 	public Start() {
 		super(null);
+		dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 	}
 
 	/**
@@ -411,7 +415,7 @@ public class Start extends ApplicationWindow {
 			for (Conversation conv : conversations) {
 				TableItem ti = new TableItem(conversationsTable, SWT.NONE);
 				ti.setText(new String[] { conv.getContactAccount().getContact().getName(), conv.getTitle(),
-						conv.getTime().toString(), conv.getLength() + "" });
+						dateFormat.format(conv.getTime()), conv.getLength() + "" });
 			}
 		}
 	}
@@ -451,7 +455,7 @@ public class Start extends ApplicationWindow {
 		}
 		for (Conversation conv : conversations) {
 			TableItem ti = new TableItem(conversationsTable, SWT.NONE);
-			ti.setText(new String[] { conv.getContactAccount().getContact().getName(), conv.getTitle(), conv.getTime().toString(),
+			ti.setText(new String[] { conv.getContactAccount().getContact().getName(), conv.getTitle(), dateFormat.format(conv.getTime()),
 					conv.getLength() + "" });
 		}
 	}
@@ -474,13 +478,15 @@ public class Start extends ApplicationWindow {
 		html.append("<!doctype html>");
 		html.append("<html>");
 		html.append("<head>");
-		html.append("<title>Tytuł strony</title>");
+		html.append("<title>SIA conversation browser</title>");
+		html.append("<meta http-equiv=\"X-UA-Compatible\" content=\"IE=100\" />");
+		html.append("<base href=\"file://"+  this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath() +"\" />");
 		html.append("<style type=\"text/css\">");
 		html.append("body {font: 10px system;}");
 
 		html.append(".received {");
 		html.append("border: 1px solid " + c2h(cReceiver.darker()) + ";");
-		html.append("background-color:" + c2h(cReceiver.brighter()) + ";");
+		html.append("background-color:" + c2h(cReceiver) + ";");
 		html.append("background-image: -webkit-gradient(linear, left top, left bottom, from("
 				+ c2h(cReceiver.brighter()) + "), +to(" + c2h(cReceiver) + "));");
 		html.append("background-image: -webkit-linear-gradient(top, " + c2h(cReceiver.brighter()) + ", "
@@ -496,7 +502,7 @@ public class Start extends ApplicationWindow {
 		html.append("-moz-border-radius: 5px; ");
 		html.append("border-radius: 5px;");
 		html.append("border: 1px solid " + c2h(c.darker()) + ";");
-		html.append("background-color:" + c2h(c.brighter()) + ";");
+		html.append("background-color:" + c2h(c) + ";");
 		html.append("background-image: -webkit-gradient(linear, left top, left bottom, from(" + c2h(c.brighter())
 				+ "), +to(" + c2h(c) + "));");
 		html.append("background-image: -webkit-linear-gradient(top, " + c2h(c.brighter()) + ", " + c2h(c) + ");");
@@ -542,12 +548,12 @@ public class Start extends ApplicationWindow {
 				html.append("<div class=\"sent\">");
 			}
 			html.append("<div class=\"avatar\">");
-			html.append("<img src=\"/sia/ui/resources/properties.png\" />");
+			html.append("<img src=\"sia/ui/resources/properties.png\" />");
 			html.append("</div>");
 			html.append("<p>");
 			html.append(m.get(i).getMessage());
 			html.append("<span class=\"time\">");
-			html.append(m.get(i).getTime());
+			html.append(dateFormat.format(m.get(i).getTime()));
 			html.append("</span>");
 			html.append("</p>");
 			html.append("<div style=\"clear:both;\"></div>");
@@ -556,7 +562,7 @@ public class Start extends ApplicationWindow {
 				html.append("<p>");
 				html.append(m.get(i + 1).getMessage());
 				html.append("<span class=\"time\">");
-				html.append(m.get(i + 1).getTime());
+				html.append(dateFormat.format(m.get(i + 1).getTime()));
 				html.append("</span>");
 				html.append("</p>");
 				html.append("<div class=\"clear\">&nbsp;</div>");

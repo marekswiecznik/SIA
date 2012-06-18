@@ -1,21 +1,21 @@
 package sia.datasources;
 
 /**
- * FMA Data source
+ * MPE Data source
  * 
- * Float's Mobile Agent (for Sony Ericsson)
+ * MyPhoneExplorer (for Sony Ericsson)
  */
-public class FMADataSource extends DataSource {
+public class MpeDataSource extends DataSource {
 	private static final String UID_REGEX = "^\\+?[0-9]+$";
 
 	/**
 	 * Default and only constructor
 	 */
-	public FMADataSource() {
+	public MpeDataSource() {
 		extensions = new String[] { "*.xml" };
 		descriptions = new String[][] { new String[] { "XML file", "SMS archive in XML" } };
 		passwordDescriptions = null;
-		parserClassName = "FmaParser";
+		parserClassName = "MpeParser";
 	}
 
 	@Override

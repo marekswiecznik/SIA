@@ -16,6 +16,8 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.sormula.SormulaException;
 
 import sia.datasources.DataSource;
@@ -220,8 +222,10 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 			if (target == chooseFiles) {
 				int previousIm = im;
 				im = chooseIM.getSelected();
+				this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
+				//TODO: consider moving initParser into another thread or making a loader
+				datasource.initParser();
 				if (previousIm != im) {
-					this.datasource = Dictionaries.getInstance().getDataSource(imNames[im]);
 					if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
 						setPasswords.setPasswordDescpriptions(datasource.getRequiredPassword());
 						setPasswords.setControls();
@@ -236,7 +240,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					chooseFiles.setControls();
 					chooseFiles.setPageComplete(false);
 					chooseFiles.canFlipToNextPage();
-					this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
+					updateSize();
 				}
 			} else if (target == setPasswords) {
 				if (datasource.getRequiredPassword() != null && datasource.getRequiredPassword().length > 0) {
@@ -276,7 +280,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					dialog.showPage(saveLoading);
 					event.doit = false;
 				}
-				this.getShell().setSize(this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT));
+				updateSize();
 			} else if (target == setContacts) {
 				validatePage(setContacts);
 				setContacts.layout();
@@ -306,6 +310,16 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 		} catch (Exception e) {
 			SIA.getInstance().handleException("An unexpected abort occured.", e);
 		}
+	}
+
+	private void updateSize() {
+		Point newSize = this.getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		Rectangle r = this.getShell().getDisplay().getBounds();
+		if (newSize.y > r.height - 32)
+			newSize.y = r.height - 32;
+		if (newSize.x > r.width - 32)
+			newSize.x = r.width - 32;
+		this.getShell().setSize(newSize);
 	}
 
 	@Override
@@ -432,7 +446,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 	 */
 	private void cancelCurrentAction() {
 		if (datasource != null) {
-			datasource.abortParserCurrentAction();
+			datasource.stopParserCurrentAction();
 			if (loader != null) {
 				loader.cancel();
 			}
@@ -498,6 +512,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					// Silent like a ninja
 				}
 			}
+			//TODO: fix.
 			if (getShell() != null && !cancel) {
 				getShell().getDisplay().asyncExec(new Runnable() {
 					public void run() {
@@ -506,6 +521,7 @@ public class ImportWizard extends Wizard implements IPageChangingListener, IPage
 					}
 				});
 			}
+			datasource.stopParserCurrentAction();
 		}
 	}
 }

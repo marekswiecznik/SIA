@@ -18,6 +18,7 @@ import sia.ui.SIA;
 import sia.utils.Config;
 import sia.utils.Dictionaries;
 import sia.utils.ORM;
+import sia.utils.ParserFactory;
 
 /**
  * Data source
@@ -36,6 +37,7 @@ public abstract class DataSource {
 	protected Map<String,Protocol> protocols;
 	protected Parser parser;
 	private int saveProgress = 0;
+	protected static String parserClassName;
 	
 	/**
 	 * Returns accepted by parser file extensions 
@@ -64,6 +66,14 @@ public abstract class DataSource {
 	}
 	
 	/**
+	 * Init parser
+	 */
+	public void initParser() {
+		if (parser == null)
+			parser = ParserFactory.getInstance().create(parserClassName);
+	}
+	
+	/**
 	 * Load files
 	 * @throws Exception
 	 * @param files
@@ -71,7 +81,6 @@ public abstract class DataSource {
 	public void loadFiles(String[] files) throws Exception {
 		parser.start();
 		parser.loadFiles(files);
-		parser.stop();
 	}
 
 	/**
@@ -108,7 +117,6 @@ public abstract class DataSource {
 		if(userAccounts==null) {
 			parser.start();
 			userAccounts = parser.getUserAccounts();
-			parser.stop();
 			List <UserAccount> dictUserAccounts = Dictionaries.getInstance().getUserAccounts();
 			for (UserAccount ua : userAccounts) {
 				if (dictUserAccounts.contains(ua)) {
@@ -136,7 +144,7 @@ public abstract class DataSource {
 		if(contacts==null) {
 			parser.start();
 			contacts = parser.getContacts(userAccounts);
-			parser.stop();
+			parser.setContactNames(contacts);
 		}
 		return contacts;
 	}
@@ -199,10 +207,11 @@ public abstract class DataSource {
 				if (contactAccount.getId() == 0) 
 					orm.getTempTable(ContactAccount.class).insert(contactAccount);
 				for (Conversation conversation : contactAccount.getConversations()) {
+					conversation.setContactAccount(contactAccount);
 					if (conversation.getId() == 0) {
 						long begin = conversation.getTime().getTime();
 						long end = conversation.getEndTime().getTime();
-						long interval = Config.get("conversation_interval") != null ? Long.parseLong(Config.get("interval")) : 3600000;
+						long interval = Config.hasValue("import.conversation_interval") ? Config.getLong("import.conversation_interval") : 3600000L;
 						Conversation conv = orm.getTable(Conversation.class).selectCustom(
 							"WHERE (time BETWEEN "+begin+" AND "+end+
 							" OR endTime BETWEEN "+begin+" AND "+end+
@@ -270,7 +279,7 @@ public abstract class DataSource {
 	/**
 	 * Abort parser's current action
 	 */
-	public void abortParserCurrentAction() {
+	public void stopParserCurrentAction() {
 		parser.stop();
 	}
 }

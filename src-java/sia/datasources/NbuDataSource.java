@@ -1,27 +1,27 @@
 package sia.datasources;
 
 /**
- * FMA Data source
+ * Nbu Data Source
  * 
- * Float's Mobile Agent (for Sony Ericsson)
+ * Ovi suite (for Nokia)
  */
-public class FMADataSource extends DataSource {
+public class NbuDataSource extends DataSource {
 	private static final String UID_REGEX = "^\\+?[0-9]+$";
 
 	/**
 	 * Default and only constructor
 	 */
-	public FMADataSource() {
-		extensions = new String[] { "*.xml" };
-		descriptions = new String[][] { new String[] { "XML file", "SMS archive in XML" } };
+	public NbuDataSource() {
+		extensions = new String[] { "*.nbu" };
+		descriptions = new String[][] { new String[] { "NBU file", "Nokia Ovi Suite backup file, containing vCard and vMsg" } };
 		passwordDescriptions = null;
-		parserClassName = "FmaParser";
+		parserClassName = "NbuParser";
 	}
 
 	@Override
 	public String validateFiles(String[] files) {
-		if (files == null || files.length != 1 || files[0] == null || !files[0].toLowerCase().endsWith(".xml"))
-			return "You have to choose one XML file.";
+		if (files == null || files.length != 1 || files[0] == null || !files[0].toLowerCase().endsWith(".nbu"))
+			return "You have to choose one NBU file.";
 		return null;
 	}
 

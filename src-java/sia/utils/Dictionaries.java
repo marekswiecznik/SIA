@@ -11,6 +11,8 @@ import sia.datasources.ExampleDataSource;
 import sia.datasources.FMADataSource;
 import sia.datasources.GtalkDataSource;
 import sia.datasources.KaduDataSource;
+import sia.datasources.MpeDataSource;
+import sia.datasources.NbuDataSource;
 import sia.models.Configuration;
 import sia.models.Contact;
 import sia.models.ContactAccount;
@@ -26,7 +28,6 @@ import sia.ui.SIA;
 public class Dictionaries {
 	private static Dictionaries instance;
 	private ORM orm;
-	
 	private Map<String, String> dataSources;
 	private Map<String, Protocol> protocols;
 	private Map<String, Configuration> configuration;
@@ -60,9 +61,11 @@ public class Dictionaries {
 		dataSources = new HashMap<String, String>();
 		//dataSources.put("kadu", new KaduDataSource());
 		dataSources.put("Float's Mobile Agent", FMADataSource.class.getSimpleName());
+		dataSources.put("MyPhoneExplorer", MpeDataSource.class.getSimpleName());
 		dataSources.put("Google Talk (via IMAP)", GtalkDataSource.class.getSimpleName());
 		dataSources.put("Example", ExampleDataSource.class.getSimpleName());
 		dataSources.put("Kadu", KaduDataSource.class.getSimpleName());
+		dataSources.put("Ovi Suite (Nokia backup file)", NbuDataSource.class.getSimpleName());
 	}
 	
 	/**

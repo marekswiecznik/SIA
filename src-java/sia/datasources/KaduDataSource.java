@@ -3,15 +3,13 @@ package sia.datasources;
 import java.io.File;
 import java.io.FilenameFilter;
 
-import sia.utils.ParserFactory;
-
 public class KaduDataSource extends DataSource {
 
 	public KaduDataSource() {
 		extensions = new String[] { "" };
 		descriptions = new String[][] { new String[] { "Kadu directory", "Default /home/user/.kadu/" } }; // TODO [Aga] windows
 		passwordDescriptions = null;
-		parser = new ParserFactory("KaduParser").create();
+		parserClassName = "KaduParser";
 	}
 	
 	@Override

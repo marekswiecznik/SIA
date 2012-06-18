@@ -25,7 +25,7 @@ public class KaduParserTest {
 	public void setUp() throws Exception {
 		SIA.getInstance().dbInit("test/sia.db");
 		Dictionaries.getInstance().init();
-		parser = new ParserFactory("KaduParser").create();
+		parser = ParserFactory.getInstance().create("KaduParser");
 	}
 	
 	/**

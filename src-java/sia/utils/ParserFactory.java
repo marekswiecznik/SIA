@@ -13,6 +13,8 @@ import sia.fileparsers.Parser;
 public class ParserFactory {
 
     private PyObject parserClass;
+    private PythonInterpreter interpreter;
+    private static ParserFactory instance;
 
     /**
      * Create a new PythonInterpreter object, then use it to
@@ -22,10 +24,10 @@ public class ParserFactory {
      * Once the module is imported than we obtain a reference to
      * it and assign the reference to a Java variable
      */
-    public ParserFactory(String className) {
-        PythonInterpreter interpreter = new PythonInterpreter();
-        interpreter.exec("from sia.py.fileparsers."+className+" import "+className);
-        parserClass = interpreter.get(className);
+    private ParserFactory() {
+        this.interpreter = new PythonInterpreter();
+        //TODO: to speed up create(), import any parser first; change GtalkParser to ?
+        interpreter.exec("from sia.py.fileparsers.GtalkParser import GtalkParser");
     }
 
     /**
@@ -34,8 +36,16 @@ public class ParserFactory {
      * 
      * @return parser
      */
-    public Parser create() {
+    public Parser create(String className) {
+        interpreter.exec("from sia.py.fileparsers."+className+" import "+className);
+        parserClass = interpreter.get(className);
         PyObject buildingObject = parserClass.__call__();
         return (Parser)buildingObject.__tojava__(Parser.class);
+    }
+    
+    public static ParserFactory getInstance() {
+    	if (instance == null)
+    		instance = new ParserFactory();
+    	return instance;
     }
 }

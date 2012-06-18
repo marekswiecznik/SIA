@@ -19,4 +19,10 @@ PROJECT TREE
 |
 |- test			# JUnit tests
 |
+|- lib			# libraries (jars)
+|
+|- log			# logs
+|
+|- bin			# java and python binaries
+|
 |- sia-template.db 	# SIA sqlite database file

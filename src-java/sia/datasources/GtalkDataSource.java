@@ -1,7 +1,5 @@
 package sia.datasources;
 
-import sia.utils.ParserFactory;
-
 /**
  * Google talk IMAP data source
  * @author jumper
@@ -16,7 +14,7 @@ public class GtalkDataSource extends DataSource {
 		extensions = new String[] { };
 		descriptions = new String[][] {new String[] { }};
 		passwordDescriptions = new String[] {"Email address (JID)", "*Password", "Chats label"};
-		parser = new ParserFactory("GtalkParser").create();
+		parserClassName = "GtalkParser";
 	}
 
 	@Override

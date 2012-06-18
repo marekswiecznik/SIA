@@ -6,14 +6,13 @@ Created on Dec 21, 2011
 
 from sia.models import Conversation
 from sia.utils import Config
-from sia.ui import SIA
 import math
 
 def messagesToConversations(msgs, cnt, ua):
-	if Config.get('conversation.conversation_interval') == None: 
+	if not Config.hasValue('import.conversation_interval'): 
 		MAX_TIME = 3600000L
 	else:
-		MAX_TIME = long(Config.get('conversation.conversation_interval'))
+		MAX_TIME = Config.getLong('import.conversation_interval')
 	conversations = []
 	msgs.sort(key=lambda msg: msg.time)
 	lastTime = msgs[0].time

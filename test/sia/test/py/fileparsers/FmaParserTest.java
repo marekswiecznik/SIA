@@ -9,7 +9,6 @@ import static org.junit.Assert.fail;
 import java.util.Calendar;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -35,7 +34,7 @@ public class FmaParserTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		SIA.getInstance().dbInit("test/sia.db");
+		SIA.getInstance().dbInit(ParserFactoryTest.class.getClassLoader().getResource("sia/test/py/fileparsers/sia.db").getPath());
 		SIA.getInstance().tmpInit();
 		SIA.getInstance().ormInit();
 		Dictionaries.getInstance().init();
@@ -46,7 +45,7 @@ public class FmaParserTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		parser = new ParserFactory("FmaParser").create();
+		parser = ParserFactory.getInstance().create("FmaParser");
 	}
 
 	/**
@@ -71,8 +70,9 @@ public class FmaParserTest {
 	@Test
 	public void testLoadFilesNotFound() throws Exception {
 		try {
-			parser.loadFiles(new String[] {"dummy-name"});
+			parser.loadFiles(new String[] {"/dasds/dummy-name"});
 			fail("Shouldn't get so far.");
+		} catch (NullPointerException e) {
 		} catch (PyException e) {
 			assertEquals("Unexpected error type", "exceptions.IOError", PyException.exceptionClassName(e.type));
 			assertTrue("Unexpected IOError argument", e.value.toString().indexOf("No such file or directory") == 12);
@@ -81,7 +81,7 @@ public class FmaParserTest {
 	
 	@Test
 	public void testLoadFilesSample() throws Exception {
-		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-empty.xml" } );
+		parser.loadFiles(new String[] { ParserFactoryTest.class.getClassLoader().getResource("sia/test/py/fileparsers/FmaParserTest-empty.xml").getPath() } );
 	}
 	
 	@Test
@@ -91,14 +91,14 @@ public class FmaParserTest {
 	
 	@Test
 	public void testGetUserAccountsFileOk() throws Exception {
-		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-sample.xml" } );
+		parser.loadFiles(new String[] { ParserFactoryTest.class.getClassLoader().getResource("sia/test/py/fileparsers/FmaParserTest-sample.xml").getPath() } );
 		assertEquals("User accounts array size <> 1", 1, parser.getUserAccounts().size());
 		assertEquals("User account not the same", new UserAccount(-1, Dictionaries.getInstance().getProtocol("SMS"), ""), parser.getUserAccounts().get(0));
 	}
 	
 	@Test
 	public void testGetContactsEmptyXml() throws Exception {
-		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-empty.xml" } );
+		parser.loadFiles(new String[] { ParserFactoryTest.class.getClassLoader().getResource("sia/test/py/fileparsers/FmaParserTest-empty.xml").getPath() } );
 		List<Contact> contacts = parser.getContacts(parser.getUserAccounts());
 		assertNotNull("Contact list is null", contacts);
 		assertEquals("Contact list not empty", 0, contacts.size());
@@ -106,7 +106,7 @@ public class FmaParserTest {
 	
 	@Test
 	public void testGetContactsOneEmptyMessage() throws Exception {
-		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-one-empty-message.xml" } );
+		parser.loadFiles(new String[] { ParserFactoryTest.class.getClassLoader().getResource("sia/test/py/fileparsers/FmaParserTest-one-empty-message.xml").getPath() } );
 		List<UserAccount> userAccount = parser.getUserAccounts();
 		List<Contact> contacts = parser.getContacts(userAccount);
 		assertNotNull("Contact list is null", contacts);
@@ -150,7 +150,7 @@ public class FmaParserTest {
 	
 	@Test
 	public void testGetContact() throws Exception {
-		parser.loadFiles(new String[] { "test/sia/test/py/fileparsers/FmaParserTest-sample.xml" } );
+		parser.loadFiles(new String[] { ParserFactoryTest.class.getClassLoader().getResource("sia/test/py/fileparsers/FmaParserTest-sample.xml").getPath() } );
 		parser.getContacts(parser.getUserAccounts());
 		//TODO: [Marek] test conversations etc, maybe in other test case?
 	}

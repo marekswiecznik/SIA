@@ -10,6 +10,16 @@ import java.util.List;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.Logger;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 import org.python.core.PyBaseException;
 import org.python.core.PyException;
@@ -25,6 +35,7 @@ import sia.models.Protocol;
 import sia.models.UserAccount;
 import sia.utils.Dictionaries;
 import sia.utils.ORM;
+import sia.utils.ParserFactory;
 
 public class SIA {
 	public static SIA instance;
@@ -32,6 +43,7 @@ public class SIA {
 	private Connection connection;
 	private ORM orm;
 	private Start window;
+	private Splash splash;
 
 	private static final Logger logger = Logger.getLogger(SIA.class);
 
@@ -42,10 +54,18 @@ public class SIA {
 		PropertyConfigurator.configure("log4j.properties");
 		logger.debug("init");
 		try {
+			splash = new Splash();
+			splash.init();
 			dbInit("sia.db");
+			splash.progressIncrement();
 			tmpInit();
+			splash.progressIncrement();
 			ormInit();
+			splash.progressIncrement();
 			Dictionaries.getInstance().init();
+			splash.progressIncrement();
+			ParserFactory.getInstance();
+			splash.close();
 			guiInit();
 		} catch (SQLException e) {
 			handleException("Unexpected problem with database connection (SQL).", e);
@@ -67,8 +87,8 @@ public class SIA {
 	 */
 	public void handleException(final String message, final Exception ex) {
 		final String exceptionMessage;
-		if (ex instanceof PyException && ((PyException) ex).value instanceof PyBaseException) {
-			exceptionMessage = ((PyBaseException) ((PyException) ex).value).message.toString();
+		 if (ex instanceof PyException && ((PyException) ex).value instanceof PyBaseException) {
+             exceptionMessage = ((PyBaseException) ((PyException) ex).value).message.toString();
 		} else {
 			exceptionMessage = ex.getLocalizedMessage() == null ? "" : ex.getLocalizedMessage();
 		}
@@ -104,7 +124,7 @@ public class SIA {
 		}
 		stmt = connection.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT value FROM configuration WHERE key = 'running_application'");
-		if (rs.next()) {
+		if (rs.next() && rs.getString(1) != null && rs.getString(1).equals("true")) {
 			cleanup();
 			updateConversations(null);
 		}
@@ -228,21 +248,21 @@ public class SIA {
 	 * @throws SQLException
 	 */
 	public void close(String message) {
+		if (splash != null)
+			splash.close();
 		if (window != null) {
 			window.close();
 		}
 		if (message != null) {
-			if (connection != null) {
-				try {
-					Statement stmt = connection.createStatement();
-					stmt.executeUpdate("DELETE FROM configuration WHERE key = 'running_application'");
-				} catch (SQLException e) {
-					logger.error(e);
-				}
-			}
 			MessageDialog.openInformation(new Shell(), "Unexpected shutdown", message);
 		}
 		if (connection != null) {
+			try {
+				Statement stmt = connection.createStatement();
+				stmt.executeUpdate("UPDATE configuration SET value = 'false' WHERE key = 'running_application'");
+			} catch (SQLException e) {
+				logger.error(e);
+			}
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -258,6 +278,12 @@ public class SIA {
 	 * GUI init
 	 */
 	public void guiInit() {
+		while (Display.getCurrent() != null && !Display.getCurrent().isDisposed())
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			Logger.getLogger(Start.class).error("Interrupt while waiting for display disposal", e);
+		}
 		window = new Start();
 		window.run();
 	}
@@ -298,5 +324,65 @@ public class SIA {
 	 */
 	public static void main(String[] args) {
 		SIA.getInstance().init();
+	}
+	
+	/**
+	 * Splash screen with progress loader
+	 * 
+	 * @author jumper
+	 */
+	private class Splash {
+		private Display display = null;
+		private Image image = null;
+		private Shell splash = null;
+		private ProgressBar splashBar;
+		
+		public void init() {
+			display = new Display();
+			image = new Image(display, 300, 50);
+			splash = new Shell(SWT.ON_TOP);
+			splashBar = new ProgressBar(splash, SWT.NONE);
+			GC gc = new GC(image);
+			gc.setBackground(display.getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+			gc.fillRectangle(image.getBounds());
+			gc.setForeground(display.getSystemColor(SWT.COLOR_INFO_FOREGROUND));
+			gc.drawText("SIA loading...", 10, 10);
+			gc.dispose();
+			splashBar.setMinimum(0);
+			splashBar.setMaximum(5);
+			Label label = new Label(splash, SWT.NONE);
+			label.setImage(image);
+			FormLayout layout = new FormLayout();
+			splash.setLayout(layout);
+			FormData labelData = new FormData ();
+			labelData.right = new FormAttachment (100, 0);
+			labelData.bottom = new FormAttachment (100, 0);
+			label.setLayoutData(labelData);
+			FormData progressData = new FormData ();
+			progressData.left = new FormAttachment (0, 5);
+			progressData.right = new FormAttachment (100, -5);
+			progressData.bottom = new FormAttachment (100, -5);
+			splashBar.setLayoutData(progressData);
+			splash.pack();
+			Rectangle splashRect = splash.getBounds();
+			Rectangle displayRect = display.getBounds();
+			int x = (displayRect.width - splashRect.width) / 2;
+			int y = (displayRect.height - splashRect.height) / 2;
+			splash.setLocation(x, y);
+			splash.open();
+		}
+		
+		public void progressIncrement() {
+			splashBar.setSelection(splashBar.getSelection() + 1);
+		}
+		
+		public void close() {
+			if (splash != null && !splash.isDisposed())
+				splash.close();
+			if (image != null && !image.isDisposed())
+				image.dispose();
+			if (Display.getCurrent() != null && !Display.getCurrent().isDisposed())
+				Display.getCurrent().dispose();
+		}
 	}
 }
