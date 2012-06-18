@@ -6,10 +6,13 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.python.core.PyException;
 
@@ -19,8 +22,6 @@ import sia.models.UserAccount;
 import sia.ui.SIA;
 import sia.utils.Dictionaries;
 import sia.utils.ParserFactory;
-
-import com.ibm.icu.util.Calendar;
 
 /**
  * Fma Parser Test
@@ -32,18 +33,27 @@ public class FmaParserTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		SIA.getInstance().dbInit("test/sia.db");
+		SIA.getInstance().tmpInit();
+		SIA.getInstance().ormInit();
+		Dictionaries.getInstance().init();
+	}
+
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
-		SIA.getInstance().dbInit("test/sia.db");
-		Dictionaries.getInstance().init();
 		parser = new ParserFactory("FmaParser").create();
 	}
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		SIA.getInstance().close(null);
 	}
 
@@ -101,7 +111,7 @@ public class FmaParserTest {
 		List<Contact> contacts = parser.getContacts(userAccount);
 		assertNotNull("Contact list is null", contacts);
 		assertEquals("Contact list size != 1", 1, contacts.size());
-		assertEquals("Id should be -1", -1, contacts.get(0).getId());
+		assertEquals("Id should be -1", 0, contacts.get(0).getId());
 		assertEquals("First name not empty", "", contacts.get(0).getFirstname());
 		assertEquals("Last name not empty", "", contacts.get(0).getLastname());
 		assertEquals("Name not empty", "", contacts.get(0).getLastname());
@@ -109,18 +119,18 @@ public class FmaParserTest {
 		assertEquals("Contact accounts size != 1", 1, contacts.get(0).getContactAccounts().size());
 		assertEquals("Contact account contact reference fail", contacts.get(0), contacts.get(0).getContactAccounts().get(0).getContact());
 		assertEquals("Contact account contact ID fail", contacts.get(0).getId(), contacts.get(0).getContactAccounts().get(0).getContactId());
-		assertEquals("Contact account ID != -1", -1, contacts.get(0).getContactAccounts().get(0).getId());
+		assertEquals("Contact account ID != -1", 0, contacts.get(0).getContactAccounts().get(0).getId());
 		assertEquals("Contact account name not empty", "", contacts.get(0).getContactAccounts().get(0).getName());
 		assertEquals("Contact account other info not empty", "", contacts.get(0).getContactAccounts().get(0).getOtherinfo());
 		assertEquals("Contact account uid not empty", "", contacts.get(0).getContactAccounts().get(0).getUid());
 		assertEquals("Contact account protocol", Dictionaries.getInstance().getProtocol("SMS"), contacts.get(0).getContactAccounts().get(0).getProtocol());
-		assertNotSame("Contact account protocol ID = -1", -1, contacts.get(0).getContactAccounts().get(0).getProtocolId());
+		assertNotSame("Contact account protocol ID = -1", 0, contacts.get(0).getContactAccounts().get(0).getProtocolId());
 		assertEquals("Contact account avatar exists", false, contacts.get(0).getContactAccounts().get(0).isAvatar());
 		assertNotNull("Conversations list is null", contacts.get(0).getContactAccounts().get(0).getConversations());
 		assertEquals("Conversations list size != 1", 1, contacts.get(0).getContactAccounts().get(0).getConversations().size());
 		assertEquals("Conversation contact account reference fail", contacts.get(0).getContactAccounts().get(0), contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getContactAccount());
 		assertEquals("Conversation contact account ID fail", contacts.get(0).getContactAccounts().get(0).getId(), contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getContactAccountId());
-		assertEquals("Conversation ID != -1", -1, contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getId());
+		assertEquals("Conversation ID != -1", 0, contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getId());
 		assertEquals("Conversation length != 1", 1, contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getLength());
 		Calendar cal = Calendar.getInstance();
 		cal.set(2001, Calendar.JANUARY, 1, 1, 1, 1);
@@ -130,7 +140,7 @@ public class FmaParserTest {
 		assertEquals("Conversation user account ID fail", userAccount.get(0).getId(), contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getUserAccountId());
 		assertNotNull("Messages list is null", contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getMessages());
 		assertEquals("Messages list size != 1", 1, contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getMessages().size());
-		assertEquals("Message ID != -1", -1, contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getMessages().get(0).getId());
+		assertEquals("Message ID != -1", 0, contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getMessages().get(0).getId());
 		assertEquals("Message conversation fail", contacts.get(0).getContactAccounts().get(0).getConversations().get(0), contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getMessages().get(0).getConversation());
 		assertEquals("Message conversation ID fail", contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getId(), contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getMessages().get(0).getConversationId());
 		assertEquals("Message not received (sent)", true, contacts.get(0).getContactAccounts().get(0).getConversations().get(0).getMessages().get(0).isReceived());
